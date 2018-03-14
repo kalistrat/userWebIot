@@ -1,0 +1,7 @@
+Доступ: root\admin
+Пользователь: kalistrat\045813
+
+CREATE USER 'kalistrat'@'localhost' IDENTIFIED BY '045813';
+create database things
+GRANT ALL PRIVILEGES ON things.* TO 'kalistrat'@'localhost';
+
