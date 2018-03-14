@@ -21,8 +21,12 @@ import com.vaadin.ui.*;
 @Theme("mytheme")
 public class MyUI extends UI {
 
+    //public static String OVERALL_WSE_LOCATION;
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+
+        //OVERALL_WSE_LOCATION = tUsefulFuctions.getWseLocation();
 
         new Navigator(this, this);
         getNavigator().addView(tLoginView.NAME, tLoginView.class);//

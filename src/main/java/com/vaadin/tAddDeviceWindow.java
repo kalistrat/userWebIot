@@ -1,13 +1,31 @@
 package com.vaadin;
 
 import com.vaadin.data.Item;
+import com.vaadin.data.util.converter.StringToIntegerConverter;
+import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.w3c.dom.Document;
 
+import javax.xml.xpath.XPathFactory;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.sql.*;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
  * Created by kalistrat on 17.05.2017.
@@ -26,6 +44,8 @@ public class tAddDeviceWindow extends Window {
     int iNewUserDeviceId;
     String iNewIconCode;
 
+    NativeSelect TimeZoneSelect;
+    TextField TimeSyncInterval;
 
 
     public tAddDeviceWindow(int eLeafId
@@ -44,9 +64,28 @@ public class tAddDeviceWindow extends Window {
         EditTextField = new TextField("Наименование устройства :");
         EditTextField.addStyleName(ValoTheme.TEXTFIELD_SMALL);
 
-        deviceUID = new TextField("Наименование устройства :");
+        deviceUID = new TextField("UID устройства :");
         deviceUID.addStyleName(ValoTheme.TEXTFIELD_SMALL);
-        deviceUID.setIcon(VaadinIcons.KEY);
+
+        TimeZoneSelect = new NativeSelect("Часовой пояс устройства :");
+        TimeZoneSelect.setNullSelectionAllowed(false);
+        tUsefulFuctions.setTimeZoneList(TimeZoneSelect);
+        TimeZoneSelect.select("UTC+3");
+        TimeSyncInterval = new TextField("Интервал синхронизации времени (в сутках) :");
+        TimeSyncInterval.setValue("1");
+        TimeSyncInterval.addStyleName(ValoTheme.TEXTFIELD_SMALL);
+        StringToIntegerConverter plainIntegerConverter = new StringToIntegerConverter() {
+            protected java.text.NumberFormat getFormat(Locale locale) {
+                NumberFormat format = super.getFormat(locale);
+                format.setGroupingUsed(false);
+                return format;
+            };
+        };
+        TimeSyncInterval.setConverter(plainIntegerConverter);
+        TimeSyncInterval.addValidator(new IntegerRangeValidator("Значение может изменяться от 1 до 365", 1, 365));
+        TimeSyncInterval.setConversionError("Введённое значение не является целочисленным");
+        TimeSyncInterval.setNullRepresentation("");
+        TimeSyncInterval.setValue("");
 
 
         SaveButton = new Button("Сохранить");
@@ -61,6 +100,7 @@ public class tAddDeviceWindow extends Window {
                 String sErrorMessage = "";
                 String sFieldValue = EditTextField.getValue();
                 String sUID = deviceUID.getValue();
+                String sTimeSync = TimeSyncInterval.getValue();
 
 
 
@@ -92,13 +132,57 @@ public class tAddDeviceWindow extends Window {
                     sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
                 }
 
+                int timeSyncInt = 0;
+
+                if (sTimeSync != null){
+
+                    if (tUsefulFuctions.StrToIntValue(sTimeSync)!= null) {
+
+                        timeSyncInt = Integer.parseInt(sTimeSync);
+
+                        if (timeSyncInt < 1) {
+                            sErrorMessage = sErrorMessage + "Интервал синхронизации не может быть меньше суток\n";
+                        }
+                        if (timeSyncInt > 365) {
+                            sErrorMessage = sErrorMessage + "Интервал синхронизации превышает 365 суток\n";
+                        }
+
+                    } else {
+                        sErrorMessage = sErrorMessage + "Интервал синхронизации некорректный\n";
+                    }
+
+                } else {
+                    sErrorMessage = sErrorMessage + "Не задан интервал синхронизации\n";
+                }
+
+                if (sTimeSync.equals("")){
+                    sErrorMessage = sErrorMessage + "Не задан интервал синхронизации\n";
+                }
+
+                String oWsResponse = overAllWsCheckUserDevice(sUID,iTreeContentLayout.iUserLog);
+
+                if (oWsResponse != null) {
+                    if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
+                        sErrorMessage = sErrorMessage + "Устройство с UID " + sUID + " не зарегистрировано в системе\n";
+                    } else if (oWsResponse.equals("WRONG_LOGIN_PASSWORD")) {
+                        sErrorMessage = sErrorMessage + "Для пользователя " + iTreeContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
+                    } else if (oWsResponse.equals("EXECUTION_ERROR")) {
+                        sErrorMessage = sErrorMessage + "Произошла ошибка выполнения\n";
+                    }
+                } else {
+                    sErrorMessage = sErrorMessage + "Проверка устройства не может быть произведена\n";
+                }
+
                 if (!sErrorMessage.equals("")){
                     Notification.show("Ошибка сохранения:",
                             sErrorMessage,
                             Notification.Type.TRAY_NOTIFICATION);
                 } else {
 
-                    //String sFullDeviceTopicName = RootTopicName.getValue()+sChildTopicName;
+                    String sDeviceLogin = iTreeContentLayout.iUserLog + RandomStringUtils.random(5, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+                    String sDevicePass = RandomStringUtils.random(7, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+                    String sDevicePassSha = tUsefulFuctions.sha256(sDevicePass);
+
 
 
                        addUserDevice(
@@ -141,7 +225,6 @@ public class tAddDeviceWindow extends Window {
                         newItem.getItemProperty(6).setValue(iNewUserDeviceId);
                         newItem.getItemProperty(7).setValue("UNKNOWN");
 
-                        //iTreeContentLayout.itTree.TreeContainer.setParent(iNewLeafId, iLeafId);
                         iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iNewLeafId,false);
                         iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iLeafId,true);
 
@@ -208,6 +291,8 @@ public class tAddDeviceWindow extends Window {
         FormLayout IniDevParamLayout = new FormLayout(
                 EditTextField
                 ,deviceUID
+                ,TimeZoneSelect
+                ,TimeSyncInterval
         );
 
         IniDevParamLayout.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
@@ -332,5 +417,82 @@ public class tAddDeviceWindow extends Window {
         }
         return iTaskId;
 
+    }
+
+    private String overAllWsCheckUserDevice(
+            String UID
+            ,String userLogin
+    ){
+        String respWs = null;
+
+        try {
+
+            List<String> WsArgs = getOverAllWseArgs(userLogin);
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(WsArgs.get(1));
+
+            post.setHeader("Content-Type", "text/xml");
+
+            String reqBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com/\">\n" +
+                    "   <soapenv:Header/>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <com:checkUserDevice>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg0>"+UID+"</arg0>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg1>"+userLogin+"</arg1>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg2>"+WsArgs.get(0)+"</arg2>\n" +
+                    "      </com:checkUserDevice>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+
+            StringEntity input = new StringEntity(reqBody, Charset.forName("UTF-8"));
+            post.setEntity(input);
+            HttpResponse response = client.execute(post);
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+            Document resXml = tUsefulFuctions.loadXMLFromString(rd.lines().collect(Collectors.joining()));
+            respWs = XPathFactory.newInstance().newXPath()
+                    .compile("//return").evaluate(resXml);
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return respWs;
+    }
+
+    public List getOverAllWseArgs(String UserLog){
+        List Args = new ArrayList<String>();
+
+        try {
+
+            Class.forName(tUsefulFuctions.JDBC_DRIVER);
+            Connection Con = DriverManager.getConnection(
+                    tUsefulFuctions.DB_URL
+                    , tUsefulFuctions.USER
+                    , tUsefulFuctions.PASS
+            );
+
+            CallableStatement Stmt = Con.prepareCall("{call getOverAllWseArgs(?,?,?)}");
+            Stmt.setString(1,UserLog);
+            Stmt.registerOutParameter (2, Types.VARCHAR);
+            Stmt.registerOutParameter (3, Types.VARCHAR);
+            Stmt.execute();
+            Args.add(Stmt.getString(2));
+            Args.add(Stmt.getString(3));
+            Con.close();
+
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+
+        return Args;
     }
 }
