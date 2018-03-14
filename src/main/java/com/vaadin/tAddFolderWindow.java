@@ -178,6 +178,7 @@ public class tAddFolderWindow extends Window {
                                 , "server"
                         );
                     }
+
                     Notification.show("Контроллер добавлен!",
                             null,
                             Notification.Type.TRAY_NOTIFICATION);

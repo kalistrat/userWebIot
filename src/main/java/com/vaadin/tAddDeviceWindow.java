@@ -98,17 +98,17 @@ public class tAddDeviceWindow extends Window {
             public void buttonClick(Button.ClickEvent clickEvent) {
 
                 String sErrorMessage = "";
-                String sFieldValue = EditTextField.getValue();
+                String sName = EditTextField.getValue();
                 String sUID = deviceUID.getValue();
                 String sTimeSync = TimeSyncInterval.getValue();
 
 
 
-                if (sFieldValue == null){
+                if (sName == null){
                     sErrorMessage = "Наименование устройства не задано\n";
                 }
 
-                if (sFieldValue.equals("")){
+                if (sName.equals("")){
                     sErrorMessage = sErrorMessage + "Наименование устройства не задано\n";
                 }
 
@@ -120,16 +120,20 @@ public class tAddDeviceWindow extends Window {
                     sErrorMessage = sErrorMessage + "UID устройства не задан\n";
                 }
 
-                if (sFieldValue.length() > 30){
+                if (sName.length() > 30){
                     sErrorMessage = sErrorMessage + "Длина наименования превышает 30 символов\n";
                 }
 
-                if (tUsefulFuctions.fIsLeafNameBusy(iTreeContentLayout.iUserLog,sFieldValue) > 0){
+                if (tUsefulFuctions.fIsLeafNameBusy(iTreeContentLayout.iUserLog,sName) > 0){
                     sErrorMessage = sErrorMessage + "Указанное наименование уже используется. Введите другое.\n";
                 }
 
                 if (!tUsefulFuctions.isSubscriberExists()) {
                     sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
+                }
+
+                if (fIsUIDExists(sUID)) {
+                    sErrorMessage = sErrorMessage + "Указанный UID уже используется\n";
                 }
 
                 int timeSyncInt = 0;
@@ -155,15 +159,11 @@ public class tAddDeviceWindow extends Window {
                     sErrorMessage = sErrorMessage + "Не задан интервал синхронизации\n";
                 }
 
-                if (sTimeSync.equals("")){
-                    sErrorMessage = sErrorMessage + "Не задан интервал синхронизации\n";
-                }
-
                 String oWsResponse = overAllWsCheckUserDevice(sUID,iTreeContentLayout.iUserLog);
 
                 if (oWsResponse != null) {
                     if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
-                        sErrorMessage = sErrorMessage + "Устройство с UID " + sUID + " не зарегистрировано в системе\n";
+                        sErrorMessage = sErrorMessage + "Устройство с UID " + sUID + " не выпускалось\n";
                     } else if (oWsResponse.equals("WRONG_LOGIN_PASSWORD")) {
                         sErrorMessage = sErrorMessage + "Для пользователя " + iTreeContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
                     } else if (oWsResponse.equals("EXECUTION_ERROR")) {
@@ -179,90 +179,81 @@ public class tAddDeviceWindow extends Window {
                             Notification.Type.TRAY_NOTIFICATION);
                 } else {
 
-                    String sDeviceLogin = iTreeContentLayout.iUserLog + RandomStringUtils.random(5, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+                    String sDeviceLog = iTreeContentLayout.iUserLog + RandomStringUtils.random(5, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
                     String sDevicePass = RandomStringUtils.random(7, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
                     String sDevicePassSha = tUsefulFuctions.sha256(sDevicePass);
 
+                    pAddUserLeafUID(
+                        sName
+                        ,sUID
+                        ,iTreeContentLayout.iUserLog
+                        ,(String) TimeZoneSelect.getValue()
+                        ,timeSyncInt
+                        ,sDeviceLog
+                        ,sDevicePass
+                        ,sDevicePassSha
+                    );
 
 
-                       addUserDevice(
-                                iLeafId//int qParentLeafId
-                                , sFieldValue//String qDeviceName
-                                , iTreeContentLayout.iUserLog//String qUserLog
-                                , "UNKNOWN" //String qActionTypeName
-                                , sUID
-                        );
-
-                        String addSubsribeRes = "";
-                        String addTaskRes = "";
-
-
-
-                        int NewTaskId;
-
-                        NewTaskId = addUserDeviceTask(
-                                iNewUserDeviceId
-                        , "SYNCTIME"
-                        , 1
-                        , "DAYS"
-                        );
-
-                        addTaskRes = tUsefulFuctions.sendMessAgeToSubcribeServer(
-                                NewTaskId
-                                , iTreeContentLayout.iUserLog
-                                , "add"
-                                , "task"
-                        );
-
-
+// Переместить на userWebService
+//                        String addSubsribeRes = "";
+//                        String addTaskRes = "";
+//
+//
+//
+//                        int NewTaskId;
+//
+//                        NewTaskId = addUserDeviceTask(
+//                                iNewUserDeviceId
+//                        , "SYNCTIME"
+//                        , 1
+//                        , "DAYS"
+//                        );
+//
+//                        addTaskRes = tUsefulFuctions.sendMessAgeToSubcribeServer(
+//                                NewTaskId
+//                                , iTreeContentLayout.iUserLog
+//                                , "add"
+//                                , "task"
+//                        );
+//
 
                         Item newItem = iTreeContentLayout.itTree.TreeContainer.addItem(iNewLeafId);
                         newItem.getItemProperty(1).setValue(iNewTreeId);
                         newItem.getItemProperty(2).setValue(iNewLeafId);
-                        newItem.getItemProperty(3).setValue(iLeafId);
-                        newItem.getItemProperty(4).setValue(sFieldValue);
+                        newItem.getItemProperty(3).setValue(1);
+                        newItem.getItemProperty(4).setValue(sName);
                         newItem.getItemProperty(5).setValue(iNewIconCode);
-                        newItem.getItemProperty(6).setValue(iNewUserDeviceId);
-                        newItem.getItemProperty(7).setValue("UNKNOWN");
+                        newItem.getItemProperty(6).setValue(0);
+                        newItem.getItemProperty(7).setValue(null);
 
                         iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iNewLeafId,false);
-                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iLeafId,true);
+                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(1,true);
 
-                        iTreeContentLayout.itTree.TreeContainer.setParent(iNewLeafId, iLeafId);
+                        iTreeContentLayout.itTree.TreeContainer.setParent(iNewLeafId, 1);
 
-                    if (iNewIconCode.equals("FOLDER")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.FOLDER);
+                        if (iNewIconCode.equals("FOLDER")) {
+                        iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.FOLDER);
                         }
                         if (iNewIconCode.equals("TACHOMETER")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, FontAwesome.TACHOMETER);
+                        iTreeContentLayout.itTree.setItemIcon(iNewLeafId, FontAwesome.TACHOMETER);
                         }
                         if (iNewIconCode.equals("AUTOMATION")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.AUTOMATION);
+                        iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.AUTOMATION);
+                        }
+                        if (iNewIconCode.equals("QUESTION")) {
+                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.QUESTION_CIRCLE_O);
                         }
 
-                        iTreeContentLayout.tTreeContentLayoutRefresh(iLeafId, 0);
-                        iTreeContentLayout.itTree.expandItem(iLeafId);
+                        iTreeContentLayout.tTreeContentLayoutRefresh(1, 0);
+                        iTreeContentLayout.itTree.expandItem(1);
 
 
+                        Notification.show("Устройство добавлено!",
+                        null,
+                        Notification.Type.TRAY_NOTIFICATION);
+                        UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
 
-
-                    if (!addSubsribeRes.equals("")) {
-                            Notification.show("Устройство добавлено c ошибкой",
-                                    addSubsribeRes,
-                                    Notification.Type.TRAY_NOTIFICATION);
-                            UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
-                        } else if (!addTaskRes.equals("")) {
-
-                            Notification.show("Устройство добавлено c ошибкой",
-                                    addTaskRes,
-                                    Notification.Type.TRAY_NOTIFICATION);
-                            UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
-                        } else {
-                            Notification.show("Устройство добавлено!",
-                                    null,
-                                    Notification.Type.TRAY_NOTIFICATION);
-                            UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
-                       }
                     }
 
 
@@ -326,12 +317,15 @@ public class tAddDeviceWindow extends Window {
     }
 
 
-    public void addUserDevice(
-        int qParentLeafId
-        , String qDeviceName
-        , String qUserLog
-        , String qActionTypeName
-        , String qInTopicName
+    public void pAddUserLeafUID(
+        String eName
+        ,String eUID
+        ,String eUserLog
+        ,String eTimeZone
+        ,int eSyncTime
+        ,String eDeviceLog
+        ,String eDevicePass
+        ,String eDevicePassSha
     ){
         try {
 
@@ -342,23 +336,24 @@ public class tAddDeviceWindow extends Window {
                     , tUsefulFuctions.PASS
             );
 
-            CallableStatement addDeviceStmt = Con.prepareCall("{call p_add_user_device(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
-            addDeviceStmt.setInt(1, qParentLeafId);
-            addDeviceStmt.setString(2, qDeviceName);
-            addDeviceStmt.setString(3, qUserLog);
-            addDeviceStmt.setString(4, qActionTypeName);
-            addDeviceStmt.registerOutParameter(5, Types.INTEGER);
-            addDeviceStmt.registerOutParameter(6, Types.INTEGER);
-            addDeviceStmt.registerOutParameter(7, Types.VARCHAR);
-            addDeviceStmt.registerOutParameter(8, Types.INTEGER);
-            addDeviceStmt.setString(9, qInTopicName);
+            CallableStatement Stmt = Con.prepareCall("{call pAddUserLeafUID(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+            Stmt.setString(1, eName);
+            Stmt.setString(2, eUID);
+            Stmt.setString(3, eUserLog);
+            Stmt.setString(4, eTimeZone);
+            Stmt.setInt(5, eSyncTime);
+            Stmt.setString(6, eDeviceLog);
+            Stmt.setString(7, eDevicePass);
+            Stmt.setString(8, eDevicePassSha);
 
-            addDeviceStmt.execute();
+            Stmt.registerOutParameter(9, Types.INTEGER);
+            Stmt.registerOutParameter(10, Types.INTEGER);
 
-            iNewTreeId = addDeviceStmt.getInt(5);
-            iNewLeafId = addDeviceStmt.getInt(6);
-            iNewIconCode = addDeviceStmt.getString(7);
-            iNewUserDeviceId = addDeviceStmt.getInt(8);
+            Stmt.execute();
+
+            iNewTreeId = Stmt.getInt(9);
+            iNewLeafId = Stmt.getInt(10);
+            iNewIconCode = "QUESTION";
 
             Con.close();
 
@@ -375,49 +370,51 @@ public class tAddDeviceWindow extends Window {
 
     }
 
-    public Integer addUserDeviceTask(
-            int qUserDeviceId
-            , String eTaskTypeName
-            , int eTaskInterval
-            , String eIntervalType
-    ){
-        Integer iTaskId = 0;
-        try {
+// Переместить на userWebService
 
-            Class.forName(tUsefulFuctions.JDBC_DRIVER);
-            Connection Con = DriverManager.getConnection(
-                    tUsefulFuctions.DB_URL
-                    , tUsefulFuctions.USER
-                    , tUsefulFuctions.PASS
-            );
-
-            CallableStatement addDeviceTaskStmt = Con.prepareCall("{call p_add_task(?, ?, ?, ?, ?, ?)}");
-            addDeviceTaskStmt.setInt(1, qUserDeviceId);
-            addDeviceTaskStmt.setString(2, eTaskTypeName);
-            addDeviceTaskStmt.setInt(3, eTaskInterval);
-            addDeviceTaskStmt.setString(4, eIntervalType);
-            addDeviceTaskStmt.setNull(5,Types.VARCHAR);
-            addDeviceTaskStmt.registerOutParameter(6, Types.INTEGER);
-
-            addDeviceTaskStmt.execute();
-
-            iTaskId = addDeviceTaskStmt.getInt(6);
-
-            Con.close();
-
-
-        }catch(SQLException se){
-            //Handle errors for JDBC
-            se.printStackTrace();
-            //return "Ошибка JDBC";
-        }catch(Exception e) {
-            //Handle errors for Class.forName
-            e.printStackTrace();
-            //return "Ошибка Class.forName";
-        }
-        return iTaskId;
-
-    }
+//    public Integer addUserDeviceTask(
+//            int qUserDeviceId
+//            , String eTaskTypeName
+//            , int eTaskInterval
+//            , String eIntervalType
+//    ){
+//        Integer iTaskId = 0;
+//        try {
+//
+//            Class.forName(tUsefulFuctions.JDBC_DRIVER);
+//            Connection Con = DriverManager.getConnection(
+//                    tUsefulFuctions.DB_URL
+//                    , tUsefulFuctions.USER
+//                    , tUsefulFuctions.PASS
+//            );
+//
+//            CallableStatement addDeviceTaskStmt = Con.prepareCall("{call p_add_task(?, ?, ?, ?, ?, ?)}");
+//            addDeviceTaskStmt.setInt(1, qUserDeviceId);
+//            addDeviceTaskStmt.setString(2, eTaskTypeName);
+//            addDeviceTaskStmt.setInt(3, eTaskInterval);
+//            addDeviceTaskStmt.setString(4, eIntervalType);
+//            addDeviceTaskStmt.setNull(5,Types.VARCHAR);
+//            addDeviceTaskStmt.registerOutParameter(6, Types.INTEGER);
+//
+//            addDeviceTaskStmt.execute();
+//
+//            iTaskId = addDeviceTaskStmt.getInt(6);
+//
+//            Con.close();
+//
+//
+//        }catch(SQLException se){
+//            //Handle errors for JDBC
+//            se.printStackTrace();
+//            //return "Ошибка JDBC";
+//        }catch(Exception e) {
+//            //Handle errors for Class.forName
+//            e.printStackTrace();
+//            //return "Ошибка Class.forName";
+//        }
+//        return iTaskId;
+//
+//    }
 
     private String overAllWsCheckUserDevice(
             String UID
@@ -464,7 +461,7 @@ public class tAddDeviceWindow extends Window {
         return respWs;
     }
 
-    public List getOverAllWseArgs(String UserLog){
+    private List getOverAllWseArgs(String UserLog){
         List Args = new ArrayList<String>();
 
         try {
@@ -494,5 +491,38 @@ public class tAddDeviceWindow extends Window {
         }
 
         return Args;
+    }
+
+    private boolean fIsUIDExists(String eUID){
+        boolean IsUIDExists = false;
+
+        try {
+
+            Class.forName(tUsefulFuctions.JDBC_DRIVER);
+            Connection Con = DriverManager.getConnection(
+                    tUsefulFuctions.DB_URL
+                    , tUsefulFuctions.USER
+                    , tUsefulFuctions.PASS
+            );
+
+            CallableStatement Stmt = Con.prepareCall("{? = call fIsUIDExists(?)}");
+            Stmt.registerOutParameter (1, Types.INTEGER);
+            Stmt.setString(2,eUID);
+            Stmt.execute();
+            if (Stmt.getInt(1) == 1) {
+                IsUIDExists = true;
+            }
+            Con.close();
+
+
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+
+        return IsUIDExists;
     }
 }
