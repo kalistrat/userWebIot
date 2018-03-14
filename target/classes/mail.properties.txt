@@ -1,4 +1,0 @@
-mail.smtp.host=smtp.mail.ru
-mail.smtp.port=465
-mail.smtp.username=kalique@bk.ru
-mail.smtp.password=irensorokina
