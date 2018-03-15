@@ -2,433 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb44adc8-b759-4f7e-9775-efa68dd97484" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/VAADIN/themes/mytheme/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/i18n/client/CurrencyList_.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/i18n/client/constants/NumberConstantsImpl_.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/i18n/client/impl/LocaleInfoImpl_.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/i18n/client/impl/LocaleInfoImpl_shared.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/lang/AppWidgetset__EntryMethodHolder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/user/client/DocumentModeAsserter_DocumentModeProperty.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/user/client/impl/WindowImplIE_Resources_default_InlineClientBundleGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/user/client/ui/FormPanel_IFrameTemplateImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/user/client/ui/MenuBar_Resources_default_InlineClientBundleGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/user/client/ui/impl/ClippedImageImpl_DraggableTemplateImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/user/client/ui/impl/ClippedImageImpl_TemplateImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/useragent/client/UserAgentImplGecko1_8.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/useragent/client/UserAgentImplIe10.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/useragent/client/UserAgentImplIe8.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/useragent/client/UserAgentImplIe9.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/google/gwt/useragent/client/UserAgentImplSafari.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/vaadin/client/debug/internal/theme/DebugWindowStyles_default_InlineClientBundleGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/vaadin/client/metadata/ConnectorBundleLoaderImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/vaadin/client/ui/dd/VAcceptCriterionFactoryImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/vaadin/client/ui/richtextarea/VRichTextToolbar_Images_default_InlineClientBundleGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/.generated/com/vaadin/client/ui/richtextarea/VRichTextToolbar_Strings_.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/AppWidgetset.gwt.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/333A66D5307B1C8C9935C59A877F1993.cache.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/51DCB1D3F3D956ACC80F89D3CF0AC5BE.cache.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.devmode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.devmode.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.nocache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.nocache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/C81F8CA7CA7012F31BDE883DF6C99E61.cache.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/D03281BC3FDB49177B485D1DC10A13C4.cache.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/F4C9D992FE06B800DCE9D092DC732B39.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/F4C9D992FE06B800DCE9D092DC732B39.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/clear.cache.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/compilation-mappings.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/1.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/1.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/2.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/3.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/3.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/4.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/4.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/5.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/5.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/6.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/6.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/7.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/7.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/8.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/8.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/9.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/9.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/VAADIN/widgetsets/WEB-INF/deploy/AppWidgetset/rpcPolicyManifest/manifest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/Diagram.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/DiagramState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/MathParser$Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/MathParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/MosquittoPBKDF2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/MyUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/MyUI$MyUIServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/MyUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/SpringEmailService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/addDeleteListenable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/addDeleteListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/d3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/d3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/diagram_connector.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorDataFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateConditionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateConditionLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateConditionLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateConditionLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateConditionLayout$ConditionIds.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStateDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStatesLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStatesLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStatesLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStatesLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorStatesLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorTaskLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorTaskLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorTaskLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorTaskLayout$taskIdMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tActuatorTaskLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddDeviceWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddDeviceWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddDeviceWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddFolderWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddFolderWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddFolderWindow$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddFolderWindow$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddFolderWindow$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddFolderWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddUserAccountWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddUserAccountWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tAddUserAccountWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tButtonTextFieldLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tButtonTextFieldLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tButtonTextFieldLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tButtonTextFieldLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tCameraLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tCaptchaImage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tCaptchaLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tChangeNameWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tChangeNameWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tChildDetectorSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDescriptionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDescriptionLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDescriptionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorDiagramData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorFormLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorFormLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLastMeasureLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLastMeasureLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorMeasuresJournalLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorMeasuresJournalLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorUnitsLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorUnitsLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDetectorUnitsLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDeviceDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDeviceDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDeviceDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDeviceIdName.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDeviceLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDiagramLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tDiagramLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderPrefsFormLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderPrefsFormLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tFolderPrefsFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tGraphLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tIdCaption.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLeafButton$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLeafButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLeafButtonLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLoginView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLoginView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLoginView$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tLoginView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tMainView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tMainView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tMark.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationConditionSelect$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationConditionSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationCriteriaField.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationDetectorLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationDetectorLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationDetectorLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationDetectorLayout$stateIdMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationDetectorLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tNotificationListLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tPeriodMeasuresLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tPeriodMeasuresLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationFormLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationFormLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationFormLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationFormLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationVeiw$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRegistrationVeiw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRemindWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tRemindWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tSignConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tStateConditionDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tStateConditionDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tStateConditionDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tTableNodeLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tTimeConditionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tTimeConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tTree$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tTree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tTreeContentLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tUsefulFuctions.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tUserAttributes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tUserDataFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tVarConditionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tVarConditionLayout$DoubleList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tVarConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/vaadin/tVarNativeSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/file.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/images/SNSLOG.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mail.properties.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/sp500.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-resources/gwt/AppWidgetset.gwt.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST.war" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/SNSLOG.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/addons.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/fonts/Vaadin-Icons.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/fonts/Vaadin-Icons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/fonts/Vaadin-Icons.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/fonts/Vaadin-Icons.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/mytheme.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/VAADIN/themes/mytheme/styles.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/AppWidgetset.gwt.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/333A66D5307B1C8C9935C59A877F1993.cache.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/51DCB1D3F3D956ACC80F89D3CF0AC5BE.cache.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.devmode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.devmode.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.nocache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/AppWidgetset.nocache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/C81F8CA7CA7012F31BDE883DF6C99E61.cache.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/D03281BC3FDB49177B485D1DC10A13C4.cache.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/F4C9D992FE06B800DCE9D092DC732B39.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/F4C9D992FE06B800DCE9D092DC732B39.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/clear.cache.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/compilation-mappings.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/1.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/1.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/2.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/3.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/3.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/4.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/4.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/5.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/5.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/6.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/6.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/7.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/7.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/8.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/8.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/9.cache.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/AppWidgetset/deferredjs/F4C9D992FE06B800DCE9D092DC732B39/9.cache.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/VAADIN/widgetsets/WEB-INF/deploy/AppWidgetset/rpcPolicyManifest/manifest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/Diagram.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/DiagramState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/MathParser$Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/MathParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/MosquittoPBKDF2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/MyUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/MyUI$MyUIServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/MyUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/SpringEmailService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/addDeleteListenable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/addDeleteListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/d3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/d3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/diagram_connector.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorDataFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateConditionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateConditionLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateConditionLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateConditionLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateConditionLayout$ConditionIds.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStateDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStatesLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStatesLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStatesLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStatesLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorStatesLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorTaskLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorTaskLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorTaskLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorTaskLayout$taskIdMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tActuatorTaskLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddDeviceWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddDeviceWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddDeviceWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddFolderWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddFolderWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddFolderWindow$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddFolderWindow$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddFolderWindow$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddFolderWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddUserAccountWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddUserAccountWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tAddUserAccountWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tButtonTextFieldLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tButtonTextFieldLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tButtonTextFieldLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tButtonTextFieldLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tCameraLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tCaptchaImage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tCaptchaLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tChangeNameWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tChangeNameWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tChildDetectorSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDescriptionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDescriptionLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDescriptionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorDiagramData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorFormLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorFormLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLastMeasureLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLastMeasureLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorMeasuresJournalLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorMeasuresJournalLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorUnitsLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorUnitsLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDetectorUnitsLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDeviceDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDeviceDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDeviceDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDeviceIdName.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDeviceLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDiagramLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tDiagramLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderPrefsFormLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderPrefsFormLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tFolderPrefsFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tGraphLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tIdCaption.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLeafButton$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLeafButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLeafButtonLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLoginView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLoginView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLoginView$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tLoginView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tMainView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tMainView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tMark.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationConditionSelect$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationConditionSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationCriteriaField.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationDetectorLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationDetectorLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationDetectorLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationDetectorLayout$stateIdMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationDetectorLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tNotificationListLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tPeriodMeasuresLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tPeriodMeasuresLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationFormLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationFormLayout$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationFormLayout$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationFormLayout$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationVeiw$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRegistrationVeiw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRemindWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tRemindWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tSignConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tStateConditionDeleteWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tStateConditionDeleteWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tStateConditionDeleteWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tTableNodeLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tTimeConditionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tTimeConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tTree$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tTree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tTreeContentLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tUsefulFuctions.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tUserAttributes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tUserDataFormLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tVarConditionLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tVarConditionLayout$DoubleList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tVarConditionLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/com/vaadin/tVarNativeSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/file.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/images/SNSLOG.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/mail.properties.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/classes/sp500.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/atmosphere-runtime-2.2.9.vaadin2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/canvas-2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/flute-1.3.0.gg2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/gson-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/javax.activation-1.1.0.v201105071233.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/javax.mail.glassfish-1.4.1.v201005082020.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/jsoup-1.8.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/mysql-connector-java-5.1.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/org.eclipse.paho.client.mqttv3-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/sac-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/spring-aop-4.2.4.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/spring-beans-4.2.4.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/spring-context-4.2.4.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/spring-context-support-4.2.4.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/spring-core-4.2.4.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/spring-expression-4.2.4.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-client-compiled-7.7.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-context-menu-0.7.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-icons-1.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-icons-3.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-push-7.7.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-sass-compiler-0.9.13.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-server-7.7.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-shared-7.7.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-slf4j-jdk14-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/vaadin-archetype-application-LATEST/WEB-INF/lib/vaadin-themes-7.7.4.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tAddDeviceWindow.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tAddDeviceWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tChangeNameWindow.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tChangeNameWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLayout.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tDeviceLayout.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tDeviceLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tLeafButton.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tLeafButton.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tTree.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tTree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java" afterPath="$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java" />
     </list>
     <ignored path="things.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -452,11 +35,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tAddDeviceWindow.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tAddDeviceWindow.java">
+      <file leaf-file-name="tLeafFormLayout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tQuestionLeafContent/tLeafFormLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3476874">
-              <caret line="165" column="101" selection-start-line="165" selection-start-column="101" selection-end-line="165" selection-end-column="101" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1521121449389" expanded="true" signature="4789:5378" placeholder="select udt.l... user_devices_tree" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tLeafLayout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tQuestionLeafContent/tLeafLayout.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="138" column="29" selection-start-line="138" selection-start-column="29" selection-end-line="138" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -464,26 +60,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tAddFolderWindow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tAddFolderWindow.java">
+      <file leaf-file-name="tFolderLayout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tFolderLayout.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="163" column="62" selection-start-line="163" selection-start-column="62" selection-end-line="163" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tDeviceLayout.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDeviceLayout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="245" column="69" selection-start-line="245" selection-start-column="69" selection-end-line="245" selection-end-column="69" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -492,35 +74,34 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tTree.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="179" column="56" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
-                <marker date="1521052353381" expanded="true" signature="5164:5910" placeholder="select udt.u... user_devices_tree" />
+                <element signature="imports" expanded="true" />
+                <marker date="1521115180491" expanded="true" signature="3896:4721" placeholder="select udt.u... user_devices_tree" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tUserDataFormLayout.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tUserDataFormLayout.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.15159574">
+              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
               <folding>
-                <marker date="1521052353382" expanded="true" signature="5098:5693" placeholder="select u.use... users" />
+                <marker date="1521122779690" expanded="true" signature="5098:5693" placeholder="select u.use... users" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tUsefulFuctions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java">
+      <file leaf-file-name="tTreeContentLayout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="375" column="26" selection-start-line="375" selection-start-column="26" selection-end-line="375" selection-end-column="26" />
+              <caret line="56" column="80" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
               <folding>
-                <marker date="1521052353382" expanded="true" signature="8034:8987" placeholder="select ud.de... user_device" />
-                <marker date="1521052353382" expanded="true" signature="14073:14137" placeholder="select s.ser... mqtt_servers" />
-                <marker date="1521052353382" expanded="true" signature="18238:18306" placeholder="select tz.ti... timezones" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -548,11 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tVarConditionLayout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tVarNativeSelect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tStateConditionDeleteWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tCaptchaLayout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tCaptchaImage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tChildDetectorSelect.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tPeriodMeasuresLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tUserAttributes.java" />
@@ -569,7 +145,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLastMeasureLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorMeasuresJournalLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tRegistrationFormLayout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/com_example_vaadind3test_Diagram.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/diagram_connector.js" />
         <option value="$PROJECT_DIR$/src/main/resources/diagram_connector.js" />
@@ -577,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/Diagram.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorDiagramData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tTestDiagram.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLayout.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/vaadin/diagram_connector.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/VAADIN/themes/mytheme/mytheme.scss" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tActuatorTaskLayout.java" />
@@ -587,18 +161,25 @@
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tActuatorLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tFolderDeleteWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDeviceDeleteWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/SpringEmailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tLoginView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tMainView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tRegistrationVeiw.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tFolderLayout.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/MyUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tAddFolderWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tAddDeviceWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tChangeNameWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tLeafButton.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLayout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tDeviceLayout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tQuestionLeafContent/tLeafFormLayout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tQuestionLeafContent/tLeafLayout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java" />
       </list>
     </option>
   </component>
@@ -697,8 +278,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="width" value="1168" />
+    <option name="height" value="696" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -727,6 +308,7 @@
     <panes>
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -793,9 +375,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="things" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userWebIot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vaadin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tQuestionLeafContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1491,11 +1102,12 @@
       <workItem from="1521020777884" duration="14029000" />
       <workItem from="1521054440379" duration="8081000" />
       <workItem from="1521064512923" duration="19000" />
+      <workItem from="1521105410433" duration="14446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1204587000" />
+    <option name="totallyTimeSpent" value="1219033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1507,7 +1119,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1168" height="696" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1515,14 +1127,15 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31516185" sideWeight="0.5034722" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19296876" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19223827" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26487094" sideWeight="0.4965278" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28368795" sideWeight="0.4965278" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26328126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3104693" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.429078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1534,7 +1147,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29787233" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1559,41 +1171,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tCaptchaImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2368422">
-          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tGraphLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.019698726">
-          <caret line="124" column="9" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/MosquittoPBKDF2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57781756">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tFolderPrefsFormLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3309481">
-          <caret line="261" column="29" selection-start-line="261" selection-start-column="29" selection-end-line="261" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/MathParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tVarNativeSelect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1706,31 +1283,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorFormLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28650138">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tActuatorLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="8.570248">
           <caret line="198" column="36" selection-start-line="198" selection-start-column="36" selection-end-line="198" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5068871">
-          <caret line="207" column="34" selection-start-line="207" selection-start-column="28" selection-end-line="207" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDiagramLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1570248">
-          <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -1773,13 +1329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUserAttributes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20169492">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1841,16 +1390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tFolderLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="186" column="51" selection-start-line="186" selection-start-column="51" selection-end-line="186" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/MyUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1874,72 +1413,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDiagramLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.046554934">
+          <caret line="106" column="17" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
           <folding>
-            <marker date="1521052353382" expanded="true" signature="5098:5693" placeholder="select u.use... users" />
+            <marker date="1520938108000" expanded="true" signature="3832:5581" placeholder="select a.*\n... measure_date" />
+            <marker date="1520938108000" expanded="true" signature="3933:4439" placeholder="select udm.m... " />
+            <marker date="1520938108000" expanded="true" signature="4529:5481" placeholder="select @num:... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tAddFolderWindow.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031657357">
+          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tLeafButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5319149">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31648937">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDetectorFormLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="62" selection-start-line="163" selection-start-column="62" selection-end-line="163" selection-end-column="62" />
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tChangeNameWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24401914">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        <state vertical-scroll-proportion="-5.5">
+          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tDeviceLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.3324468">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tAddDeviceWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9734042">
+          <caret line="252" column="25" selection-start-line="252" selection-start-column="25" selection-end-line="252" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUserAttributes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20212767">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5425532">
+          <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
+          <folding>
+            <marker date="1521120304654" expanded="true" signature="8062:9015" placeholder="select ud.de... user_device" />
+            <marker date="1521120304654" expanded="true" signature="14101:14165" placeholder="select s.ser... mqtt_servers" />
+            <marker date="1521120304654" expanded="true" signature="18266:18334" placeholder="select tz.ti... timezones" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tFolderPrefsFormLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1356383">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="32" selection-end-column="29" />
+          <folding>
+            <marker date="1520938108000" expanded="true" signature="9678:10577" placeholder="select udt.l... user_devices_tree" />
+            <marker date="1520938108000" expanded="true" signature="10035:10165" placeholder="select mss.s... mqtt_servers" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tFolderLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="245" column="69" selection-start-line="245" selection-start-column="69" selection-end-line="245" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="179" column="56" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
-          <folding>
-            <marker date="1521052353381" expanded="true" signature="5164:5910" placeholder="select udt.u... user_devices_tree" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUsefulFuctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="375" column="26" selection-start-line="375" selection-start-column="26" selection-end-line="375" selection-end-column="26" />
-          <folding>
-            <marker date="1521052353382" expanded="true" signature="8034:8987" placeholder="select ud.de... user_device" />
-            <marker date="1521052353382" expanded="true" signature="14073:14137" placeholder="select s.ser... mqtt_servers" />
-            <marker date="1521052353382" expanded="true" signature="18238:18306" placeholder="select tz.ti... timezones" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tAddDeviceWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3476874">
-          <caret line="165" column="101" selection-start-line="165" selection-start-column="101" selection-end-line="165" selection-end-column="101" />
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1521115180491" expanded="true" signature="3896:4721" placeholder="select udt.u... user_devices_tree" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tTreeContentLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="80" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tQuestionLeafContent/tLeafFormLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1521121449389" expanded="true" signature="4789:5378" placeholder="select udt.l... user_devices_tree" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tQuestionLeafContent/tLeafLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="138" column="29" selection-start-line="138" selection-start-column="29" selection-end-line="138" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vaadin/tUserDataFormLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15159574">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding>
+            <marker date="1521122779690" expanded="true" signature="5098:5693" placeholder="select u.use... users" />
           </folding>
         </state>
       </provider>

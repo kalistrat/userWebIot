@@ -1,18 +1,8 @@
 package com.vaadin;
 
-import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Sizeable;
-import com.vaadin.shared.ui.MarginInfo;
-import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.VerticalSplitPanel;
-import com.vaadin.ui.themes.ValoTheme;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * Created by kalistrat on 25.11.2016.

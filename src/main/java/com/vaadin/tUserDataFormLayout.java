@@ -176,7 +176,13 @@ public class tUserDataFormLayout extends VerticalLayout {
 
             while (DataRs.next()) {
 
-                if (DataRs.getString(8).equals("физическое лицо")) {
+                String subjectType = DataRs.getString(8);
+
+                if (subjectType == null) {
+                    subjectType = "физическое лицо";
+                }
+
+                if (subjectType.equals("физическое лицо")) {
 
                     LoginField.setValue(DataRs.getString(1));
                     MailTextField.setValue(DataRs.getString(2));

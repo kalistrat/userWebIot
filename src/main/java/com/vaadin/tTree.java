@@ -4,15 +4,11 @@ package com.vaadin;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.HierarchicalContainer;
-import com.vaadin.data.util.IndexedContainer;
-import com.vaadin.event.Action;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Resource;
 import com.vaadin.ui.*;
 
 import java.sql.*;
-import java.util.List;
 
 /**
  * Created by kalistrat on 18.11.2016.
@@ -21,12 +17,6 @@ public class tTree extends Tree {
 
     public HierarchicalContainer TreeContainer;
 
-//    private static final Action ACTION_ADD = new Action("Добавить");
-//    private static final Action ACTION_DELETE = new Action("Удалить");
-//    private static final Action[] ACTIONS = new Action[] { ACTION_ADD,
-//            ACTION_DELETE };
-
-    //public String iUserLog;
 
     public tTree(String eUserLog,tMainView eMainView){
 
@@ -39,7 +29,7 @@ public class tTree extends Tree {
         TreeContainer.addContainerProperty(5, String.class, null);
         TreeContainer.addContainerProperty(6, Integer.class, null);
         TreeContainer.addContainerProperty(7, String.class, null);
-
+        TreeContainer.addContainerProperty(8, String.class, null);
 
         tTreeGetData(eUserLog);
 
@@ -59,34 +49,16 @@ public class tTree extends Tree {
                 this.TreeContainer.setChildrenAllowed(id, false);
         }
 
-        //this.expandItem(1);
-
-
         this.select(1);
 
-        //this.addStyleName("captiontree");
 
         this.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent valueChangeEvent) {
                 if(valueChangeEvent.getProperty().getValue() != null)
                 {
-                    //String atribut = getItemCaption(event.getProperty().getValue());
-                    //System.out.println(event.getProperty().getValue());
                     Item SelectedItem = TreeContainer.getItem(valueChangeEvent.getProperty().getValue());
-                    //SelectedItem.getItemProperty(5).getValue();
                     eMainView.TreeContentUsr.tTreeContentLayoutRefresh((int) SelectedItem.getItemProperty(2).getValue(),(int) SelectedItem.getItemProperty(6).getValue());
-
-//                    int SelectedLeafId = (int) SelectedItem.getItemProperty(2).getValue();
-//                    System.out.println("SelectedLeafId :" + SelectedLeafId);
-//
-//                    List<Integer> chList = eMainView.TreeContentUsr.getChildAllLeafsById(SelectedLeafId);
-//
-//                    for (Integer iL : chList) {
-//                        System.out.println("iL :" + iL);
-//                    }
-
-                    //System.out.println("last iL :" + eMainView.TreeContentUsr.getChildAllLeafsById(SelectedLeafId).get(eMainView.TreeContentUsr.getChildAllLeafsById(SelectedLeafId).size()-1));
 
                 }
             }
@@ -145,9 +117,10 @@ public class tTree extends Tree {
                     ",udt.leaf_id\n" +
                     ",ifnull(udt.parent_leaf_id,0)\n" +
                     ",udt.leaf_name\n" +
-                    ",ifnull(act.icon_code,'FOLDER') icon_code\n" +
+                    ",ifnull(act.icon_code,if(udt.leaf_type = 'LEAF','QUESTION','FOLDER')) icon_code\n" +
                     ",ifnull(udt.user_device_id,0) user_device_id\n" +
                     ",act.action_type_name\n" +
+                    ",udt.leaf_type\n" +
                     "from user_devices_tree udt\n" +
                     "join users u on u.user_id=udt.user_id\n" +
                     "left join user_device ud on ud.user_device_id=udt.user_device_id\n" +
@@ -171,6 +144,7 @@ public class tTree extends Tree {
                 String UsrLeafIcon = TreeSqlRs.getString(5);
                 Integer UsrDeviceId = TreeSqlRs.getInt(6);
                 String UsrActionType = TreeSqlRs.getString(7);
+                String UsrLeafType = TreeSqlRs.getString(8);
 
                 newItem.getItemProperty(1).setValue(UsrDevTreeId);
                 newItem.getItemProperty(2).setValue(UsrLeafId);
@@ -179,6 +153,7 @@ public class tTree extends Tree {
                 newItem.getItemProperty(5).setValue(UsrLeafIcon);
                 newItem.getItemProperty(6).setValue(UsrDeviceId);
                 newItem.getItemProperty(7).setValue(UsrActionType);
+                newItem.getItemProperty(8).setValue(UsrLeafType);
                 //FontAwesome.SIGN_IN
                         //Button v = new Button("ere");
                 //v.setIcon();
@@ -218,6 +193,9 @@ public class tTree extends Tree {
             }
             if (IconStr.equals("AUTOMATION")) {
                 setItemIcon(j, VaadinIcons.AUTOMATION);
+            }
+            if (IconStr.equals("QUESTION")) {
+                setItemIcon(j, VaadinIcons.QUESTION_CIRCLE_O);
             }
         }
 

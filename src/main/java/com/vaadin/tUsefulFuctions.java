@@ -25,10 +25,10 @@ import java.util.regex.Pattern;
  */
 public class tUsefulFuctions {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/things";
-    static final String USER = "kalistrat";
-    static final String PASS = "045813";
+    public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    public static final String DB_URL = "jdbc:mysql://localhost/things";
+    public static final String USER = "kalistrat";
+    public static final String PASS = "045813";
 
     public static List<String> GetListFromString(String DevidedString,String Devider){
         List<String> StrPieces = new ArrayList<String>();

@@ -183,16 +183,23 @@ public class tAddDeviceWindow extends Window {
                     String sDevicePass = RandomStringUtils.random(7, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
                     String sDevicePassSha = tUsefulFuctions.sha256(sDevicePass);
 
-                    pAddUserLeafUID(
-                        sName
-                        ,sUID
-                        ,iTreeContentLayout.iUserLog
-                        ,(String) TimeZoneSelect.getValue()
-                        ,timeSyncInt
-                        ,sDeviceLog
-                        ,sDevicePass
-                        ,sDevicePassSha
+                    String oWsSetDeviceRes = overAllWsSetUserDevice(
+                            sUID
+                            ,iTreeContentLayout.iUserLog
                     );
+
+                    if (oWsSetDeviceRes != null) {
+
+                        pAddUserLeafUID(
+                                sName
+                                , sUID
+                                , iTreeContentLayout.iUserLog
+                                , (String) TimeZoneSelect.getValue()
+                                , timeSyncInt
+                                , sDeviceLog
+                                , sDevicePass
+                                , sDevicePassSha
+                        );
 
 
 // Переместить на userWebService
@@ -227,19 +234,19 @@ public class tAddDeviceWindow extends Window {
                         newItem.getItemProperty(6).setValue(0);
                         newItem.getItemProperty(7).setValue(null);
 
-                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iNewLeafId,false);
-                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(1,true);
+                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iNewLeafId, false);
+                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(1, true);
 
                         iTreeContentLayout.itTree.TreeContainer.setParent(iNewLeafId, 1);
 
                         if (iNewIconCode.equals("FOLDER")) {
-                        iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.FOLDER);
+                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.FOLDER);
                         }
                         if (iNewIconCode.equals("TACHOMETER")) {
-                        iTreeContentLayout.itTree.setItemIcon(iNewLeafId, FontAwesome.TACHOMETER);
+                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, FontAwesome.TACHOMETER);
                         }
                         if (iNewIconCode.equals("AUTOMATION")) {
-                        iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.AUTOMATION);
+                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.AUTOMATION);
                         }
                         if (iNewIconCode.equals("QUESTION")) {
                             iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.QUESTION_CIRCLE_O);
@@ -250,9 +257,15 @@ public class tAddDeviceWindow extends Window {
 
 
                         Notification.show("Устройство добавлено!",
-                        null,
-                        Notification.Type.TRAY_NOTIFICATION);
+                                null,
+                                Notification.Type.TRAY_NOTIFICATION);
                         UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
+
+                    } else {
+                        Notification.show("Произошла ошибка!",
+                                "общий веб-сервис недоступен",
+                                Notification.Type.TRAY_NOTIFICATION);
+                    }
 
                     }
 
@@ -455,7 +468,7 @@ public class tAddDeviceWindow extends Window {
 
 
         } catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
 
         }
         return respWs;
@@ -525,4 +538,50 @@ public class tAddDeviceWindow extends Window {
 
         return IsUIDExists;
     }
+
+    private String overAllWsSetUserDevice(
+            String UID
+            ,String userLogin
+    ){
+        String respWs = null;
+
+        try {
+
+            List<String> WsArgs = getOverAllWseArgs(userLogin);
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(WsArgs.get(1));
+
+            post.setHeader("Content-Type", "text/xml");
+
+            String reqBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com/\">\n" +
+                    "   <soapenv:Header/>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <com:setUserDevice>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg0>" + UID + "</arg0>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg1>" + userLogin + "</arg1>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg2>"+ WsArgs.get(0) +"</arg2>\n" +
+                    "      </com:setUserDevice>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+
+            StringEntity input = new StringEntity(reqBody, Charset.forName("UTF-8"));
+            post.setEntity(input);
+            HttpResponse response = client.execute(post);
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+            Document resXml = tUsefulFuctions.loadXMLFromString(rd.lines().collect(Collectors.joining()));
+            respWs = XPathFactory.newInstance().newXPath()
+                    .compile("//return").evaluate(resXml);
+
+
+        } catch (Exception e){
+            //e.printStackTrace();
+
+        }
+        return respWs;
+    }
+
 }

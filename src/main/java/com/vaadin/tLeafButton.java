@@ -35,6 +35,9 @@ public class tLeafButton extends Button {
         if (iButtonIconCode.equals("AUTOMATION")) {
             this.setIcon(VaadinIcons.AUTOMATION);
         }
+        if (iButtonIconCode.equals("QUESTION")) {
+            this.setIcon(VaadinIcons.QUESTION_CIRCLE_O);
+        }
 
         this.addClickListener(new Button.ClickListener() {
             @Override

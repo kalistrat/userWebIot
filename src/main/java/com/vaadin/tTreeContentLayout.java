@@ -1,6 +1,6 @@
 package com.vaadin;
 
-import com.vaadin.data.Item;
+import com.vaadin.tQuestionLeafContent.tLeafLayout;
 import com.vaadin.ui.VerticalLayout;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 public class tTreeContentLayout extends VerticalLayout {
 
     tTree itTree;
-    String iUserLog;
+    public String iUserLog;
 
     public tTreeContentLayout(String tUserLog,tTree etTree){
 
@@ -25,8 +25,15 @@ public class tTreeContentLayout extends VerticalLayout {
 
     public void tTreeContentLayoutRefresh(int eLeafId, int eUserDeviceId){
         this.removeAllComponents();
+
+        String leafType = getLeafType(eLeafId);
+
         if (eUserDeviceId == 0){
-            this.addComponent(new tFolderLayout(eLeafId,this));
+            if (leafType.equals("FOLDER")) {
+                this.addComponent(new tFolderLayout(eLeafId, this));
+            } else {
+                this.addComponent(new tLeafLayout(eLeafId, this));
+            }
         } else {
             this.addComponent(new tDeviceLayout(eLeafId,this));
         }
@@ -36,6 +43,18 @@ public class tTreeContentLayout extends VerticalLayout {
     public String GetLeafNameById(int eLeafId){
 
         return (String) this.itTree.getItem(eLeafId).getItemProperty(4).getValue();
+
+    }
+
+    public String getLeafType(int eLeafId){
+
+        return (String) this.itTree.getItem(eLeafId).getItemProperty(8).getValue();
+
+    }
+
+    public int getLeafTreeId(int eLeafId){
+
+        return (int) this.itTree.getItem(eLeafId).getItemProperty(1).getValue();
 
     }
 
