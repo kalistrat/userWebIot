@@ -1,13 +1,12 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
 -- Версия сервера:               5.5.23 - MySQL Community Server (GPL)
--- Операционная система:         Win64
--- HeidiSQL Версия:              9.4.0.5125
+-- ОС Сервера:                   Win32
+-- HeidiSQL Версия:              9.3.0.4984
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
@@ -27,6 +26,7 @@ INSERT INTO `action_type` (`action_type_id`, `action_type_name`, `icon_code`, `a
 	(1, 'Измерительное устройство', 'TACHOMETER', 'SENSOR'),
 	(2, 'Исполнительное устройство', 'AUTOMATION', 'ACTUATOR');
 /*!40000 ALTER TABLE `action_type` ENABLE KEYS */;
+
 
 -- Дамп структуры для процедура things.addNewUserFromSite
 DELIMITER //
@@ -114,6 +114,7 @@ concat('ssl://0.0.0.0:',i_server_port+2)
 END//
 DELIMITER ;
 
+
 -- Дамп структуры для таблица things.environment_args
 CREATE TABLE IF NOT EXISTS `environment_args` (
   `arg_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -130,6 +131,7 @@ INSERT INTO `environment_args` (`arg_id`, `arg_code`, `arg_value`) VALUES
 	(1, 'OVERALL_WSE_LOCATION', 'http://localhost:8777/overallWs/Register?wsdl'),
 	(2, 'OVERALL_WUI_LOCATION', 'http://localhost:8080');
 /*!40000 ALTER TABLE `environment_args` ENABLE KEYS */;
+
 
 -- Дамп структуры для функция things.fGetSyncIntervalDays
 DELIMITER //
@@ -149,6 +151,7 @@ where ud.user_device_id = eUserDeviceId
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.fIsExistsContLogin
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `fIsExistsContLogin`(
@@ -165,6 +168,7 @@ where udt.control_log=eContLog
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.fIsExistsTopicName
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `fIsExistsTopicName`(`eTopicName` varchar(200)
@@ -179,6 +183,7 @@ where ud.mqtt_topic_write = eTopicName
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.fisExistsUserLogin
 DELIMITER //
@@ -196,6 +201,7 @@ where u.user_log = eLogin
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.fisExistsUserMail
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `fisExistsUserMail`(
@@ -211,6 +217,7 @@ where u.user_mail = eMail
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.fIsLeafNameExists
 DELIMITER //
@@ -228,6 +235,7 @@ and udt.leaf_name = eLeafNewName
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.fIsUIDExists
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `fIsUIDExists`(
@@ -241,6 +249,7 @@ where udt.uid = eUID
 );
 END//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_do_time_marks
 DELIMITER //
@@ -295,6 +304,7 @@ return iDateMarks;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_actuator_state_id
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_actuator_state_id`(`eUserDeviceId` int
@@ -311,6 +321,7 @@ and uas.actuator_state_name = eStateName
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_button_data
 DELIMITER //
@@ -333,6 +344,7 @@ where udt.user_devices_tree_id=eTreeId
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_closest_period
 DELIMITER //
@@ -385,6 +397,7 @@ return i_period_code;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_date_marks
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_date_marks`(`eUserDeviceId` int
@@ -434,6 +447,7 @@ return i_mark_list;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_device_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_device_data`(`eUserDeviceId` int
@@ -449,6 +463,7 @@ where ud.user_device_id=eUserDeviceId
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_device_name
 DELIMITER //
@@ -470,6 +485,7 @@ and usr.user_log=eUserLog
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_graph_max_date
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_graph_max_date`(eUserDeviceId int) RETURNS datetime
@@ -481,6 +497,7 @@ where udm.user_device_id=eUserDeviceId
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_graph_min_date
 DELIMITER //
@@ -543,6 +560,7 @@ return i_min_date;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_graph_min_date_mark
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_graph_min_date_mark`(eUserDeviceId int
@@ -576,6 +594,7 @@ end if;
 return i_min_date_mark;
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_last_device_measure
 DELIMITER //
@@ -614,6 +633,7 @@ join user_device_measures udme on udme.user_device_measure_id=t.max_measure_id
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_leaf_name
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_leaf_name`(`eLeafId` int, `eUserLog` varchar(50)) RETURNS varchar(50) CHARSET utf8
@@ -628,6 +648,7 @@ and usr.user_log=eUserLog
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_loginbymail
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_loginbymail`(e_MailVal varchar(50)) RETURNS varchar(50) CHARSET utf8
@@ -639,6 +660,7 @@ where u.user_mail=e_MailVal),''));
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_min_period_date1
 DELIMITER //
@@ -678,6 +700,7 @@ return i_min_date;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_next_condition_num
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_next_condition_num`(
@@ -697,6 +720,7 @@ and uas.actuator_state_name = eUserStateName
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_parent_leaf_id
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_parent_leaf_id`(
@@ -714,6 +738,7 @@ where ud.user_device_id = eUserDeviceId
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_period_code_by_id
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_period_code_by_id`(
@@ -727,6 +752,7 @@ where g.period_id=ePeriodId
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_server_link
 DELIMITER //
@@ -743,6 +769,7 @@ and u.user_log=eUserLog
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_unit_sym
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_unit_sym`(`eUserDeviceId` int) RETURNS varchar(50) CHARSET utf8
@@ -754,6 +781,7 @@ where ud.user_device_id=eUserDeviceId
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_user_account_type
 DELIMITER //
@@ -775,6 +803,7 @@ where u.user_log = eUserLog
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_get_user_device
 DELIMITER //
@@ -798,6 +827,7 @@ and usr.user_log=eUserLog
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_get_user_password
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_get_user_password`(eUserLog varchar(50)) RETURNS varchar(150) CHARSET utf8
@@ -809,6 +839,7 @@ where u.user_log = eUserLog
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_insert_actuator_state_condition
 DELIMITER //
@@ -845,6 +876,7 @@ return i_state_condition_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.f_is_exists_period_measures
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `f_is_exists_period_measures`(`ePeriodCode` varchar(50)
@@ -863,6 +895,7 @@ order by udm.measure_date
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_is_user_exists
 DELIMITER //
@@ -885,6 +918,7 @@ end if;
 return i_is_exists;
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_make_date_marks
 DELIMITER //
@@ -935,6 +969,7 @@ set i_mark_list = concat(i_mark_list,'/');
 return i_mark_list;
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.f_user_device_insert
 DELIMITER //
@@ -996,6 +1031,22 @@ return i_user_device_id;
 end//
 DELIMITER ;
 
+
+-- Дамп структуры для функция things.getLeafType
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `getLeafType`(`eUID` VARCHAR(50), `eUserLog` VARCHAR(50)) RETURNS varchar(50) CHARSET utf8
+BEGIN
+return (
+select udt.leaf_type
+from user_devices_tree udt
+join users u on u.user_id=udt.user_id
+where u.user_log = eUserLog
+and udt.uid = eUID
+);
+END//
+DELIMITER ;
+
+
 -- Дамп структуры для процедура things.getOverAllWseArgs
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getOverAllWseArgs`(IN `eUserLog` VARCHAR(50), OUT `oUserPassSha` VARCHAR(150), OUT `oWsURL` VARCHAR(150))
@@ -1013,6 +1064,7 @@ where u.user_log = eUserLog;
 END//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.getParentUID
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `getParentUID`(`eUID` VARCHAR(50), `eUserLog` VARCHAR(50)) RETURNS varchar(50) CHARSET utf8
@@ -1027,6 +1079,7 @@ and u.user_log = eUserLog
 );
 END//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.get_max_vals
 DELIMITER //
@@ -1077,6 +1130,7 @@ close cur1;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для таблица things.graph_period
 CREATE TABLE IF NOT EXISTS `graph_period` (
   `period_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1096,11 +1150,13 @@ INSERT INTO `graph_period` (`period_id`, `period_code`) VALUES
 	(6, 'год');
 /*!40000 ALTER TABLE `graph_period` ENABLE KEYS */;
 
+
 -- Дамп структуры для функция things.IsNumeric
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `IsNumeric`(sIn varchar(1024)) RETURNS tinyint(4)
 RETURN sIn REGEXP '^(-|\\+){0,1}([0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+|[0-9]+)$'//
 DELIMITER ;
+
 
 -- Дамп структуры для таблица things.mqtt_servers
 CREATE TABLE IF NOT EXISTS `mqtt_servers` (
@@ -1131,6 +1187,7 @@ INSERT INTO `mqtt_servers` (`server_id`, `server_ip`, `server_port`, `is_busy`, 
 	(15, 'tcp://0.0.0.0:9007', 9007, 0, 'LOCALHOST', 'tcp', 'tcp://snslog.ru:9007', 7);
 /*!40000 ALTER TABLE `mqtt_servers` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.notification_type
 CREATE TABLE IF NOT EXISTS `notification_type` (
   `notification_type_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1146,6 +1203,7 @@ INSERT INTO `notification_type` (`notification_type_id`, `notification_code`, `n
 	(1, 'MAIL', 'оповещение по эл.почте'),
 	(2, 'SMS', 'оповещение по SMS');
 /*!40000 ALTER TABLE `notification_type` ENABLE KEYS */;
+
 
 -- Дамп структуры для процедура things.pAddUserLeafUID
 DELIMITER //
@@ -1232,6 +1290,7 @@ set oNewLeafId = i_leaf_id;
 
 END//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.pNewUserAdd
 DELIMITER //
@@ -1363,6 +1422,7 @@ concat('ssl://0.0.0.0:',i_server_port+2)
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_add_notification
 DELIMITER //
@@ -1565,6 +1625,7 @@ set oStateId = i_state_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_add_subfolder
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_add_subfolder`(
@@ -1654,6 +1715,7 @@ set oNewLeafId = i_leaf_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_add_task
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_add_task`(IN `eUserDeviceId` int
@@ -1713,6 +1775,7 @@ select LAST_INSERT_ID() into oTaskId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_add_user_device
 DELIMITER //
@@ -1823,6 +1886,7 @@ set oUserDeviceId = i_user_device_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_delete_actuator_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_actuator_data`(IN `eUserDeviceId` int
@@ -1859,6 +1923,7 @@ close cur1;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_delete_actuator_state
 DELIMITER //
@@ -1918,6 +1983,7 @@ where user_actuator_state_id = i_actuator_state_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_delete_conditions
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_conditions`(eStateId int)
@@ -1957,6 +2023,7 @@ close cur1;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_delete_condition_by_user_device
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_condition_by_user_device`(IN `eUserDeviceId` int)
@@ -1986,6 +2053,7 @@ close cur1;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_delete_detector_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_detector_data`(IN `eUserDeviceId` int)
@@ -1997,6 +2065,7 @@ call p_delete_state_by_user_device(eUserDeviceId);
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_delete_state_by_id
 DELIMITER //
@@ -2014,6 +2083,7 @@ where user_actuator_state_id = eStateId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_delete_state_by_user_device
 DELIMITER //
@@ -2038,6 +2108,7 @@ close cur1;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_delete_state_condition
 DELIMITER //
@@ -2065,6 +2136,7 @@ where actuator_state_condition_id = i_condition_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_delete_task_by_id
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_task_by_id`(eRemTaskId int)
@@ -2075,6 +2147,7 @@ where user_device_task_id = eRemTaskId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_delete_tree_leaf
 DELIMITER //
@@ -2097,6 +2170,7 @@ where user_devices_tree_id = i_tree_id;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_delete_user_device
 DELIMITER //
@@ -2148,6 +2222,7 @@ where user_device_id = i_user_device_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_detector_params_update
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_detector_params_update`(
@@ -2162,6 +2237,7 @@ where ud.user_device_id = eUserDeviceId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_detector_units_update
 DELIMITER //
@@ -2206,6 +2282,7 @@ where ud.user_device_id = eUserDeviceId;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_device_description_update
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_device_description_update`(
@@ -2220,6 +2297,7 @@ where ud.user_device_id = eUserDeviceId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_device_login_update
 DELIMITER //
@@ -2238,6 +2316,7 @@ where ud.user_device_id = eUserDeviceId;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_device_measure_period
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_device_measure_period`(
@@ -2252,6 +2331,7 @@ where ud.user_device_id = eUserDeviceId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_get_int_bounds_for_date
 DELIMITER //
@@ -2334,6 +2414,7 @@ end if;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_get_int_bounds_for_double
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_get_int_bounds_for_double`(IN `eMinValFloor` INT, IN `eMaxValCeil` INT, IN `eCountMarks` int
@@ -2369,6 +2450,7 @@ set eMaxValInt = i_ma_bound;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_get_user_device_perfs
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_get_user_device_perfs`(
@@ -2394,6 +2476,7 @@ where ud.user_device_id=eUserDeviceId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_insert_actuator_state
 DELIMITER //
@@ -2446,6 +2529,7 @@ end if;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_insert_actuator_state_condition
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_insert_actuator_state_condition`(
@@ -2478,6 +2562,7 @@ eUserActuatorStateId
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_insert_condition_vars
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_insert_condition_vars`(
@@ -2500,6 +2585,7 @@ eActuatorStateConditionId
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_make_date_marks
 DELIMITER //
@@ -2587,6 +2673,7 @@ set i_delta = i_interval_int;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_make_date_marks1
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_make_date_marks1`(IN eUserDeviceId int
@@ -2660,6 +2747,7 @@ set i_delta = i_interval_int;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_make_double_marks
 DELIMITER //
@@ -2741,6 +2829,7 @@ set iDelta = eDelta;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_make_double_marks1
 DELIMITER //
@@ -2831,6 +2920,7 @@ set iDelta = eDelta;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_refresh_user_tree
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_refresh_user_tree`(IN `eUserLog` varchar(50))
@@ -2874,6 +2964,7 @@ where tin.user_id = i_user_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_rename_leaf
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_rename_leaf`(IN `eUserLog` varchar(50)
@@ -2906,6 +2997,7 @@ where udt.user_devices_tree_id = i_user_devices_tree_id;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.p_updateDetectorFormData
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_updateDetectorFormData`(
@@ -2922,6 +3014,7 @@ where ud.user_device_id = eUserDeviceId;
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.p_updateFolderPrefsFormData
 DELIMITER //
@@ -2970,6 +3063,7 @@ where pl.user_devices_tree_id=i_tree_id
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для таблица things.system_environment
 CREATE TABLE IF NOT EXISTS `system_environment` (
   `env_arg_name` varchar(50) NOT NULL,
@@ -2983,6 +3077,7 @@ DELETE FROM `system_environment`;
 INSERT INTO `system_environment` (`env_arg_name`, `env_arg_value`) VALUES
 	('CENTRAL_WEB_SERVICE', '178.12.156.15:8080');
 /*!40000 ALTER TABLE `system_environment` ENABLE KEYS */;
+
 
 -- Дамп структуры для функция things.s_get_condition_data
 DELIMITER //
@@ -3011,6 +3106,7 @@ where uasc.actuator_state_condition_id = eConditionId
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.s_get_folder_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_folder_data`(`eUserLog` varchar(50)
@@ -3037,6 +3133,7 @@ and ifnull(udt.parent_leaf_id,0) != 0
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.s_get_server_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_server_data`(`eUserLog` varchar(50)) RETURNS blob
@@ -3059,6 +3156,7 @@ where u.user_log = eUserLog
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.s_get_state_condition_list
 DELIMITER //
@@ -3090,6 +3188,7 @@ where uasc.user_actuator_state_id=eStateId
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.s_get_state_data
 DELIMITER //
@@ -3144,6 +3243,7 @@ return i_state_data_str;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.s_get_state_message_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_state_message_data`(`eActuatorStateId` int) RETURNS text CHARSET utf8
@@ -3166,6 +3266,7 @@ where uas.user_actuator_state_id = eActuatorStateId
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.s_get_task_data
 DELIMITER //
@@ -3213,6 +3314,7 @@ where tas.user_device_task_id = eTaskId
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.s_get_user_list
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_user_list`() RETURNS text CHARSET utf8
@@ -3238,6 +3340,7 @@ group by u.user_id
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.s_get_user_state_list
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_user_state_list`(`eUserLog` varchar(50)) RETURNS text CHARSET utf8
@@ -3259,6 +3362,7 @@ where u.user_log = eUserLog
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.s_get_user_task_list
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_user_task_list`(`eUserLog` varchar(50)) RETURNS text CHARSET utf8
@@ -3279,6 +3383,7 @@ where u.user_log = eUserLog
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для процедура things.s_message_recerve
 DELIMITER //
@@ -3413,6 +3518,7 @@ end if;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.s_p_sensor_initial
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `s_p_sensor_initial`(IN `eUserLog` varchar(50)
@@ -3441,6 +3547,7 @@ and u.user_log = eUserLog;
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для процедура things.s_p_topic_data_log
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `s_p_topic_data_log`(IN `eTopicName` VARCHAR(255), IN `eMessDate` DATETIME, IN `eStringValue` VARCHAR(255), IN `eDoubleValue` DECIMAL(10,2), IN `eTimeStampValue` DATETIME)
@@ -3468,6 +3575,7 @@ i_user_device_id
 
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для таблица things.tab_meta_data
 CREATE TABLE IF NOT EXISTS `tab_meta_data` (
@@ -3585,6 +3693,7 @@ INSERT INTO `tab_meta_data` (`TABLE_NAME`, `COLUMN_NAME`, `COLUMN_TYPE`, `MAX_VA
 	('users', 'post_index', 'varchar(50)', '123123');
 /*!40000 ALTER TABLE `tab_meta_data` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.task_type
 CREATE TABLE IF NOT EXISTS `task_type` (
   `task_type_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3600,6 +3709,7 @@ INSERT INTO `task_type` (`task_type_id`, `task_type_name`) VALUES
 	(2, 'MAIL'),
 	(3, 'STATE');
 /*!40000 ALTER TABLE `task_type` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.timezones
 CREATE TABLE IF NOT EXISTS `timezones` (
@@ -3651,6 +3761,7 @@ INSERT INTO `timezones` (`timezone_id`, `timezone_value`) VALUES
 	(37, 'UTC+13'),
 	(38, 'UTC+14');
 /*!40000 ALTER TABLE `timezones` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.unit
 CREATE TABLE IF NOT EXISTS `unit` (
@@ -3742,6 +3853,7 @@ INSERT INTO `unit` (`unit_id`, `unit_symbol`, `unit_name`) VALUES
 	(97, '%', 'Процент');
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.unit_factor
 CREATE TABLE IF NOT EXISTS `unit_factor` (
   `factor_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3804,6 +3916,128 @@ INSERT INTO `unit_factor` (`factor_id`, `factor_value`) VALUES
 	(112, '10e-24');
 /*!40000 ALTER TABLE `unit_factor` ENABLE KEYS */;
 
+
+-- Дамп структуры для процедура things.updateLeaf
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `updateLeaf`(IN `eParentUID` VARCHAR(50), IN `eChildUID` VARCHAR(50), IN `eUserLog` VARCHAR(50), OUT `oServerLog` VARCHAR(100), OUT `oServerPass` VARCHAR(100), OUT `oServerHost` VARCHAR(100), OUT `oTopic` VARCHAR(100), OUT `oTreeId` INT)
+BEGIN
+declare i_parent_leaf_id int;
+declare i_child_leaf_id int;
+declare i_child_tree_id int;
+declare i_parent_pref varchar(20);
+declare i_child_pref varchar(20);
+declare i_device_topic_name  varchar(100);
+declare i_child_leaf_name varchar(150);
+declare i_user_id int;
+declare i_mqtt_server_id int;
+declare i_control_log varchar(100);
+declare i_control_pass varchar(100);
+declare i_user_device_id int;
+declare i_host_name varchar(150);
+declare i_child_login varchar(150);
+declare i_child_password varchar(150);
+declare i_tech_topic varchar(150);
+
+select substring(eParentUID,1,3) into i_parent_pref;
+select substring(eChildUID,1,3) into i_child_pref;
+
+select udt.leaf_id
+,udt.control_log
+,udt.control_pass
+into i_parent_leaf_id
+,i_control_log
+,i_control_pass
+from user_devices_tree udt
+join users u on u.user_id=udt.user_id
+where udt.uid = eParentUID
+and u.user_log = eUserLog;
+
+select udt.leaf_id
+,udt.user_devices_tree_id
+,udt.leaf_name
+,udt.user_id
+,udt.mqtt_server_id
+,ms.vserver_ip
+,udt.control_log
+,udt.control_pass
+,udt.time_topic
+into i_child_leaf_id
+,i_child_tree_id
+,i_child_leaf_name
+,i_user_id
+,i_mqtt_server_id
+,i_host_name
+,i_child_login
+,i_child_password
+,i_tech_topic
+from user_devices_tree udt
+join mqtt_servers ms on ms.server_id=udt.mqtt_server_id
+join users u on u.user_id=udt.user_id
+where udt.uid = eChildUID
+and u.user_log = eUserLog;
+
+
+set i_device_topic_name = concat('/',eChildUID);
+
+if (i_child_pref = 'BRI') then
+
+update user_devices_tree udt
+set udt.parent_leaf_id = i_parent_leaf_id
+,udt.leaf_type = 'FOLDER'
+where udt.user_devices_tree_id = i_child_tree_id;
+
+set oServerLog = i_child_login;
+set oServerPass = i_child_password;
+set oTopic = i_tech_topic;
+set oServerHost = i_host_name;
+set oTreeId = i_child_tree_id;
+
+elseif (i_child_pref = 'SEN') then
+
+set i_user_device_id = f_user_device_insert(
+i_child_leaf_name
+,i_user_id
+,eUserLog
+,1
+,i_mqtt_server_id
+,i_control_log
+,i_control_pass
+,i_device_topic_name
+);
+
+update user_devices_tree udt
+set udt.parent_leaf_id = i_parent_leaf_id
+,udt.leaf_type = 'SENSOR'
+,udt.user_device_id = i_user_device_id
+where udt.user_devices_tree_id = i_child_tree_id;
+
+set oServerLog = i_control_log;
+set oServerPass = i_control_pass;
+set oTopic = i_device_topic_name;
+set oServerHost = i_host_name;
+set oTreeId = i_child_tree_id;
+
+else
+
+update user_devices_tree udt
+set udt.parent_leaf_id = i_parent_leaf_id
+,udt.leaf_type = 'RETRANS'
+where udt.user_devices_tree_id = i_child_tree_id;
+
+set oServerLog = i_child_login;
+set oServerPass = i_child_password;
+set oTopic = i_tech_topic;
+set oServerHost = i_host_name;
+set oTreeId = i_child_tree_id;
+
+end if;
+
+
+
+END//
+DELIMITER ;
+
+
 -- Дамп структуры для таблица things.users
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3836,6 +4070,7 @@ INSERT INTO `users` (`user_id`, `user_log`, `user_pass`, `user_last_activity`, `
 	(7, 'kalistrat', 'bf2c2edb653709e2213f47eb8ec36b1c051f1eb41a3b727af60c73be9ff7b5a3', NULL, 'kauredinas@mail.ru', '753753', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.user_accounts
 CREATE TABLE IF NOT EXISTS `user_accounts` (
   `account_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3855,6 +4090,7 @@ INSERT INTO `user_accounts` (`account_id`, `user_id`, `account_type`, `date_from
 	(1, 1, 'PRIVILEGED', '2017-01-05 17:36:23', '2019-06-05 17:36:29');
 /*!40000 ALTER TABLE `user_accounts` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.user_actuator_state
 CREATE TABLE IF NOT EXISTS `user_actuator_state` (
   `user_actuator_state_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3872,6 +4108,7 @@ CREATE TABLE IF NOT EXISTS `user_actuator_state` (
 DELETE FROM `user_actuator_state`;
 /*!40000 ALTER TABLE `user_actuator_state` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_actuator_state` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.user_actuator_state_condition
 CREATE TABLE IF NOT EXISTS `user_actuator_state_condition` (
@@ -3891,6 +4128,7 @@ CREATE TABLE IF NOT EXISTS `user_actuator_state_condition` (
 DELETE FROM `user_actuator_state_condition`;
 /*!40000 ALTER TABLE `user_actuator_state_condition` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_actuator_state_condition` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.user_device
 CREATE TABLE IF NOT EXISTS `user_device` (
@@ -3924,12 +4162,15 @@ CREATE TABLE IF NOT EXISTS `user_device` (
   CONSTRAINT `FK_user_device_unit` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`),
   CONSTRAINT `FK_user_device_unit_factor` FOREIGN KEY (`factor_id`) REFERENCES `unit_factor` (`factor_id`),
   CONSTRAINT `FK_user_device_users` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.user_device: ~0 rows (приблизительно)
+-- Дамп данных таблицы things.user_device: ~1 rows (приблизительно)
 DELETE FROM `user_device`;
 /*!40000 ALTER TABLE `user_device` DISABLE KEYS */;
+INSERT INTO `user_device` (`user_device_id`, `user_id`, `device_user_name`, `user_device_mode`, `user_device_measure_period`, `user_device_date_from`, `action_type_id`, `device_units`, `mqtt_topic_write`, `mqtt_topic_read`, `mqqt_server_id`, `unit_id`, `factor_id`, `description`, `device_log`, `device_pass`, `measure_data_type`) VALUES
+	(2, 1, 'zxc3', NULL, 'не задано', '2018-03-16 19:26:30', 1, 'Ед', '/SEN-DF154LK55548', '2', 4, 96, 64, 'zxc3', 'kWrRh3', 'NPUBgOe', 'число');
 /*!40000 ALTER TABLE `user_device` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.user_devices_tree
 CREATE TABLE IF NOT EXISTS `user_devices_tree` (
@@ -3969,11 +4210,12 @@ INSERT INTO `user_devices_tree` (`user_devices_tree_id`, `leaf_id`, `parent_leaf
 	(2, 1, NULL, NULL, 'Устройства', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'Oleg'),
 	(3, 1, NULL, NULL, 'Устройства', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'qweqwe123'),
 	(5, 1, NULL, NULL, 'Устройства', 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'kalistrat'),
-	(7, 2, 1, NULL, 'podolskaya', 1, 17, 4, '/BRI-S23423BJB234/timesync', 4, 'k0UpZZ', 'msGAXX9', '504e7fda53e7b2fdce33076294aaf8e9e0f87de11890acdccbe8dcce37a6c7db', 'LEAF', 'BRI-S23423BJB234'),
-	(10, 3, 1, NULL, 'zxc3', 1, 17, 4, '/SEN-DF154LK55548/timesync', 1, 'kFscRJ', '1pyyuBu', 'eb882c48eb457c88c8e7896fa324fcb1c74252cc520171a60c3f8d049c865c19', 'LEAF', 'SEN-DF154LK55548'),
-	(11, 4, 1, NULL, 'dsaasd', 1, 17, 4, '/RET-QWERTYQWERTY/timesync', 1, 'kWrRh3', 'NPUBgOe', '119d363e59be9792dc10f6b79d67271da2ed885a33ae0ec8a3c1f475a56ee74b', 'LEAF', 'RET-QWERTYQWERTY'),
+	(7, 2, 1, NULL, 'podolskaya', 1, 17, 4, '/BRI-S23423BJB234/timesync', 4, 'k0UpZZ', 'msGAXX9', '504e7fda53e7b2fdce33076294aaf8e9e0f87de11890acdccbe8dcce37a6c7db', 'FOLDER', 'BRI-S23423BJB234'),
+	(10, 3, 4, 2, 'zxc3', 1, 17, 4, '/SEN-DF154LK55548/timesync', 1, 'kFscRJ', '1pyyuBu', 'eb882c48eb457c88c8e7896fa324fcb1c74252cc520171a60c3f8d049c865c19', 'SENSOR', 'SEN-DF154LK55548'),
+	(11, 4, 2, NULL, 'dsaasd', 1, 17, 4, '/RET-QWERTYQWERTY/timesync', 1, 'kWrRh3', 'NPUBgOe', '119d363e59be9792dc10f6b79d67271da2ed885a33ae0ec8a3c1f475a56ee74b', 'RETRANS', 'RET-QWERTYQWERTY'),
 	(12, 5, 1, NULL, 'MyName', 1, 17, 4, '/SEN-I80827SF2CE7/timesync', 3, 'k9XKOz', 'tHERqI7', '868699ab54fb58ca9a3339ad1328ec824024ce2216bd9e656352eaebca2af196', 'LEAF', 'SEN-I80827SF2CE7');
 /*!40000 ALTER TABLE `user_devices_tree` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.user_device_measures
 CREATE TABLE IF NOT EXISTS `user_device_measures` (
@@ -3993,6 +4235,7 @@ DELETE FROM `user_device_measures`;
 /*!40000 ALTER TABLE `user_device_measures` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_device_measures` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.user_device_state_notification
 CREATE TABLE IF NOT EXISTS `user_device_state_notification` (
   `user_state_notification_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -4009,6 +4252,7 @@ CREATE TABLE IF NOT EXISTS `user_device_state_notification` (
 DELETE FROM `user_device_state_notification`;
 /*!40000 ALTER TABLE `user_device_state_notification` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_device_state_notification` ENABLE KEYS */;
+
 
 -- Дамп структуры для таблица things.user_device_task
 CREATE TABLE IF NOT EXISTS `user_device_task` (
@@ -4032,6 +4276,7 @@ DELETE FROM `user_device_task`;
 /*!40000 ALTER TABLE `user_device_task` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_device_task` ENABLE KEYS */;
 
+
 -- Дамп структуры для таблица things.user_state_condition_vars
 CREATE TABLE IF NOT EXISTS `user_state_condition_vars` (
   `state_condition_vars_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -4049,6 +4294,7 @@ CREATE TABLE IF NOT EXISTS `user_state_condition_vars` (
 DELETE FROM `user_state_condition_vars`;
 /*!40000 ALTER TABLE `user_state_condition_vars` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_state_condition_vars` ENABLE KEYS */;
+
 
 -- Дамп структуры для функция things.w_get_notifications_list
 DELIMITER //
@@ -4112,6 +4358,7 @@ where uas.user_device_id = eUserDeviceId
 end//
 DELIMITER ;
 
+
 -- Дамп структуры для функция things.w_get_notifi_type_list
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `w_get_notifi_type_list`() RETURNS text CHARSET utf8
@@ -4128,6 +4375,7 @@ from notification_type nt
 );
 end//
 DELIMITER ;
+
 
 -- Дамп структуры для функция things.w_task_device_list
 DELIMITER //
@@ -4153,7 +4401,6 @@ where ud.user_device_id = eUserDeviceId
 );
 end//
 DELIMITER ;
-
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
