@@ -140,7 +140,7 @@ public class tFolderPrefsFormLayout extends VerticalLayout {
                     Notification.show("Параметры контроллера изменены!",
                             null,
                             Notification.Type.TRAY_NOTIFICATION);
-                    UI.getCurrent().removeWindow((tAddFolderWindow) clickEvent.getButton().getData());
+                    //UI.getCurrent().removeWindow((tAddFolderWindow) clickEvent.getButton().getData());
 
                 }
             }

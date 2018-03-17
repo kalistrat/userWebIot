@@ -53,58 +53,81 @@ public class tFolderDeleteWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
 
-//                String sParentLeafName = iTreeContentLayout
-//                        .GetLeafNameById(iTreeContentLayout.GetParentLeafById(iLeafId));
+                String sErrorMessage = "";
 
-                List<Integer> ChildsLeafs = iTreeContentLayout.getChildAllLeafsById(iLeafId);
-                int childLeafsCount = ChildsLeafs.size();
+                if (!tUsefulFuctions.isSubscriberExists()) {
+                    sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
+                }
 
-                if (childLeafsCount > 0) {
-                    for (int i = 0; i < childLeafsCount; i++) {
-                        int RemoveLeafId = ChildsLeafs.get(childLeafsCount-(i+1));
+                if (!tUsefulFuctions.isDataBaseExists()) {
+                    sErrorMessage = sErrorMessage + "Сервер базы данных недоступен\n";
+                }
 
-                        if (iTreeContentLayout.getLeafUserDeviceId(RemoveLeafId).intValue()!=0) {
+                String oWsResponse = tUsefulFuctions.overAllWsCheckUserDevice(iTreeContentLayout.getDeviceUID(iLeafId),iTreeContentLayout.iUserLog);
 
-//                            if (iTreeContentLayout.getLeafIconCode(RemoveLeafId).equals("TACHOMETER")) {
-//                                tUsefulFuctions.sendMessAgeToSubcribeServer(
-//                                        iTreeContentLayout.getLeafUserDeviceId(RemoveLeafId)
-//                                        , iTreeContentLayout.iUserLog
-//                                        , "delete"
-//                                        , "sensor"
-//                                );
-//                            }
-
-
-
-
-                            tUsefulFuctions.deleteUserDevice(iTreeContentLayout.iUserLog,RemoveLeafId);
-                        } else {
-                            tUsefulFuctions.deleteTreeLeaf(iTreeContentLayout.iUserLog,RemoveLeafId);
-                        }
+                if (oWsResponse == null) {
+                    sErrorMessage = sErrorMessage + "Общий веб-сервис недоступен\n";
+                } else {
+                    if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
+                        sErrorMessage = sErrorMessage + "Устройство с UID " + iTreeContentLayout.getDeviceUID(iLeafId) + " не выпускалось\n";
+                    } else if (oWsResponse.equals("WRONG_LOGIN_PASSWORD")) {
+                        sErrorMessage = sErrorMessage + "Для пользователя " + iTreeContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
+                    } else if (oWsResponse.equals("EXECUTION_ERROR")) {
+                        sErrorMessage = sErrorMessage + "Произошла ошибка выполнения\n";
                     }
                 }
 
-                tUsefulFuctions.sendMessAgeToSubcribeServer(
-                        iLeafId
-                        , iTreeContentLayout.iUserLog
-                        , "change"
-                        , "server"
-                );
+                if (!sErrorMessage.equals("")){
+                    Notification.show("Ошибка удаления:",
+                            sErrorMessage,
+                            Notification.Type.TRAY_NOTIFICATION);
+                } else {
 
-                tUsefulFuctions.deleteTreeLeaf(iTreeContentLayout.iUserLog,iLeafId);
-                iTreeContentLayout.reloadTreeContainer();
-                //Integer iNewParentLeafId = iTreeContentLayout.getLeafIdByName(sParentLeafName);
-                iTreeContentLayout.tTreeContentLayoutRefresh(1,0);
+                    List<Integer> ChildsLeafs = iTreeContentLayout.getChildAllLeafsById(iLeafId);
+                    int childLeafsCount = ChildsLeafs.size();
 
-//                for (Object id : iTreeContentLayout.itTree.rootItemIds()) {
-//                    iTreeContentLayout.itTree.expandItemsRecursively(id);
-//                }
+                    if (childLeafsCount > 0) {
+                        for (int i = 0; i < childLeafsCount; i++) {
+                            int RemoveLeafId = ChildsLeafs.get(childLeafsCount - (i + 1));
 
+                            if (iTreeContentLayout.getLeafUserDeviceId(RemoveLeafId).intValue() != 0) {
 
-                Notification.show("Подкаталог удалён!",
-                        null,
-                        Notification.Type.TRAY_NOTIFICATION);
-                UI.getCurrent().removeWindow((tFolderDeleteWindow) clickEvent.getButton().getData());
+                                tUsefulFuctions.deleteUserDevice(iTreeContentLayout.iUserLog, RemoveLeafId);
+                            } else {
+                                tUsefulFuctions.deleteTreeLeaf(iTreeContentLayout.iUserLog, RemoveLeafId);
+                            }
+
+                            tUsefulFuctions.overAllWsSetUserDevice(
+                                    iTreeContentLayout.getDeviceUID(RemoveLeafId)
+                                    , iTreeContentLayout.iUserLog
+                                    , "OUTSIDE"
+                            );
+                        }
+                    }
+
+                    tUsefulFuctions.sendMessAgeToSubcribeServer(
+                            iLeafId
+                            , iTreeContentLayout.iUserLog
+                            , "change"
+                            , "server"
+                    );
+
+                    tUsefulFuctions.deleteTreeLeaf(iTreeContentLayout.iUserLog, iLeafId);
+
+                    tUsefulFuctions.overAllWsSetUserDevice(
+                            iTreeContentLayout.getDeviceUID(iLeafId)
+                            , iTreeContentLayout.iUserLog
+                            , "OUTSIDE"
+                    );
+
+                    iTreeContentLayout.reloadTreeContainer();
+                    iTreeContentLayout.tTreeContentLayoutRefresh(1, 0);
+
+                    Notification.show("Подкаталог удалён!",
+                            null,
+                            Notification.Type.TRAY_NOTIFICATION);
+                    UI.getCurrent().removeWindow((tFolderDeleteWindow) clickEvent.getButton().getData());
+                }
 
             }
         });

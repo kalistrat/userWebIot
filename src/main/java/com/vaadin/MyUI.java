@@ -26,7 +26,7 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
 
-        //OVERALL_WSE_LOCATION = tUsefulFuctions.getWseLocation();
+        //setPollInterval(3000);
 
         new Navigator(this, this);
         getNavigator().addView(tLoginView.NAME, tLoginView.class);//

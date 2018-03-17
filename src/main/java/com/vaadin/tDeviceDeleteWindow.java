@@ -54,52 +54,66 @@ public class tDeviceDeleteWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
 
-                String sParentLeafName = iTreeContentLayout
-                        .GetLeafNameById(iTreeContentLayout.GetParentLeafById(iLeafId));
+                String sErrorMessage = "";
 
-//                if (iTreeContentLayout.getLeafIconCode(iLeafId).equals("TACHOMETER")) {
-//
-//                    List<Integer> tList = null;
-//                    try {
-//                        tList = getUsersTaskList();
-//                    } catch (Throwable e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    for (Integer iTask : tList) {
-//
-//                        tUsefulFuctions.sendMessAgeToSubcribeServer(
-//                                iTask
-//                                , iTreeContentLayout.iUserLog
-//                                , "delete"
-//                                , "task"
-//                        );
-//                    }
-//
-//                }
+                if (!tUsefulFuctions.isSubscriberExists()) {
+                    sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
+                }
 
-                tUsefulFuctions.deleteUserDevice(iTreeContentLayout.iUserLog,iLeafId);
+                if (!tUsefulFuctions.isDataBaseExists()) {
+                    sErrorMessage = sErrorMessage + "Сервер базы данных недоступен\n";
+                }
 
-                tUsefulFuctions.sendMessAgeToSubcribeServer(
-                        777
-                        , iTreeContentLayout.iUserLog
-                        , "change"
-                        , "server"
-                );
+                String oWsResponse = tUsefulFuctions.overAllWsCheckUserDevice(iTreeContentLayout.getDeviceUID(iLeafId),iTreeContentLayout.iUserLog);
 
-                iTreeContentLayout.reloadTreeContainer();
-                Integer iNewParentLeafId = iTreeContentLayout.getLeafIdByName(sParentLeafName);
+                if (oWsResponse == null) {
+                    sErrorMessage = sErrorMessage + "Общий веб-сервис недоступен\n";
+                } else {
+                    if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
+                        sErrorMessage = sErrorMessage + "Устройство с UID " + iTreeContentLayout.getDeviceUID(iLeafId) + " не выпускалось\n";
+                    } else if (oWsResponse.equals("WRONG_LOGIN_PASSWORD")) {
+                        sErrorMessage = sErrorMessage + "Для пользователя " + iTreeContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
+                    } else if (oWsResponse.equals("EXECUTION_ERROR")) {
+                        sErrorMessage = sErrorMessage + "Произошла ошибка выполнения\n";
+                    }
+                }
 
-//                for (Object id : iTreeContentLayout.itTree.rootItemIds()) {
-//                    iTreeContentLayout.itTree.expandItemsRecursively(id);
-//                }
+                if (!sErrorMessage.equals("")){
+                    Notification.show("Ошибка удаления:",
+                            sErrorMessage,
+                            Notification.Type.TRAY_NOTIFICATION);
+                } else {
 
-                iTreeContentLayout.tTreeContentLayoutRefresh(iNewParentLeafId,0);
+                    String sParentLeafName = iTreeContentLayout
+                            .GetLeafNameById(iTreeContentLayout.GetParentLeafById(iLeafId));
 
-                Notification.show("Устройство удалёно!",
-                                    null,
-                                    Notification.Type.TRAY_NOTIFICATION);
-                UI.getCurrent().removeWindow((tDeviceDeleteWindow) clickEvent.getButton().getData());
+                    tUsefulFuctions.deleteUserDevice(iTreeContentLayout.iUserLog, iLeafId);
+
+                    tUsefulFuctions.sendMessAgeToSubcribeServer(
+                            777
+                            , iTreeContentLayout.iUserLog
+                            , "change"
+                            , "server"
+                    );
+
+                    tUsefulFuctions.overAllWsSetUserDevice(
+                            iTreeContentLayout.getDeviceUID(iLeafId)
+                            , iTreeContentLayout.iUserLog
+                            , "OUTSIDE"
+                    );
+
+                    iTreeContentLayout.reloadTreeContainer();
+                    Integer iNewParentLeafId = iTreeContentLayout.getLeafIdByName(sParentLeafName);
+
+
+                    iTreeContentLayout.tTreeContentLayoutRefresh(iNewParentLeafId, 0);
+
+                    Notification.show("Устройство удалёно!",
+                            null,
+                            Notification.Type.TRAY_NOTIFICATION);
+                    UI.getCurrent().removeWindow((tDeviceDeleteWindow) clickEvent.getButton().getData());
+
+                }
 
             }
         });

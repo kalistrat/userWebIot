@@ -132,6 +132,10 @@ public class tAddDeviceWindow extends Window {
                     sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
                 }
 
+                if (!tUsefulFuctions.isDataBaseExists()) {
+                    sErrorMessage = sErrorMessage + "Сервер базы данных недоступен\n";
+                }
+
                 if (fIsUIDExists(sUID)) {
                     sErrorMessage = sErrorMessage + "Указанный UID уже используется\n";
                 }
@@ -159,7 +163,7 @@ public class tAddDeviceWindow extends Window {
                     sErrorMessage = sErrorMessage + "Не задан интервал синхронизации\n";
                 }
 
-                String oWsResponse = overAllWsCheckUserDevice(sUID,iTreeContentLayout.iUserLog);
+                String oWsResponse = tUsefulFuctions.overAllWsCheckUserDevice(sUID,iTreeContentLayout.iUserLog);
 
                 if (oWsResponse != null) {
                     if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
@@ -168,6 +172,10 @@ public class tAddDeviceWindow extends Window {
                         sErrorMessage = sErrorMessage + "Для пользователя " + iTreeContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
                     } else if (oWsResponse.equals("EXECUTION_ERROR")) {
                         sErrorMessage = sErrorMessage + "Произошла ошибка выполнения\n";
+                    } else if (oWsResponse.equals("DEVICE_EXISTS_AND_WAITING")) {
+                        sErrorMessage = sErrorMessage + "Устройство  с UID " + sUID + " уже находится в ожидании подключения\n";
+                    } else if (oWsResponse.equals("DEVICE_EXISTS_AND_CONNECTED")) {
+                        sErrorMessage = sErrorMessage + "Устройство  с UID " + sUID + " уже подключено\n";
                     }
                 } else {
                     sErrorMessage = sErrorMessage + "Проверка устройства не может быть произведена\n";
@@ -183,86 +191,74 @@ public class tAddDeviceWindow extends Window {
                     String sDevicePass = RandomStringUtils.random(7, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
                     String sDevicePassSha = tUsefulFuctions.sha256(sDevicePass);
 
-                    String oWsSetDeviceRes = overAllWsSetUserDevice(
+                    String oWsSetDeviceRes = tUsefulFuctions.overAllWsSetUserDevice(
                             sUID
                             ,iTreeContentLayout.iUserLog
+                            ,"AWAINTING"
                     );
 
                     if (oWsSetDeviceRes != null) {
 
-                        pAddUserLeafUID(
-                                sName
-                                , sUID
-                                , iTreeContentLayout.iUserLog
-                                , (String) TimeZoneSelect.getValue()
-                                , timeSyncInt
-                                , sDeviceLog
-                                , sDevicePass
-                                , sDevicePassSha
-                        );
+                        if (oWsSetDeviceRes.equals("DEVICE_TRANSFERRED_TO_AWAITING_STATUS")) {
+
+                            pAddUserLeafUID(
+                                    sName
+                                    , sUID
+                                    , iTreeContentLayout.iUserLog
+                                    , (String) TimeZoneSelect.getValue()
+                                    , timeSyncInt
+                                    , sDeviceLog
+                                    , sDevicePass
+                                    , sDevicePassSha
+                            );
 
 
-// Переместить на userWebService
-//                        String addSubsribeRes = "";
-//                        String addTaskRes = "";
-//
-//
-//
-//                        int NewTaskId;
-//
-//                        NewTaskId = addUserDeviceTask(
-//                                iNewUserDeviceId
-//                        , "SYNCTIME"
-//                        , 1
-//                        , "DAYS"
-//                        );
-//
-//                        addTaskRes = tUsefulFuctions.sendMessAgeToSubcribeServer(
-//                                NewTaskId
-//                                , iTreeContentLayout.iUserLog
-//                                , "add"
-//                                , "task"
-//                        );
-//
+                            Item newItem = iTreeContentLayout.itTree.TreeContainer.addItem(iNewLeafId);
+                            newItem.getItemProperty(1).setValue(iNewTreeId);
+                            newItem.getItemProperty(2).setValue(iNewLeafId);
+                            newItem.getItemProperty(3).setValue(1);
+                            newItem.getItemProperty(4).setValue(sName);
+                            newItem.getItemProperty(5).setValue(iNewIconCode);
+                            newItem.getItemProperty(6).setValue(0);
+                            newItem.getItemProperty(7).setValue(null);
+                            newItem.getItemProperty(8).setValue("LEAF");
+                            newItem.getItemProperty(9).setValue(sUID);
 
-                        Item newItem = iTreeContentLayout.itTree.TreeContainer.addItem(iNewLeafId);
-                        newItem.getItemProperty(1).setValue(iNewTreeId);
-                        newItem.getItemProperty(2).setValue(iNewLeafId);
-                        newItem.getItemProperty(3).setValue(1);
-                        newItem.getItemProperty(4).setValue(sName);
-                        newItem.getItemProperty(5).setValue(iNewIconCode);
-                        newItem.getItemProperty(6).setValue(0);
-                        newItem.getItemProperty(7).setValue(null);
+                            iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iNewLeafId, false);
+                            iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(1, true);
 
-                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(iNewLeafId, false);
-                        iTreeContentLayout.itTree.TreeContainer.setChildrenAllowed(1, true);
+                            iTreeContentLayout.itTree.TreeContainer.setParent(iNewLeafId, 1);
 
-                        iTreeContentLayout.itTree.TreeContainer.setParent(iNewLeafId, 1);
+                            if (iNewIconCode.equals("FOLDER")) {
+                                iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.FOLDER);
+                            }
+                            if (iNewIconCode.equals("TACHOMETER")) {
+                                iTreeContentLayout.itTree.setItemIcon(iNewLeafId, FontAwesome.TACHOMETER);
+                            }
+                            if (iNewIconCode.equals("AUTOMATION")) {
+                                iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.AUTOMATION);
+                            }
+                            if (iNewIconCode.equals("QUESTION")) {
+                                iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.QUESTION_CIRCLE_O);
+                            }
 
-                        if (iNewIconCode.equals("FOLDER")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.FOLDER);
+                            iTreeContentLayout.tTreeContentLayoutRefresh(1, 0);
+                            iTreeContentLayout.itTree.expandItem(1);
+
+
+                            Notification.show("Устройство добавлено!",
+                                    null,
+                                    Notification.Type.TRAY_NOTIFICATION);
+                            UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
+
+                        } else {
+                            Notification.show("Ошибка добавления!",
+                                    "устройство имеет неверный статус или небыло найдено",
+                                    Notification.Type.TRAY_NOTIFICATION);
                         }
-                        if (iNewIconCode.equals("TACHOMETER")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, FontAwesome.TACHOMETER);
-                        }
-                        if (iNewIconCode.equals("AUTOMATION")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.AUTOMATION);
-                        }
-                        if (iNewIconCode.equals("QUESTION")) {
-                            iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.QUESTION_CIRCLE_O);
-                        }
-
-                        iTreeContentLayout.tTreeContentLayoutRefresh(1, 0);
-                        iTreeContentLayout.itTree.expandItem(1);
-
-
-                        Notification.show("Устройство добавлено!",
-                                null,
-                                Notification.Type.TRAY_NOTIFICATION);
-                        UI.getCurrent().removeWindow((tAddDeviceWindow) clickEvent.getButton().getData());
 
                     } else {
-                        Notification.show("Произошла ошибка!",
+                        Notification.show("Ошибка добавления!",
                                 "общий веб-сервис недоступен",
                                 Notification.Type.TRAY_NOTIFICATION);
                     }
@@ -383,128 +379,6 @@ public class tAddDeviceWindow extends Window {
 
     }
 
-// Переместить на userWebService
-
-//    public Integer addUserDeviceTask(
-//            int qUserDeviceId
-//            , String eTaskTypeName
-//            , int eTaskInterval
-//            , String eIntervalType
-//    ){
-//        Integer iTaskId = 0;
-//        try {
-//
-//            Class.forName(tUsefulFuctions.JDBC_DRIVER);
-//            Connection Con = DriverManager.getConnection(
-//                    tUsefulFuctions.DB_URL
-//                    , tUsefulFuctions.USER
-//                    , tUsefulFuctions.PASS
-//            );
-//
-//            CallableStatement addDeviceTaskStmt = Con.prepareCall("{call p_add_task(?, ?, ?, ?, ?, ?)}");
-//            addDeviceTaskStmt.setInt(1, qUserDeviceId);
-//            addDeviceTaskStmt.setString(2, eTaskTypeName);
-//            addDeviceTaskStmt.setInt(3, eTaskInterval);
-//            addDeviceTaskStmt.setString(4, eIntervalType);
-//            addDeviceTaskStmt.setNull(5,Types.VARCHAR);
-//            addDeviceTaskStmt.registerOutParameter(6, Types.INTEGER);
-//
-//            addDeviceTaskStmt.execute();
-//
-//            iTaskId = addDeviceTaskStmt.getInt(6);
-//
-//            Con.close();
-//
-//
-//        }catch(SQLException se){
-//            //Handle errors for JDBC
-//            se.printStackTrace();
-//            //return "Ошибка JDBC";
-//        }catch(Exception e) {
-//            //Handle errors for Class.forName
-//            e.printStackTrace();
-//            //return "Ошибка Class.forName";
-//        }
-//        return iTaskId;
-//
-//    }
-
-    private String overAllWsCheckUserDevice(
-            String UID
-            ,String userLogin
-    ){
-        String respWs = null;
-
-        try {
-
-            List<String> WsArgs = getOverAllWseArgs(userLogin);
-            HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(WsArgs.get(1));
-
-            post.setHeader("Content-Type", "text/xml");
-
-            String reqBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com/\">\n" +
-                    "   <soapenv:Header/>\n" +
-                    "   <soapenv:Body>\n" +
-                    "      <com:checkUserDevice>\n" +
-                    "         <!--Optional:-->\n" +
-                    "         <arg0>"+UID+"</arg0>\n" +
-                    "         <!--Optional:-->\n" +
-                    "         <arg1>"+userLogin+"</arg1>\n" +
-                    "         <!--Optional:-->\n" +
-                    "         <arg2>"+WsArgs.get(0)+"</arg2>\n" +
-                    "      </com:checkUserDevice>\n" +
-                    "   </soapenv:Body>\n" +
-                    "</soapenv:Envelope>";
-
-            StringEntity input = new StringEntity(reqBody, Charset.forName("UTF-8"));
-            post.setEntity(input);
-            HttpResponse response = client.execute(post);
-            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-
-            Document resXml = tUsefulFuctions.loadXMLFromString(rd.lines().collect(Collectors.joining()));
-            respWs = XPathFactory.newInstance().newXPath()
-                    .compile("//return").evaluate(resXml);
-
-
-        } catch (Exception e){
-            //e.printStackTrace();
-
-        }
-        return respWs;
-    }
-
-    private List getOverAllWseArgs(String UserLog){
-        List Args = new ArrayList<String>();
-
-        try {
-
-            Class.forName(tUsefulFuctions.JDBC_DRIVER);
-            Connection Con = DriverManager.getConnection(
-                    tUsefulFuctions.DB_URL
-                    , tUsefulFuctions.USER
-                    , tUsefulFuctions.PASS
-            );
-
-            CallableStatement Stmt = Con.prepareCall("{call getOverAllWseArgs(?,?,?)}");
-            Stmt.setString(1,UserLog);
-            Stmt.registerOutParameter (2, Types.VARCHAR);
-            Stmt.registerOutParameter (3, Types.VARCHAR);
-            Stmt.execute();
-            Args.add(Stmt.getString(2));
-            Args.add(Stmt.getString(3));
-            Con.close();
-
-        }catch(SQLException se){
-            //Handle errors for JDBC
-            se.printStackTrace();
-        }catch(Exception e) {
-            //Handle errors for Class.forName
-            e.printStackTrace();
-        }
-
-        return Args;
-    }
 
     private boolean fIsUIDExists(String eUID){
         boolean IsUIDExists = false;
@@ -537,51 +411,6 @@ public class tAddDeviceWindow extends Window {
         }
 
         return IsUIDExists;
-    }
-
-    private String overAllWsSetUserDevice(
-            String UID
-            ,String userLogin
-    ){
-        String respWs = null;
-
-        try {
-
-            List<String> WsArgs = getOverAllWseArgs(userLogin);
-            HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(WsArgs.get(1));
-
-            post.setHeader("Content-Type", "text/xml");
-
-            String reqBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com/\">\n" +
-                    "   <soapenv:Header/>\n" +
-                    "   <soapenv:Body>\n" +
-                    "      <com:setUserDevice>\n" +
-                    "         <!--Optional:-->\n" +
-                    "         <arg0>" + UID + "</arg0>\n" +
-                    "         <!--Optional:-->\n" +
-                    "         <arg1>" + userLogin + "</arg1>\n" +
-                    "         <!--Optional:-->\n" +
-                    "         <arg2>"+ WsArgs.get(0) +"</arg2>\n" +
-                    "      </com:setUserDevice>\n" +
-                    "   </soapenv:Body>\n" +
-                    "</soapenv:Envelope>";
-
-            StringEntity input = new StringEntity(reqBody, Charset.forName("UTF-8"));
-            post.setEntity(input);
-            HttpResponse response = client.execute(post);
-            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-
-            Document resXml = tUsefulFuctions.loadXMLFromString(rd.lines().collect(Collectors.joining()));
-            respWs = XPathFactory.newInstance().newXPath()
-                    .compile("//return").evaluate(resXml);
-
-
-        } catch (Exception e){
-            //e.printStackTrace();
-
-        }
-        return respWs;
     }
 
 }

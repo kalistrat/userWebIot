@@ -1,14 +1,23 @@
 package com.vaadin;
 
 import com.vaadin.ui.NativeSelect;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPathFactory;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.Socket;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.sql.*;
 import java.text.DateFormat;
@@ -19,6 +28,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Created by kalistrat on 24.01.2017.
@@ -713,6 +723,165 @@ public class tUsefulFuctions {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static List getOverAllWseArgs(String UserLog){
+        List Args = new ArrayList<String>();
+
+        try {
+
+            Class.forName(tUsefulFuctions.JDBC_DRIVER);
+            Connection Con = DriverManager.getConnection(
+                    tUsefulFuctions.DB_URL
+                    , tUsefulFuctions.USER
+                    , tUsefulFuctions.PASS
+            );
+
+            CallableStatement Stmt = Con.prepareCall("{call getOverAllWseArgs(?,?,?)}");
+            Stmt.setString(1,UserLog);
+            Stmt.registerOutParameter (2, Types.VARCHAR);
+            Stmt.registerOutParameter (3, Types.VARCHAR);
+            Stmt.execute();
+            Args.add(Stmt.getString(2));
+            Args.add(Stmt.getString(3));
+            Con.close();
+
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+
+        return Args;
+    }
+
+    public static String overAllWsSetUserDevice(
+            String UID
+            ,String userLogin
+            ,String reqStatus
+    ){
+        String respWs = null;
+
+        try {
+
+            List<String> WsArgs = getOverAllWseArgs(userLogin);
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(WsArgs.get(1));
+
+            post.setHeader("Content-Type", "text/xml");
+
+            String reqBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com/\">\n" +
+                    "   <soapenv:Header/>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <com:setUserDevice>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg0>" + UID + "</arg0>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg1>" + userLogin + "</arg1>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg2>"+ WsArgs.get(0) +"</arg2>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg3>"+ reqStatus +"</arg3>\n" +
+                    "      </com:setUserDevice>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+
+            StringEntity input = new StringEntity(reqBody, Charset.forName("UTF-8"));
+            post.setEntity(input);
+            HttpResponse response = client.execute(post);
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+            Document resXml = tUsefulFuctions.loadXMLFromString(rd.lines().collect(Collectors.joining()));
+            respWs = XPathFactory.newInstance().newXPath()
+                    .compile("//return").evaluate(resXml);
+
+
+        } catch (Exception e){
+            //e.printStackTrace();
+
+        }
+        return respWs;
+    }
+
+    public static String overAllWsCheckUserDevice(
+            String UID
+            ,String userLogin
+    ){
+        String respWs = null;
+
+        try {
+
+            List<String> WsArgs = getOverAllWseArgs(userLogin);
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(WsArgs.get(1));
+
+            post.setHeader("Content-Type", "text/xml");
+
+            String reqBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com/\">\n" +
+                    "   <soapenv:Header/>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <com:checkUserDevice>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg0>"+UID+"</arg0>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg1>"+userLogin+"</arg1>\n" +
+                    "         <!--Optional:-->\n" +
+                    "         <arg2>"+WsArgs.get(0)+"</arg2>\n" +
+                    "      </com:checkUserDevice>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+
+            StringEntity input = new StringEntity(reqBody, Charset.forName("UTF-8"));
+            post.setEntity(input);
+            HttpResponse response = client.execute(post);
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+            Document resXml = tUsefulFuctions.loadXMLFromString(rd.lines().collect(Collectors.joining()));
+            respWs = XPathFactory.newInstance().newXPath()
+                    .compile("//return").evaluate(resXml);
+
+
+        } catch (Exception e){
+            //e.printStackTrace();
+
+        }
+        return respWs;
+    }
+
+
+    public static boolean isDataBaseExists(){
+        boolean isDBe = false;
+
+        try {
+            int arg = 1;
+
+            Class.forName(tUsefulFuctions.JDBC_DRIVER);
+            Connection Con = DriverManager.getConnection(
+                    tUsefulFuctions.DB_URL
+                    , tUsefulFuctions.USER
+                    , tUsefulFuctions.PASS
+            );
+
+            CallableStatement Stmt = Con.prepareCall("{? = call isDataBaseExists(?)}");
+            Stmt.registerOutParameter (1, Types.INTEGER);
+            Stmt.setInt(2,arg);
+            Stmt.execute();
+            if (Stmt.getInt(1) == arg){
+                isDBe = true;
+            }
+            Con.close();
+
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+
+        return isDBe;
     }
 
 

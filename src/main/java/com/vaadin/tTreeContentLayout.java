@@ -1,6 +1,9 @@
 package com.vaadin;
 
+import com.vaadin.data.Item;
+import com.vaadin.event.UIEvents;
 import com.vaadin.tQuestionLeafContent.tLeafLayout;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import java.util.ArrayList;
@@ -19,6 +22,17 @@ public class tTreeContentLayout extends VerticalLayout {
         this.itTree = etTree;
         this.iUserLog = tUserLog;
         this.addComponent(new tFolderLayout(1,this));
+
+//        UI.getCurrent().addPollListener(new UIEvents.PollListener() {
+//        @Override
+//        public void poll(UIEvents.PollEvent pollEvent) {
+//
+//            Item SelectedItem = itTree.getSelectedItem();
+//            reloadTreeContainer();
+//            itTree.mainView.TreeContentUsr.tTreeContentLayoutRefresh((int) SelectedItem.getItemProperty(2).getValue(),(int) SelectedItem.getItemProperty(6).getValue());
+//
+//        }
+//        });
 
 
     }
@@ -49,6 +63,18 @@ public class tTreeContentLayout extends VerticalLayout {
     public String getLeafType(int eLeafId){
 
         return (String) this.itTree.getItem(eLeafId).getItemProperty(8).getValue();
+
+    }
+
+    public String getDeviceUID(int eLeafId){
+
+        return (String) this.itTree.getItem(eLeafId).getItemProperty(9).getValue();
+
+    }
+
+    public String getUserPass(int eLeafId){
+
+        return (String) this.itTree.getItem(eLeafId).getItemProperty(10).getValue();
 
     }
 

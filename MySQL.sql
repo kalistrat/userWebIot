@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `action_type` (
   `icon_code` varchar(100) DEFAULT NULL,
   `action_type_code` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`action_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.action_type: ~2 rows (приблизительно)
 DELETE FROM `action_type`;
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `environment_args` (
 DELETE FROM `environment_args`;
 /*!40000 ALTER TABLE `environment_args` DISABLE KEYS */;
 INSERT INTO `environment_args` (`arg_id`, `arg_code`, `arg_value`) VALUES
-	(1, 'OVERALL_WSE_LOCATION', 'http://localhost:8777/overallWs/Register?wsdl'),
+	(1, 'OVERALL_WSE_LOCATION', 'http://localhost:8181/soapExample/Register?wsdl'),
 	(2, 'OVERALL_WUI_LOCATION', 'http://localhost:8080');
 /*!40000 ALTER TABLE `environment_args` ENABLE KEYS */;
 
@@ -1110,6 +1110,16 @@ INSERT INTO `graph_period` (`period_id`, `period_code`) VALUES
 	(6, 'год');
 /*!40000 ALTER TABLE `graph_period` ENABLE KEYS */;
 
+-- Дамп структуры для функция things.isDataBaseExists
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `isDataBaseExists`(
+	`arg` INT
+) RETURNS int(11)
+BEGIN
+return arg;
+END//
+DELIMITER ;
+
 -- Дамп структуры для функция things.IsNumeric
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `IsNumeric`(sIn varchar(1024)) RETURNS tinyint(4)
@@ -1129,7 +1139,7 @@ CREATE TABLE IF NOT EXISTS `mqtt_servers` (
   PRIMARY KEY (`server_id`),
   KEY `FK_mqtt_servers_users` (`user_id`),
   CONSTRAINT `FK_mqtt_servers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.mqtt_servers: ~8 rows (приблизительно)
 DELETE FROM `mqtt_servers`;
@@ -1142,7 +1152,9 @@ INSERT INTO `mqtt_servers` (`server_id`, `server_ip`, `server_port`, `is_busy`, 
 	(12, 'tcp://0.0.0.0:9001', 9001, 0, 'LOCALHOST', 'tcp', 'tcp://snslog.ru:9001', 1),
 	(13, 'tcp://0.0.0.0:9003', 9003, 0, 'LOCALHOST', 'tcp', 'tcp://snslog.ru:9003', 2),
 	(14, 'tcp://0.0.0.0:9005', 9005, 0, 'LOCALHOST', 'tcp', 'tcp://snslog.ru:9004', 5),
-	(15, 'tcp://0.0.0.0:9007', 9007, 0, 'LOCALHOST', 'tcp', 'tcp://snslog.ru:9007', 7);
+	(15, 'tcp://0.0.0.0:9007', 9007, 0, 'LOCALHOST', 'tcp', 'tcp://snslog.ru:9007', 7),
+	(16, 'tcp://0.0.0.0:9009', 9009, 0, 'LOCALHOST', 'regular', 'tcp://snslog.ru:9009', 8),
+	(17, 'ssl://0.0.0.0:9010', 9010, 0, 'LOCALHOST', 'ssl', 'ssl://snslog.ru:9010', 8);
 /*!40000 ALTER TABLE `mqtt_servers` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.notification_type
@@ -3831,6 +3843,7 @@ CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `updateLeaf`(
 	OUT `oLeafId` INT,
 	OUT `oTaskId` INT
 
+
 )
 BEGIN
 declare i_parent_leaf_id int;
@@ -3947,7 +3960,7 @@ else
 
 update user_devices_tree udt
 set udt.parent_leaf_id = i_parent_leaf_id
-,udt.leaf_type = 'RETRANS'
+,udt.leaf_type = 'FOLDER'
 where udt.user_devices_tree_id = i_child_tree_id;
 
 set oServerLog = i_child_login;
@@ -3984,7 +3997,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `post_index` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `USER_LOG` (`user_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.users: ~4 rows (приблизительно)
 DELETE FROM `users`;
@@ -3993,7 +4006,8 @@ INSERT INTO `users` (`user_id`, `user_log`, `user_pass`, `user_last_activity`, `
 	(1, 'k', '7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451', '2016-11-17 14:32:56', 'nikostrarus@bk.ru', '34346346346', 'Nikolay', 'Semenov', '', '1987-07-13', 'физическое лицо', NULL, NULL, NULL, NULL, NULL),
 	(2, 'Oleg', '2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3', '2017-01-12 18:02:48', 'akminfo@mail.ru', '34634634634', 'Oleg', 'Antipov', NULL, '1987-07-13', 'физическое лицо', NULL, NULL, NULL, NULL, NULL),
 	(5, 'qweqwe123', '0d1ea4c256cd50a2a7ccbfd22b3d9959f6fd30bd840b9ff3c7c65ee4e21df06d', '2018-03-10 18:34:19', 'koldybovich@yandex.ru', '12312312312', 'qwe', 'qwe', 'qwe', '1987-07-13', 'физическое лицо', NULL, NULL, NULL, NULL, '123123'),
-	(7, 'kalistrat', 'bf2c2edb653709e2213f47eb8ec36b1c051f1eb41a3b727af60c73be9ff7b5a3', NULL, 'kauredinas@mail.ru', '753753', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(7, 'kalistrat', 'bf2c2edb653709e2213f47eb8ec36b1c051f1eb41a3b727af60c73be9ff7b5a3', NULL, 'kauredinas@mail.ru', '753753', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(8, 'semenovna', '4c4de41965012a94d6fcca5abbb792139e5f88f9149af99571be04d6b1afdcee', NULL, 'n7.semenov@gmail.com', '159951', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_accounts
@@ -4084,13 +4098,16 @@ CREATE TABLE IF NOT EXISTS `user_device` (
   CONSTRAINT `FK_user_device_unit` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`),
   CONSTRAINT `FK_user_device_unit_factor` FOREIGN KEY (`factor_id`) REFERENCES `unit_factor` (`factor_id`),
   CONSTRAINT `FK_user_device_users` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.user_device: ~1 rows (приблизительно)
+-- Дамп данных таблицы things.user_device: ~0 rows (приблизительно)
 DELETE FROM `user_device`;
 /*!40000 ALTER TABLE `user_device` DISABLE KEYS */;
 INSERT INTO `user_device` (`user_device_id`, `user_id`, `device_user_name`, `user_device_mode`, `user_device_measure_period`, `user_device_date_from`, `action_type_id`, `device_units`, `mqtt_topic_write`, `mqtt_topic_read`, `mqqt_server_id`, `unit_id`, `factor_id`, `description`, `device_log`, `device_pass`, `measure_data_type`) VALUES
-	(4, 1, 'zxc3', NULL, 'не задано', '2018-03-17 01:18:39', 1, 'Ед', '/SEN-DF154LK55548', '4', 4, 96, 64, 'zxc3', 'k0UpZZ', 'msGAXX9', 'число');
+	(5, 1, 'SEN-DF154LK55548', NULL, 'не задано', '2018-03-17 21:18:54', 1, 'Ед', '/SEN-DF154LK55548', '5', 4, 96, 64, 'SEN-DF154LK55548', 'kOdy43', 'MXIqgn8', 'число'),
+	(6, 1, 'SEN-K4HUIIYW8RNG', NULL, 'не задано', '2018-03-17 21:21:00', 1, 'Ед', '/SEN-K4HUIIYW8RNG', '6', 4, 96, 64, 'SEN-K4HUIIYW8RNG', 'kOdy43', 'MXIqgn8', 'число'),
+	(7, 7, 'SEN-4NJLI60IJFIZ', NULL, 'не задано', '2018-03-17 21:26:33', 1, 'Ед', '/SEN-4NJLI60IJFIZ', '7', 11, 96, 64, 'SEN-4NJLI60IJFIZ', 'kalistratKnMb3', 'inYJaW0', 'число'),
+	(8, 8, 'SEN-I80827SF2CE7', NULL, 'не задано', '2018-03-17 21:56:42', 1, 'Ед', '/SEN-I80827SF2CE7', '8', 17, 96, 64, 'SEN-I80827SF2CE7', 'semenovnajosmr', 'LWBqw9o', 'число');
 /*!40000 ALTER TABLE `user_device` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_devices_tree
@@ -4121,9 +4138,9 @@ CREATE TABLE IF NOT EXISTS `user_devices_tree` (
   CONSTRAINT `FK_user_devices_tree_timezones` FOREIGN KEY (`timezone_id`) REFERENCES `timezones` (`timezone_id`),
   CONSTRAINT `FK_user_devices_tree_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `FK_user_devices_tree_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.user_devices_tree: ~8 rows (приблизительно)
+-- Дамп данных таблицы things.user_devices_tree: ~4 rows (приблизительно)
 DELETE FROM `user_devices_tree`;
 /*!40000 ALTER TABLE `user_devices_tree` DISABLE KEYS */;
 INSERT INTO `user_devices_tree` (`user_devices_tree_id`, `leaf_id`, `parent_leaf_id`, `user_device_id`, `leaf_name`, `user_id`, `timezone_id`, `mqtt_server_id`, `time_topic`, `sync_interval`, `control_log`, `control_pass`, `control_pass_sha`, `leaf_type`, `uid`) VALUES
@@ -4131,10 +4148,15 @@ INSERT INTO `user_devices_tree` (`user_devices_tree_id`, `leaf_id`, `parent_leaf
 	(2, 1, NULL, NULL, 'Устройства', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'Oleg'),
 	(3, 1, NULL, NULL, 'Устройства', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'qweqwe123'),
 	(5, 1, NULL, NULL, 'Устройства', 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'kalistrat'),
-	(7, 2, 1, NULL, 'podolskaya', 1, 17, 4, '/BRI-S23423BJB234/timesync', 4, 'k0UpZZ', 'msGAXX9', '504e7fda53e7b2fdce33076294aaf8e9e0f87de11890acdccbe8dcce37a6c7db', 'FOLDER', 'BRI-S23423BJB234'),
-	(10, 3, 2, 4, 'zxc3', 1, 17, 4, '/SEN-DF154LK55548/timesync', 1, 'kFscRJ', '1pyyuBu', 'eb882c48eb457c88c8e7896fa324fcb1c74252cc520171a60c3f8d049c865c19', 'SENSOR', 'SEN-DF154LK55548'),
-	(11, 4, 1, NULL, 'dsaasd', 1, 17, 4, '/RET-QWERTYQWERTY/timesync', 1, 'kWrRh3', 'NPUBgOe', '119d363e59be9792dc10f6b79d67271da2ed885a33ae0ec8a3c1f475a56ee74b', 'LEAF', 'RET-QWERTYQWERTY'),
-	(12, 5, 1, NULL, 'MyName', 1, 17, 4, '/SEN-I80827SF2CE7/timesync', 3, 'k9XKOz', 'tHERqI7', '868699ab54fb58ca9a3339ad1328ec824024ce2216bd9e656352eaebca2af196', 'LEAF', 'SEN-I80827SF2CE7');
+	(18, 2, 1, NULL, 'BRI-S23423BJB234', 1, 17, 4, '/BRI-S23423BJB234/timesync', 1, 'kOdy43', 'MXIqgn8', 'be99f5b6d54c679757e97695243cc035dfcdc413d9e093e8281644c7b261333b', 'FOLDER', 'BRI-S23423BJB234'),
+	(24, 3, 2, 5, 'SEN-DF154LK55548', 1, 17, 4, '/SEN-DF154LK55548/timesync', 1, 'kMsDIW', 'gNB26FP', '56732abbdb176cd97ce4193079cfdce4140094e79c8987d7aec756471f263369', 'SENSOR', 'SEN-DF154LK55548'),
+	(25, 4, 2, 6, 'SEN-K4HUIIYW8RNG', 1, 17, 4, '/SEN-K4HUIIYW8RNG/timesync', 1, 'k8E9hj', 'dIhUeQS', 'e3cc0e92716ef4856356783c8d17eecd0902a1ad4d361f34cc147a37f7aed0a1', 'SENSOR', 'SEN-K4HUIIYW8RNG'),
+	(26, 2, 1, NULL, 'BRI-II497O5YNUFA', 7, 17, 11, '/BRI-II497O5YNUFA/timesync', 1, 'kalistratuvnMk', 'wN4IuJD', '2640a1c626c6f4842a80aa49a2a5e09eed5fe89e2d94a3e490f5c782fd5fc6bd', 'FOLDER', 'BRI-II497O5YNUFA'),
+	(27, 3, 2, NULL, 'RET-41IC5IBP5F2U', 7, 17, 11, '/RET-41IC5IBP5F2U/timesync', 2, 'kalistratKnMb3', 'inYJaW0', 'c9ec8c1747ab7cb57bd2f290b9b6eb24120d32e3fa40243d3316a92ba92a7214', 'FOLDER', 'RET-41IC5IBP5F2U'),
+	(28, 4, 3, 7, 'SEN-4NJLI60IJFIZ', 7, 17, 11, '/SEN-4NJLI60IJFIZ/timesync', 1, 'kalistrattp1OA', '9olrn7x', 'c35c434f93e2fabf512498ba0d056ef6755c3fcf723c04676e8c55525ce43327', 'SENSOR', 'SEN-4NJLI60IJFIZ'),
+	(29, 1, NULL, NULL, 'Устройства', 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FOLDER', 'semenovna'),
+	(30, 2, 1, NULL, 'BRI-XGSA4ZYQTDYQ', 8, 17, 17, '/BRI-XGSA4ZYQTDYQ/timesync', 2, 'semenovnajosmr', 'LWBqw9o', '91af927d90dfb4cb2308b3a88ebf5ae882cedc9016c0b301be3a068aa48ab948', 'FOLDER', 'BRI-XGSA4ZYQTDYQ'),
+	(31, 3, 2, 8, 'SEN-I80827SF2CE7', 8, 17, 17, '/SEN-I80827SF2CE7/timesync', 2, 'semenovnaaM3c8', 'kbFg7bB', '67a41676e6c2c5e6a06d53882fce2a7dec3879a325b5c2b021302fb853630de0', 'SENSOR', 'SEN-I80827SF2CE7');
 /*!40000 ALTER TABLE `user_devices_tree` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_device_measures
@@ -4187,13 +4209,16 @@ CREATE TABLE IF NOT EXISTS `user_device_task` (
   CONSTRAINT `FK_user_device_task_task_type` FOREIGN KEY (`task_type_id`) REFERENCES `task_type` (`task_type_id`),
   CONSTRAINT `FK_user_device_task_user_actuator_state` FOREIGN KEY (`user_actuator_state_id`) REFERENCES `user_actuator_state` (`user_actuator_state_id`),
   CONSTRAINT `FK_user_device_task_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.user_device_task: ~1 rows (приблизительно)
+-- Дамп данных таблицы things.user_device_task: ~0 rows (приблизительно)
 DELETE FROM `user_device_task`;
 /*!40000 ALTER TABLE `user_device_task` DISABLE KEYS */;
 INSERT INTO `user_device_task` (`user_device_task_id`, `user_device_id`, `task_type_id`, `task_interval`, `interval_type`, `user_actuator_state_id`) VALUES
-	(2, 4, 1, 1, 'DAYS', NULL);
+	(3, 5, 1, 1, 'DAYS', NULL),
+	(4, 6, 1, 1, 'DAYS', NULL),
+	(5, 7, 1, 1, 'DAYS', NULL),
+	(6, 8, 1, 2, 'DAYS', NULL);
 /*!40000 ALTER TABLE `user_device_task` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_state_condition_vars

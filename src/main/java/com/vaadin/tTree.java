@@ -16,10 +16,13 @@ import java.sql.*;
 public class tTree extends Tree {
 
     public HierarchicalContainer TreeContainer;
+    public tMainView mainView;
+    public Item selectedItem;
 
 
     public tTree(String eUserLog,tMainView eMainView){
 
+        mainView = eMainView;
         TreeContainer = new HierarchicalContainer();
 
         TreeContainer.addContainerProperty(1, Integer.class, null);
@@ -30,6 +33,7 @@ public class tTree extends Tree {
         TreeContainer.addContainerProperty(6, Integer.class, null);
         TreeContainer.addContainerProperty(7, String.class, null);
         TreeContainer.addContainerProperty(8, String.class, null);
+        TreeContainer.addContainerProperty(9, String.class, null);
 
         tTreeGetData(eUserLog);
 
@@ -50,6 +54,7 @@ public class tTree extends Tree {
         }
 
         this.select(1);
+        selectedItem = TreeContainer.getItem(1);
 
 
         this.addValueChangeListener(new ValueChangeListener() {
@@ -59,7 +64,7 @@ public class tTree extends Tree {
                 {
                     Item SelectedItem = TreeContainer.getItem(valueChangeEvent.getProperty().getValue());
                     eMainView.TreeContentUsr.tTreeContentLayoutRefresh((int) SelectedItem.getItemProperty(2).getValue(),(int) SelectedItem.getItemProperty(6).getValue());
-
+                    selectedItem = SelectedItem;
                 }
             }
         });
@@ -102,6 +107,10 @@ public class tTree extends Tree {
 
     }
 
+    public Item getSelectedItem(){
+        return this.selectedItem;
+    }
+
     public void tTreeGetData(String qUserLog){
 
 
@@ -121,11 +130,12 @@ public class tTree extends Tree {
                     ",ifnull(udt.user_device_id,0) user_device_id\n" +
                     ",act.action_type_name\n" +
                     ",udt.leaf_type\n" +
+                    ",udt.uid\n" +
                     "from user_devices_tree udt\n" +
                     "join users u on u.user_id=udt.user_id\n" +
                     "left join user_device ud on ud.user_device_id=udt.user_device_id\n" +
                     "left join action_type act on act.action_type_id=ud.action_type_id\n" +
-                    "where u.user_log=?\n" +
+                    "where u.user_log = ?\n" +
                     "order by udt.leaf_id";
 
             PreparedStatement TreeSqlStmt = Con.prepareStatement(TreeSql);
@@ -145,6 +155,8 @@ public class tTree extends Tree {
                 Integer UsrDeviceId = TreeSqlRs.getInt(6);
                 String UsrActionType = TreeSqlRs.getString(7);
                 String UsrLeafType = TreeSqlRs.getString(8);
+                String devUid = TreeSqlRs.getString(9);
+
 
                 newItem.getItemProperty(1).setValue(UsrDevTreeId);
                 newItem.getItemProperty(2).setValue(UsrLeafId);
@@ -154,6 +166,9 @@ public class tTree extends Tree {
                 newItem.getItemProperty(6).setValue(UsrDeviceId);
                 newItem.getItemProperty(7).setValue(UsrActionType);
                 newItem.getItemProperty(8).setValue(UsrLeafType);
+                newItem.getItemProperty(9).setValue(devUid);
+
+
                 //FontAwesome.SIGN_IN
                         //Button v = new Button("ere");
                 //v.setIcon();

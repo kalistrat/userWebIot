@@ -1,10 +1,8 @@
 package com.vaadin.tQuestionLeafContent;
 
-import com.vaadin.data.Item;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.tAddFolderWindow;
 import com.vaadin.tTreeContentLayout;
 import com.vaadin.tUsefulFuctions;
 import com.vaadin.ui.*;
