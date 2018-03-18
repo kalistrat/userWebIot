@@ -49,120 +49,120 @@ public class tFolderPrefsFormLayout extends VerticalLayout {
         SaveButton.addStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
         SaveButton.setEnabled(false);
 
-        SaveButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-
-                String sErrorMessage = "";
-                String sLogValue = DeviceLoginTextField.getValue();
-                String sPassValue = DevicePassWordTextField.getValue();
-                String sTimeSync = TimeSyncInterval.getValue();
-
-                if (sLogValue.equals("")){
-                    sErrorMessage = sErrorMessage + "Логин контроллера не задан\n";
-                } else {
-                    if (!sLogValue.equals(sCurrentDeviceLog)) {
-                        if (sLogValue.length() > 50) {
-                            sErrorMessage = sErrorMessage + "Длина логина превышает 50 символов\n";
-                        }
-                        if (sLogValue.length() < 5) {
-                            sErrorMessage = sErrorMessage + "Длина логина меньше 5 символов\n";
-                        }
-                        if (tUsefulFuctions.isExistsContLogIn(sLogValue).intValue() == 1) {
-                            sErrorMessage = sErrorMessage + "Указанный логин занят. Введите другой\n";
-                        }
-                        if (!tUsefulFuctions.IsLatinAndDigits(sLogValue)) {
-                            sErrorMessage = sErrorMessage + "Логин должен состоять из латиницы и цифр\n";
-                        }
-                    }
-                }
-
-                if (sPassValue.equals("")){
-                    sErrorMessage = sErrorMessage + "Пароль контроллера не задан\n";
-                } else {
-                    if (sPassValue.length() > 50){
-                        sErrorMessage = sErrorMessage + "Длина пароля превышает 50 символов\n";
-                    }
-                    if (sPassValue.length() < 5){
-                        sErrorMessage = sErrorMessage + "Длина пароля меньше 5 символов\n";
-                    }
-                    if (!tUsefulFuctions.IsLatinAndDigits(sPassValue)){
-                        sErrorMessage = sErrorMessage + "Пароль должен состоять из латиницы и цифр\n";
-                    }
-                }
-                int timeSyncInt = 0;
-
-                if (sTimeSync != null){
-
-                    if (tUsefulFuctions.StrToIntValue(sTimeSync)!= null) {
-
-                        timeSyncInt = Integer.parseInt(sTimeSync);
-
-                        if (timeSyncInt < 1) {
-                            sErrorMessage = sErrorMessage + "Интервал синхронизации не может быть меньше суток\n";
-                        }
-                        if (timeSyncInt > 365) {
-                            sErrorMessage = sErrorMessage + "Интервал синхронизации превышает 365 суток\n";
-                        }
-
-                    } else {
-                        if (!sTimeSync.equals("")) {
-                            sErrorMessage = sErrorMessage + "Интервал синхронизации некорректный\n";
-                        }
-                    }
-
-                }
-
-                if (!sErrorMessage.equals("")){
-                    Notification.show("Ошибка сохранения:",
-                            sErrorMessage,
-                            Notification.Type.TRAY_NOTIFICATION);
-                } else {
-
-                    updateFolderPrefsFormData(
-                    iLeafId
-                    ,iUserLog
-                    ,sLogValue
-                    ,sPassValue
-                    ,tUsefulFuctions.sha256(sPassValue)
-                    ,(String) TimeZoneSelect.getValue()
-                    ,timeSyncInt
-                    );
-
-
-                    SaveButton.setEnabled(false);
-                    EditButton.setEnabled(true);
-                    DeviceLoginTextField.setEnabled(false);
-                    DevicePassWordTextField.setEnabled(false);
-                    TimeZoneSelect.setEnabled(false);
-                    TimeSyncInterval.setEnabled(false);
-
-                    Notification.show("Параметры контроллера изменены!",
-                            null,
-                            Notification.Type.TRAY_NOTIFICATION);
-                    //UI.getCurrent().removeWindow((tAddFolderWindow) clickEvent.getButton().getData());
-
-                }
-            }
-        });
+//        SaveButton.addClickListener(new Button.ClickListener() {
+//            @Override
+//            public void buttonClick(Button.ClickEvent clickEvent) {
+//
+//                String sErrorMessage = "";
+//                String sLogValue = DeviceLoginTextField.getValue();
+//                String sPassValue = DevicePassWordTextField.getValue();
+//                String sTimeSync = TimeSyncInterval.getValue();
+//
+//                if (sLogValue.equals("")){
+//                    sErrorMessage = sErrorMessage + "Логин контроллера не задан\n";
+//                } else {
+//                    if (!sLogValue.equals(sCurrentDeviceLog)) {
+//                        if (sLogValue.length() > 50) {
+//                            sErrorMessage = sErrorMessage + "Длина логина превышает 50 символов\n";
+//                        }
+//                        if (sLogValue.length() < 5) {
+//                            sErrorMessage = sErrorMessage + "Длина логина меньше 5 символов\n";
+//                        }
+//                        if (tUsefulFuctions.isExistsContLogIn(sLogValue).intValue() == 1) {
+//                            sErrorMessage = sErrorMessage + "Указанный логин занят. Введите другой\n";
+//                        }
+//                        if (!tUsefulFuctions.IsLatinAndDigits(sLogValue)) {
+//                            sErrorMessage = sErrorMessage + "Логин должен состоять из латиницы и цифр\n";
+//                        }
+//                    }
+//                }
+//
+//                if (sPassValue.equals("")){
+//                    sErrorMessage = sErrorMessage + "Пароль контроллера не задан\n";
+//                } else {
+//                    if (sPassValue.length() > 50){
+//                        sErrorMessage = sErrorMessage + "Длина пароля превышает 50 символов\n";
+//                    }
+//                    if (sPassValue.length() < 5){
+//                        sErrorMessage = sErrorMessage + "Длина пароля меньше 5 символов\n";
+//                    }
+//                    if (!tUsefulFuctions.IsLatinAndDigits(sPassValue)){
+//                        sErrorMessage = sErrorMessage + "Пароль должен состоять из латиницы и цифр\n";
+//                    }
+//                }
+//                int timeSyncInt = 0;
+//
+//                if (sTimeSync != null){
+//
+//                    if (tUsefulFuctions.StrToIntValue(sTimeSync)!= null) {
+//
+//                        timeSyncInt = Integer.parseInt(sTimeSync);
+//
+//                        if (timeSyncInt < 1) {
+//                            sErrorMessage = sErrorMessage + "Интервал синхронизации не может быть меньше суток\n";
+//                        }
+//                        if (timeSyncInt > 365) {
+//                            sErrorMessage = sErrorMessage + "Интервал синхронизации превышает 365 суток\n";
+//                        }
+//
+//                    } else {
+//                        if (!sTimeSync.equals("")) {
+//                            sErrorMessage = sErrorMessage + "Интервал синхронизации некорректный\n";
+//                        }
+//                    }
+//
+//                }
+//
+//                if (!sErrorMessage.equals("")){
+//                    Notification.show("Ошибка сохранения:",
+//                            sErrorMessage,
+//                            Notification.Type.TRAY_NOTIFICATION);
+//                } else {
+//
+//                    updateFolderPrefsFormData(
+//                    iLeafId
+//                    ,iUserLog
+//                    ,sLogValue
+//                    ,sPassValue
+//                    ,tUsefulFuctions.sha256(sPassValue)
+//                    ,(String) TimeZoneSelect.getValue()
+//                    ,timeSyncInt
+//                    );
+//
+//
+//                    SaveButton.setEnabled(false);
+//                    EditButton.setEnabled(true);
+//                    DeviceLoginTextField.setEnabled(false);
+//                    DevicePassWordTextField.setEnabled(false);
+//                    TimeZoneSelect.setEnabled(false);
+//                    TimeSyncInterval.setEnabled(false);
+//
+//                    Notification.show("Параметры контроллера изменены!",
+//                            null,
+//                            Notification.Type.TRAY_NOTIFICATION);
+//                    //UI.getCurrent().removeWindow((tAddFolderWindow) clickEvent.getButton().getData());
+//
+//                }
+//            }
+//        });
 
         EditButton = new Button();
         EditButton.setIcon(VaadinIcons.EDIT);
         EditButton.addStyleName(ValoTheme.BUTTON_SMALL);
         EditButton.addStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 
-        EditButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                sCurrentDeviceLog = DeviceLoginTextField.getValue();
-                SaveButton.setEnabled(true);
-                EditButton.setEnabled(false);
-                DeviceLoginTextField.setEnabled(true);
-                DevicePassWordTextField.setEnabled(true);
-                TimeZoneSelect.setEnabled(true);
-                TimeSyncInterval.setEnabled(true);
-            }
-        });
+//        EditButton.addClickListener(new Button.ClickListener() {
+//            @Override
+//            public void buttonClick(Button.ClickEvent clickEvent) {
+//                sCurrentDeviceLog = DeviceLoginTextField.getValue();
+//                SaveButton.setEnabled(true);
+//                EditButton.setEnabled(false);
+//                DeviceLoginTextField.setEnabled(true);
+//                DevicePassWordTextField.setEnabled(true);
+//                TimeZoneSelect.setEnabled(true);
+//                TimeSyncInterval.setEnabled(true);
+//            }
+//        });
 
 
         HorizontalLayout FormHeaderButtons = new HorizontalLayout(

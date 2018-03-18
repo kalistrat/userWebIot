@@ -4,10 +4,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.*;
 import com.vaadin.ui.*;
-import com.vaadin.ui.themes.ValoTheme;
-import org.vaadin.teemu.VaadinIcons;
 
-import java.io.File;
 import java.sql.*;
 
 /**
@@ -20,7 +17,6 @@ public class tLoginView extends CustomComponent implements View {
     //Кнопки
     Button LogOnButton = new Button("Войти");
     Button RemindPassButton = new Button("Напомнить пароль");
-    Button RegButton = new Button("Регистрация");
 
     //Метка
     //Label LogInLabel = new Label("Авторизация");
@@ -45,11 +41,11 @@ public class tLoginView extends CustomComponent implements View {
         PassField.setIcon(FontAwesome.KEY);
         //PassField.addStyleName(ValoTheme.TEXTFIELD_SMALL);
 
-        ThemeResource resource = new ThemeResource("SNSLOG.png");
+        ThemeResource resource = new ThemeResource("TJAY.png");
 
         Image image = new Image(null,resource);
-        image.setWidth("300px");
-        image.setHeight("80px");
+        image.setWidth("907px");
+        image.setHeight("100px");
 
         //LogInLabel.setSizeUndefined();
         //LoginBox.addComponent(LogInLabel);
@@ -78,8 +74,7 @@ public class tLoginView extends CustomComponent implements View {
         RemindPassButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                //tRemindWindow RemWin = new tRemindWindow();
-                //UI.getCurrent().addWindow(new tRemindWindow());
+
             }
         });
 
@@ -148,19 +143,6 @@ public class tLoginView extends CustomComponent implements View {
         LoginBox.setComponentAlignment(ButtonsBox,Alignment.MIDDLE_CENTER);
         LoginBox.setSizeUndefined();
 
-        RegButton.addStyleName(ValoTheme.BUTTON_LINK);
-        RegButton.setIcon(FontAwesome.USER_PLUS);
-
-        RegButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                    // Navigate to main view
-                    getUI().getNavigator().navigateTo(tRegistrationVeiw.NAME);//
-            }
-        });
-
-        LoginViewLayOut.addComponent(RegButton);
-        LoginViewLayOut.setComponentAlignment(RegButton,Alignment.TOP_RIGHT);
 
         LoginViewLayOut.addComponent(LoginBox);
         LoginViewLayOut.setComponentAlignment(LoginBox,Alignment.MIDDLE_CENTER);

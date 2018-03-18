@@ -207,12 +207,17 @@ public class tFolderLayout extends VerticalLayout {
         EditFolderMenu.addStyleName(ValoTheme.MENUBAR_BORDERLESS);
         EditFolderMenu.addStyleName("CaptionMenu");
 
+        HorizontalLayout FolderEditLayout = new HorizontalLayout();
 
-        HorizontalLayout FolderEditLayout = new HorizontalLayout(
-                EditFolderMenu
-                ,DeleteSubTreeButton
-                ,tReturnParentFolderButton
-        );
+        if (tParentContentLayout.GetParentLeafById(tCurrentLeafId) == 0) {
+            FolderEditLayout.addComponent(EditFolderMenu);
+            FolderEditLayout.addComponent(DeleteSubTreeButton);
+            FolderEditLayout.addComponent(tReturnParentFolderButton);
+        } else {
+            FolderEditLayout.addComponent(DeleteSubTreeButton);
+            FolderEditLayout.addComponent(tReturnParentFolderButton);
+        }
+
         FolderEditLayout.setSizeUndefined();
 
         HorizontalLayout LabelEditLayout = new HorizontalLayout(

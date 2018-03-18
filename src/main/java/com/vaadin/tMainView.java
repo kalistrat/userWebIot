@@ -49,21 +49,30 @@ public class tMainView extends CustomComponent implements View {
         LogOutButton.addStyleName(ValoTheme.BUTTON_SMALL);
         LogOutButton.setIcon(FontAwesome.SIGN_OUT);
 
-        ThemeResource resource = new ThemeResource("SNSLOG.png");
+        ThemeResource resource = new ThemeResource("TJAY.png");
 
         Image image = new Image(null,resource);
-        image.setWidth("300px");
-        image.setHeight("80px");
-        VerticalLayout emptLay = new VerticalLayout();
-        //emptLay.setWidth();
+        image.setWidth("907px");
+        image.setHeight("100px");
 
-        HorizontalLayout TopSec = new HorizontalLayout(emptLay,image,LogOutButton);
-        TopSec.setComponentAlignment(image,Alignment.MIDDLE_CENTER);
+        Label emptyLabel = new Label();
+        emptyLabel.setWidth("180px");
+
+        HorizontalLayout imgLay = new HorizontalLayout(emptyLabel,image);
+        imgLay.setWidthUndefined();
+        imgLay.setHeight("110px");
+        imgLay.setComponentAlignment(image,Alignment.MIDDLE_CENTER);
+
+        HorizontalLayout TopSec = new HorizontalLayout(imgLay,LogOutButton);
+        TopSec.setComponentAlignment(imgLay,Alignment.MIDDLE_CENTER);
         TopSec.setComponentAlignment(LogOutButton,Alignment.TOP_RIGHT);
 
 
-        TopSec.setHeight("90px");
+        //TopSec.setHeight("110px");
+        //TopSec.setWidth("100%");
+        TopSec.setHeightUndefined();
         TopSec.setWidth("100%");
+
         //TopSec.addStyleName(ValoTheme.LAYOUT_CARD);
         tMainViewContent.setSizeFull();
 

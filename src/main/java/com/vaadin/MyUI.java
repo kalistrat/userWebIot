@@ -31,8 +31,6 @@ public class MyUI extends UI {
         new Navigator(this, this);
         getNavigator().addView(tLoginView.NAME, tLoginView.class);//
         getNavigator().addView(tMainView.NAME,tMainView.class);
-        getNavigator().addView(tRegistrationVeiw.NAME,tRegistrationVeiw.class);
-
 
         getNavigator().addViewChangeListener(new ViewChangeListener() {
 
@@ -41,11 +39,7 @@ public class MyUI extends UI {
 
                 boolean isLoggedIn = getSession().getAttribute("user") != null;
                 boolean isLoginView = event.getNewView() instanceof tLoginView;
-                boolean isRegistrationView = event.getNewView() instanceof tRegistrationVeiw;
 
-                if (isRegistrationView) {
-                return true;
-                } else {
 
                     if (!isLoggedIn && !isLoginView) {
                         getNavigator().navigateTo(tLoginView.NAME);
@@ -54,7 +48,6 @@ public class MyUI extends UI {
                         return false;
                     }
 
-                }
                 return true;
             }
 
