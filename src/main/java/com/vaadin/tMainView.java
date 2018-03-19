@@ -55,25 +55,26 @@ public class tMainView extends CustomComponent implements View {
         image.setWidth("907px");
         image.setHeight("100px");
 
-        Label emptyLabel = new Label();
-        emptyLabel.setWidth("180px");
 
-        HorizontalLayout imgLay = new HorizontalLayout(emptyLabel,image);
-        imgLay.setWidthUndefined();
-        imgLay.setHeight("110px");
+        VerticalLayout imgLay = new VerticalLayout(image);
+        imgLay.setHeightUndefined();
+        imgLay.setWidth("100%");
         imgLay.setComponentAlignment(image,Alignment.MIDDLE_CENTER);
 
-        HorizontalLayout TopSec = new HorizontalLayout(imgLay,LogOutButton);
-        TopSec.setComponentAlignment(imgLay,Alignment.MIDDLE_CENTER);
-        TopSec.setComponentAlignment(LogOutButton,Alignment.TOP_RIGHT);
+        VerticalLayout topButtonLayout = new VerticalLayout(
+                LogOutButton
+        );
+        topButtonLayout.setComponentAlignment(LogOutButton,Alignment.TOP_RIGHT);
+        topButtonLayout.setHeightUndefined();
+        topButtonLayout.setWidth("100%");
 
-
-        //TopSec.setHeight("110px");
-        //TopSec.setWidth("100%");
+        VerticalLayout TopSec = new VerticalLayout(
+                topButtonLayout
+                ,imgLay
+        );
         TopSec.setHeightUndefined();
         TopSec.setWidth("100%");
 
-        //TopSec.addStyleName(ValoTheme.LAYOUT_CARD);
         tMainViewContent.setSizeFull();
 
         HorizontalSplitPanel MidSec = new HorizontalSplitPanel();
