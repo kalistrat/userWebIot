@@ -85,6 +85,8 @@ public class tFolderDeleteWindow extends Window {
 
                     List<Integer> ChildsLeafs = iTreeContentLayout.getChildAllLeafsById(iLeafId);
                     int childLeafsCount = ChildsLeafs.size();
+                    String prefUID = iTreeContentLayout.getDeviceUID(iLeafId).substring(0,3);
+
 
                     if (childLeafsCount > 0) {
                         for (int i = 0; i < childLeafsCount; i++) {
@@ -97,11 +99,14 @@ public class tFolderDeleteWindow extends Window {
                                 tUsefulFuctions.deleteTreeLeaf(iTreeContentLayout.iUserLog, RemoveLeafId);
                             }
 
-                            tUsefulFuctions.overAllWsSetUserDevice(
-                                    iTreeContentLayout.getDeviceUID(RemoveLeafId)
-                                    , iTreeContentLayout.iUserLog
-                                    , "OUTSIDE"
-                            );
+                            if (!prefUID.equals("MET")) {
+
+                                tUsefulFuctions.overAllWsSetUserDevice(
+                                        iTreeContentLayout.getDeviceUID(RemoveLeafId)
+                                        , iTreeContentLayout.iUserLog
+                                        , "OUTSIDE"
+                                );
+                            }
                         }
                     }
 
