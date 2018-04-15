@@ -89,9 +89,19 @@ public class tDetectorLayout extends VerticalLayout {
         DeleteSubTreeButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                UI.getCurrent().addWindow(new tDeviceDeleteWindow(tCurrentLeafId
-                        ,tParentContentLayout
-                ));
+
+                String prefUID = tParentContentLayout.getDeviceUID(tCurrentLeafId).substring(0,3);
+                if (!prefUID.equals("MET")) {
+
+                    UI.getCurrent().addWindow(new tDeviceDeleteWindow(tCurrentLeafId
+                            , tParentContentLayout
+                    ));
+                } else {
+                    Notification.show("Устройство из пакета не может быть удалёно!",
+                            "Можно удалить только весь пакет целиком",
+                            Notification.Type.TRAY_NOTIFICATION);
+                }
+
             }
         });
 

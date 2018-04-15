@@ -56,11 +56,6 @@ public class tDeviceDeleteWindow extends Window {
 
                 String sErrorMessage = "";
 
-                String prefUID = iTreeContentLayout.getDeviceUID(iLeafId).substring(0,3);
-
-                if (prefUID.equals("MET")) {
-                    sErrorMessage = sErrorMessage + "Нельзя удалить датчик из метео-пакета. Можно удалить пакет целиком\n";
-                }
 
                 if (!tUsefulFuctions.isSubscriberExists()) {
                     sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
