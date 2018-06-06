@@ -110,6 +110,14 @@ public class tFolderDeleteWindow extends Window {
                         }
                     }
 
+
+                    tUsefulFuctions.sendMessAgeToSubcribeServer(
+                            iLeafId
+                            , iTreeContentLayout.iUserLog
+                            , "call"
+                            , "drop"
+                    );
+
                     tUsefulFuctions.sendMessAgeToSubcribeServer(
                             iLeafId
                             , iTreeContentLayout.iUserLog

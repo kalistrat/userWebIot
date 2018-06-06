@@ -88,6 +88,13 @@ public class tDeviceDeleteWindow extends Window {
                     String sParentLeafName = iTreeContentLayout
                             .GetLeafNameById(iTreeContentLayout.GetParentLeafById(iLeafId));
 
+                    tUsefulFuctions.sendMessAgeToSubcribeServer(
+                            iLeafId
+                            , iTreeContentLayout.iUserLog
+                            , "call"
+                            , "drop"
+                    );
+
                     tUsefulFuctions.deleteUserDevice(iTreeContentLayout.iUserLog, iLeafId);
 
                     tUsefulFuctions.sendMessAgeToSubcribeServer(
