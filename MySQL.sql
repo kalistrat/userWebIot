@@ -212,6 +212,24 @@ END//
 DELIMITER ;
 
 
+-- Дамп структуры для таблица things.dropped_user_devices
+CREATE TABLE IF NOT EXISTS `dropped_user_devices` (
+  `droped_devices_id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_uid` varchar(50) NOT NULL,
+  `uid` varchar(50) NOT NULL,
+  `to_server_topic` varchar(150) NOT NULL,
+  `from_server_topic` varchar(150) NOT NULL,
+  PRIMARY KEY (`droped_devices_id`),
+  UNIQUE KEY `uid` (`uid`),
+  KEY `PARENT_UID_INDX` (`parent_uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы things.dropped_user_devices: ~0 rows (приблизительно)
+DELETE FROM `dropped_user_devices`;
+/*!40000 ALTER TABLE `dropped_user_devices` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dropped_user_devices` ENABLE KEYS */;
+
+
 -- Дамп структуры для таблица things.environment_args
 CREATE TABLE IF NOT EXISTS `environment_args` (
   `arg_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1386,6 +1404,21 @@ END//
 DELIMITER ;
 
 
+-- Дамп структуры для функция things.isDroppedDevice
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `isDroppedDevice`(`UID` VARCHAR(50)) RETURNS int(11)
+BEGIN
+
+return (
+select count(*)
+from dropped_user_devices dd
+where dd.uid = UID
+);
+
+END//
+DELIMITER ;
+
+
 -- Дамп структуры для функция things.IsNumeric
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `IsNumeric`(sIn varchar(1024)) RETURNS tinyint(4)
@@ -1461,6 +1494,7 @@ declare i_leaf_id int;
 declare i_server_id int;
 declare i_time_topic varchar(150);
 declare i_to_server_topic varchar(150);
+declare i_pos_met int;
 
 select tz.timezone_id into i_timezone_id
 from timezones tz
@@ -1520,6 +1554,16 @@ i_leaf_id
 
 select LAST_INSERT_ID() into oTreeId;
 set oNewLeafId = i_leaf_id;
+
+select instr(eUID,'MET') into i_pos_met;
+
+if (i_pos_met = 0) then
+	delete from dropped_user_devices
+	where uid = eUID;
+else 
+	delete from dropped_user_devices
+	where parent_uid = eUID;
+end if;
 
 END//
 DELIMITER ;
@@ -1654,6 +1698,75 @@ concat('ssl://0.0.0.0:',i_server_port+2)
 );
 
 end//
+DELIMITER ;
+
+
+-- Дамп структуры для процедура things.pSaveDroppedDevice
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `pSaveDroppedDevice`(IN `oTreeId` INT)
+BEGIN
+
+declare i_user_log varchar(150);
+declare i_parent_uid varchar(150);
+declare i_uid varchar(150);
+declare i_parent_from_topic varchar(150);
+declare i_parent_to_topic varchar(150);
+declare i_from_topic varchar(150);
+declare i_to_topic varchar(150);
+declare i_leaf_type varchar(50);
+
+select u.user_log
+,pudt.uid puid
+,udt.uid uid
+,pudt.time_topic fromtopic
+,pudt.to_server_topic
+,udt.time_topic
+,udt.to_server_topic
+,udt.leaf_type
+into i_user_log
+,i_parent_uid
+,i_uid
+,i_parent_from_topic
+,i_parent_to_topic
+,i_from_topic
+,i_to_topic
+,i_leaf_type
+from user_devices_tree udt
+join users u on u.user_id=udt.user_id
+join user_devices_tree pudt on pudt.leaf_id=udt.parent_leaf_id and pudt.user_id=udt.user_id 
+where udt.user_devices_tree_id = oTreeId;
+
+if (i_leaf_type != 'LEAF') then
+	if (i_parent_uid=i_user_log) then
+		insert into dropped_user_devices(
+		parent_uid
+		,uid
+		,to_server_topic
+		,from_server_topic
+		)
+		values(
+		i_uid
+		,i_uid
+		,i_to_topic
+		,i_from_topic
+		);
+	else 
+		insert into dropped_user_devices(
+		parent_uid
+		,uid
+		,to_server_topic
+		,from_server_topic
+		)
+		values(
+		i_parent_uid
+		,i_uid
+		,i_parent_to_topic
+		,i_parent_from_topic
+		);
+	end if;
+end if;
+
+END//
 DELIMITER ;
 
 
@@ -2384,9 +2497,8 @@ DELIMITER ;
 
 -- Дамп структуры для процедура things.p_delete_tree_leaf
 DELIMITER //
-CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_tree_leaf`(
-eUserLog varchar(50)
-,eLeafId int
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_tree_leaf`(IN `eUserLog` varchar(50)
+, IN `eLeafId` int
 )
 begin
 declare i_tree_id int;
@@ -2397,6 +2509,8 @@ from user_devices_tree udt
 join users u on u.user_id=udt.user_id
 where u.user_log = eUserLog
 and udt.leaf_id = eLeafId;
+
+call pSaveDroppedDevice(i_tree_id);
 
 delete from user_devices_tree
 where user_devices_tree_id = i_tree_id;
@@ -2416,7 +2530,6 @@ declare i_tree_id int;
 declare i_user_device_id int;
 declare i_action_type_id int;
 
-
 select udt.user_devices_tree_id
 ,udt.user_device_id
 ,ud.action_type_id
@@ -2429,6 +2542,8 @@ left join user_device ud on ud.user_device_id=udt.user_device_id
 where u.user_log = eUserLog
 and udt.leaf_id = eLeafId;
 
+call pSaveDroppedDevice(i_tree_id);
+
 delete from user_devices_tree
 where user_devices_tree_id = i_tree_id;
 
@@ -2438,7 +2553,6 @@ where user_device_id = i_user_device_id;
 delete from user_device_task
 where user_device_id = i_user_device_id;
 
-select 'error#1';
 
 if (i_action_type_id = 1) then
 	call p_delete_detector_data(i_user_device_id);
@@ -2446,7 +2560,6 @@ else
 	call p_delete_actuator_data(i_user_device_id);
 end if;
 
-select 'error#2';
 
 delete from user_device
 where user_device_id = i_user_device_id;
