@@ -222,11 +222,13 @@ CREATE TABLE IF NOT EXISTS `dropped_user_devices` (
   PRIMARY KEY (`droped_devices_id`),
   UNIQUE KEY `uid` (`uid`),
   KEY `PARENT_UID_INDX` (`parent_uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.dropped_user_devices: ~0 rows (приблизительно)
 DELETE FROM `dropped_user_devices`;
 /*!40000 ALTER TABLE `dropped_user_devices` DISABLE KEYS */;
+INSERT INTO `dropped_user_devices` (`droped_devices_id`, `parent_uid`, `uid`, `to_server_topic`, `from_server_topic`) VALUES
+	(1, 'BRI-FMLD7DHZG2VG', 'SEN-CS3VEK79WZFD', '/BRI-FMLD7DHZG2VG/to', '/BRI-FMLD7DHZG2VG/timesync');
 /*!40000 ALTER TABLE `dropped_user_devices` ENABLE KEYS */;
 
 
