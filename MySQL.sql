@@ -1141,6 +1141,71 @@ and udt.uid = eUID
 END//
 DELIMITER ;
 
+-- Дамп структуры для процедура things.getMqttConnectionMETArgs
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getMqttConnectionMETArgs`(
+	IN eUID VARCHAR(50),
+	OUT oPackLog VARCHAR(50),
+	OUT oPackPass VARCHAR(50),
+	OUT oPackHost VARCHAR(150),
+	OUT oPackFromTopic VARCHAR(150),
+	OUT oPackToTopic VARCHAR(150),
+	OUT oTemTopic VARCHAR(150),
+	OUT oHumTopic VARCHAR(150),
+	OUT oLghtTopic VARCHAR(150),
+	out oUserName VARCHAR(150)
+)
+BEGIN
+
+
+select udt.control_log
+,udt.control_pass
+,ms.vserver_ip
+,udt.time_topic
+,udt.to_server_topic
+,(
+select ud.mqtt_topic_write
+from user_devices_tree tem
+join user_device ud on ud.user_device_id=tem.user_device_id
+where tem.parent_leaf_id=udt.leaf_id
+and tem.user_id=udt.user_id
+and tem.uid = concat(udt.uid,'-TEM')
+) tem_topic
+,(
+select ud.mqtt_topic_write
+from user_devices_tree tem
+join user_device ud on ud.user_device_id=tem.user_device_id
+where tem.parent_leaf_id=udt.leaf_id
+and tem.user_id=udt.user_id
+and tem.uid = concat(udt.uid,'-HUM')
+) hum_topic
+,(
+select ud.mqtt_topic_write
+from user_devices_tree tem
+join user_device ud on ud.user_device_id=tem.user_device_id
+where tem.parent_leaf_id=udt.leaf_id
+and tem.user_id=udt.user_id
+and tem.uid = concat(udt.uid,'-LGHT')
+) lght_topic
+,u.user_log
+into oPackLog
+,oPackPass
+,oPackHost
+,oPackFromTopic
+,oPackToTopic
+,oTemTopic
+,oHumTopic
+,oLghtTopic
+,oUserName
+from user_devices_tree udt
+join mqtt_servers ms on ms.server_id=udt.mqtt_server_id
+join users u on u.user_id=udt.user_id
+where udt.uid = eUID;
+
+
+END//
+DELIMITER ;
+
 -- Дамп структуры для процедура things.getMqttConnetionArgs
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getMqttConnetionArgs`(IN `iLeafId` INT, IN `iUserLogin` VARCHAR(50), OUT `oTopicName` VARCHAR(150), OUT `oDeviceLogin` VARCHAR(50), OUT `oDevicePassWord` VARCHAR(50), OUT `oServerIp` VARCHAR(150), OUT `oUID` VARCHAR(150), OUT `oTimeZone` VARCHAR(50))
@@ -1246,13 +1311,24 @@ DELIMITER ;
 
 -- Дамп структуры для процедура things.getMqttConnetionArgsUID
 DELIMITER //
-CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getMqttConnetionArgsUID`(IN `iUID` VARCHAR(50)
-, OUT `oTopicName` VARCHAR(150)
-, OUT `oDeviceLogin` VARCHAR(50)
-, OUT `oDevicePassWord` VARCHAR(50)
-, OUT `oServerIp` VARCHAR(150)
-, OUT `oUID` VARCHAR(150)
-, OUT `oTimeZone` VARCHAR(50)
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getMqttConnetionArgsUID`(
+	IN `iUID` VARCHAR(50)
+,
+	OUT `oTopicName` VARCHAR(150)
+,
+	OUT `oDeviceLogin` VARCHAR(50)
+,
+	OUT `oDevicePassWord` VARCHAR(50)
+,
+	OUT `oServerIp` VARCHAR(150)
+,
+	OUT `oUID` VARCHAR(150)
+,
+	OUT `oTimeZone` VARCHAR(50)
+,
+	OUT `oUserName` VARCHAR(150),
+	OUT `oTopicTo` VARCHAR(150),
+	OUT `oHost` VARCHAR(150)
 )
 BEGIN
 declare i_parent_uid varchar(150);
@@ -1277,11 +1353,15 @@ select udt.control_log
 ,s.server_ip
 ,udt.time_topic
 ,tm.timezone_value
+,udt.to_server_topic
+,s.vserver_ip
 into oDeviceLogin
 ,oDevicePassWord
 ,oServerIp
 ,oTopicName
 ,oTimeZone
+,oTopicTo
+,oHost
 from user_devices_tree udt
 join mqtt_servers s on s.server_id=udt.mqtt_server_id
 join timezones tm on tm.timezone_id=udt.timezone_id
@@ -1294,11 +1374,15 @@ select udt.control_log
 ,s.server_ip
 ,udt.time_topic
 ,tm.timezone_value
+,udt.to_server_topic
+,s.vserver_ip
 into oDeviceLogin
 ,oDevicePassWord
 ,oServerIp
 ,oTopicName
 ,oTimeZone
+,oTopicTo
+,oHost
 from user_devices_tree udt
 join mqtt_servers s on s.server_id=udt.mqtt_server_id
 join timezones tm on tm.timezone_id=udt.timezone_id
@@ -1307,6 +1391,7 @@ where udt.uid=i_parent_uid;
 end if;
 
 set oUID = i_uid;
+set oUserName = i_user_login;
 
 END//
 DELIMITER ;
@@ -4659,7 +4744,7 @@ CREATE TABLE IF NOT EXISTS `user_device` (
   CONSTRAINT `FK_user_device_unit` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`),
   CONSTRAINT `FK_user_device_unit_factor` FOREIGN KEY (`factor_id`) REFERENCES `unit_factor` (`factor_id`),
   CONSTRAINT `FK_user_device_users` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_device: ~8 rows (приблизительно)
 DELETE FROM `user_device`;
@@ -4704,7 +4789,7 @@ CREATE TABLE IF NOT EXISTS `user_devices_tree` (
   CONSTRAINT `FK_user_devices_tree_timezones` FOREIGN KEY (`timezone_id`) REFERENCES `timezones` (`timezone_id`),
   CONSTRAINT `FK_user_devices_tree_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `FK_user_devices_tree_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_devices_tree: ~22 rows (приблизительно)
 DELETE FROM `user_devices_tree`;
@@ -4815,7 +4900,7 @@ CREATE TABLE IF NOT EXISTS `user_device_task` (
   CONSTRAINT `FK_user_device_task_task_type` FOREIGN KEY (`task_type_id`) REFERENCES `task_type` (`task_type_id`),
   CONSTRAINT `FK_user_device_task_user_actuator_state` FOREIGN KEY (`user_actuator_state_id`) REFERENCES `user_actuator_state` (`user_actuator_state_id`),
   CONSTRAINT `FK_user_device_task_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_device_task: ~8 rows (приблизительно)
 DELETE FROM `user_device_task`;
