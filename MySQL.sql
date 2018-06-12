@@ -236,13 +236,16 @@ CREATE TABLE IF NOT EXISTS `dropped_user_devices` (
   PRIMARY KEY (`droped_devices_id`),
   UNIQUE KEY `uid` (`uid`),
   KEY `PARENT_UID_INDX` (`parent_uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.dropped_user_devices: ~1 rows (приблизительно)
+-- Дамп данных таблицы things.dropped_user_devices: ~3 rows (приблизительно)
 DELETE FROM `dropped_user_devices`;
 /*!40000 ALTER TABLE `dropped_user_devices` DISABLE KEYS */;
 INSERT INTO `dropped_user_devices` (`droped_devices_id`, `parent_uid`, `uid`, `to_server_topic`, `from_server_topic`, `timezone`) VALUES
-	(2, 'BRI-C4CJZMXKDJDK', 'SEN-C17R21QXZD3I', '/BRI-C4CJZMXKDJDK/to', '/BRI-C4CJZMXKDJDK/timesync', 'UTC+3');
+	(3, 'BRI-N6EZ7ZKS0DHB', 'SEN-ODFVZ2K2RV6Q', '/BRI-N6EZ7ZKS0DHB/to', '/BRI-N6EZ7ZKS0DHB/timesync', 'UTC+3'),
+	(4, 'BRI-U1AUFRTJ8ZTD', 'SEN-CIJ5H1ER2U3R', '/BRI-U1AUFRTJ8ZTD/to', '/BRI-U1AUFRTJ8ZTD/timesync', 'UTC+3'),
+	(6, 'BRI-N6EZ7ZKS0DHB', 'SEN-QJ99D9R2TWDN', '/BRI-N6EZ7ZKS0DHB/to', '/BRI-N6EZ7ZKS0DHB/timesync', 'UTC+3'),
+	(7, 'BRI-N6EZ7ZKS0DHB', 'BRI-N6EZ7ZKS0DHB', '/BRI-N6EZ7ZKS0DHB/to', '/BRI-N6EZ7ZKS0DHB/timesync', 'UTC+3');
 /*!40000 ALTER TABLE `dropped_user_devices` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.environment_args
@@ -1269,7 +1272,8 @@ DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getMqttConnetionArgsDropUID`(
 	IN `iUID` VARCHAR(50)
 ,
-	IN `iUserLogin` INT,
+	IN `iUserLogin` VARCHAR(150)
+,
 	OUT `oTopicName` VARCHAR(150)
 ,
 	OUT `oDeviceLogin` VARCHAR(50)
@@ -1281,6 +1285,7 @@ CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getMqttConnetionArgsDropUID`(
 	OUT `oUID` VARCHAR(150)
 ,
 	OUT `oTimeZone` VARCHAR(50)
+
 
 )
 BEGIN
@@ -1425,6 +1430,27 @@ left join user_devices_tree pdt on pdt.leaf_id=udt.parent_leaf_id and udt.user_i
 where udt.uid = eUID
 and u.user_log = eUserLog
 );
+END//
+DELIMITER ;
+
+-- Дамп структуры для процедура things.getSensorTopicUID
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `getSensorTopicUID`(
+	IN `UID` VARCHAR(50),
+	OUT `oTopic` VARCHAR(150),
+	OUT `oUserName` VARCHAR(150)
+)
+BEGIN
+
+select ud.mqtt_topic_write
+,u.user_log
+into oTopic
+,oUserName
+from user_devices_tree udt
+join users u on u.user_id=udt.user_id
+join user_device ud on ud.user_device_id=udt.user_device_id
+where udt.uid = UID;
+
 END//
 DELIMITER ;
 
@@ -2590,8 +2616,12 @@ DELIMITER ;
 
 -- Дамп структуры для процедура things.p_delete_tree_leaf
 DELIMITER //
-CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_tree_leaf`(IN `eUserLog` varchar(50)
-, IN `eLeafId` int
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `p_delete_tree_leaf`(
+	IN `eUserLog` varchar(50)
+,
+	IN `eLeafId` int
+
+
 )
 begin
 declare i_tree_id int;
@@ -4744,7 +4774,7 @@ CREATE TABLE IF NOT EXISTS `user_device` (
   CONSTRAINT `FK_user_device_unit` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`),
   CONSTRAINT `FK_user_device_unit_factor` FOREIGN KEY (`factor_id`) REFERENCES `unit_factor` (`factor_id`),
   CONSTRAINT `FK_user_device_users` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_device: ~8 rows (приблизительно)
 DELETE FROM `user_device`;
@@ -4757,7 +4787,10 @@ INSERT INTO `user_device` (`user_device_id`, `user_id`, `device_user_name`, `use
 	(18, 1, 'Датчик влажности', NULL, 'не задано', '2018-03-29 23:15:48', 1, 'Ед', '/MET-23JWEVCSXRB3-HUM', '18', 4, 96, 64, 'Датчик влажности', 'kZQqvn', 'K91127p', 'число'),
 	(19, 1, 'Датчик освещённости', NULL, 'не задано', '2018-03-29 23:15:48', 1, 'Ед', '/MET-23JWEVCSXRB3-LGHT', '19', 4, 96, 64, 'Датчик освещённости', 'kZQqvn', 'K91127p', 'число'),
 	(20, 1, 'SEN-X6V3BSRHSMBJ', NULL, 'не задано', '2018-04-27 23:24:02', 1, 'Ед', '/SEN-X6V3BSRHSMBJ', '20', 4, 96, 64, 'SEN-X6V3BSRHSMBJ', 'kKfTX1', 'gg9RetP', 'число'),
-	(21, 1, 'SEN-MRCBPZYVNKLT', NULL, 'не задано', '2018-06-08 23:25:49', 1, 'Ед', '/SEN-MRCBPZYVNKLT', '21', 4, 96, 64, 'SEN-MRCBPZYVNKLT', 'kr3A3r', 'WSlg1Lt', 'число');
+	(21, 1, 'SEN-MRCBPZYVNKLT', NULL, 'не задано', '2018-06-08 23:25:49', 1, 'Ед', '/SEN-MRCBPZYVNKLT', '21', 4, 96, 64, 'SEN-MRCBPZYVNKLT', 'kr3A3r', 'WSlg1Lt', 'число'),
+	(28, 1, 'Датчик температуры', NULL, 'не задано', '2018-06-12 17:05:39', 1, 'Ед', '/MET-QNFAAC0KISU2-TEM', '28', 4, 96, 64, 'Датчик температуры', 'k4GdBY', 'ylZ2h7l', 'число'),
+	(29, 1, 'Датчик влажности', NULL, 'не задано', '2018-06-12 17:05:40', 1, 'Ед', '/MET-QNFAAC0KISU2-HUM', '29', 4, 96, 64, 'Датчик влажности', 'k4GdBY', 'ylZ2h7l', 'число'),
+	(30, 1, 'Датчик освещённости', NULL, 'не задано', '2018-06-12 17:05:40', 1, 'Ед', '/MET-QNFAAC0KISU2-LGHT', '30', 4, 96, 64, 'Датчик освещённости', 'k4GdBY', 'ylZ2h7l', 'число');
 /*!40000 ALTER TABLE `user_device` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_devices_tree
@@ -4789,7 +4822,7 @@ CREATE TABLE IF NOT EXISTS `user_devices_tree` (
   CONSTRAINT `FK_user_devices_tree_timezones` FOREIGN KEY (`timezone_id`) REFERENCES `timezones` (`timezone_id`),
   CONSTRAINT `FK_user_devices_tree_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `FK_user_devices_tree_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_devices_tree: ~22 rows (приблизительно)
 DELETE FROM `user_devices_tree`;
@@ -4816,7 +4849,11 @@ INSERT INTO `user_devices_tree` (`user_devices_tree_id`, `leaf_id`, `parent_leaf
 	(49, 9, 1, NULL, 'BRI-7LC6POWPE12U', 1, 17, 4, '/BRI-7LC6POWPE12U/timesync', 1, 'kKfTX1', 'gg9RetP', '704dcfe7372337ac1f6a79a60a8da9dd4a229f72df112c60316abdba164c98f1', 'FOLDER', 'BRI-7LC6POWPE12U', '/BRI-7LC6POWPE12U/to'),
 	(50, 10, 9, 20, 'SEN-X6V3BSRHSMBJ', 1, 17, 4, '/SEN-X6V3BSRHSMBJ/timesync', 1, 'kKfTX1', 'gg9RetP', '704dcfe7372337ac1f6a79a60a8da9dd4a229f72df112c60316abdba164c98f1', 'SENSOR', 'SEN-X6V3BSRHSMBJ', '/SEN-X6V3BSRHSMBJ/to'),
 	(51, 11, 1, NULL, 'BRI-C4CJZMXKDJDK', 1, 17, 4, '/BRI-C4CJZMXKDJDK/timesync', 1, 'kr3A3r', 'WSlg1Lt', 'bca63b123b679d590ec492c9c685c8c2cee7c4397fe7ff868c24346037103a85', 'FOLDER', 'BRI-C4CJZMXKDJDK', '/BRI-C4CJZMXKDJDK/to'),
-	(52, 12, 11, 21, 'SEN-MRCBPZYVNKLT', 1, 17, 4, '/SEN-MRCBPZYVNKLT/timesync', 1, 'kr3A3r', 'WSlg1Lt', 'bca63b123b679d590ec492c9c685c8c2cee7c4397fe7ff868c24346037103a85', 'SENSOR', 'SEN-MRCBPZYVNKLT', '/SEN-MRCBPZYVNKLT/to');
+	(52, 12, 11, 21, 'SEN-MRCBPZYVNKLT', 1, 17, 4, '/SEN-MRCBPZYVNKLT/timesync', 1, 'kr3A3r', 'WSlg1Lt', 'bca63b123b679d590ec492c9c685c8c2cee7c4397fe7ff868c24346037103a85', 'SENSOR', 'SEN-MRCBPZYVNKLT', '/SEN-MRCBPZYVNKLT/to'),
+	(62, 13, 1, NULL, 'MET-QNFAAC0KISU2', 1, 17, 4, '/MET-QNFAAC0KISU2/timesync', 1, 'k4GdBY', 'ylZ2h7l', '8b03706578af258d5a63efbd5bc61226e269255737a17ef5bf1a3dde913ecaa4', 'FOLDER', 'MET-QNFAAC0KISU2', '/MET-QNFAAC0KISU2/to'),
+	(63, 14, 13, 28, 'Датчик температуры', 1, 17, 4, '/MET-QNFAAC0KISU2/timesync', 1, 'k4GdBY', 'ylZ2h7l', '8b03706578af258d5a63efbd5bc61226e269255737a17ef5bf1a3dde913ecaa4', 'SENSOR', 'MET-QNFAAC0KISU2-TEM', '/MET-QNFAAC0KISU2/to'),
+	(64, 15, 13, 29, 'Датчик влажности', 1, 17, 4, '/MET-QNFAAC0KISU2/timesync', 1, 'k4GdBY', 'ylZ2h7l', '8b03706578af258d5a63efbd5bc61226e269255737a17ef5bf1a3dde913ecaa4', 'SENSOR', 'MET-QNFAAC0KISU2-HUM', '/MET-QNFAAC0KISU2/to'),
+	(65, 16, 13, 30, 'Датчик освещённости', 1, 17, 4, '/MET-QNFAAC0KISU2/timesync', 1, 'k4GdBY', 'ylZ2h7l', '8b03706578af258d5a63efbd5bc61226e269255737a17ef5bf1a3dde913ecaa4', 'SENSOR', 'MET-QNFAAC0KISU2-LGHT', '/MET-QNFAAC0KISU2/to');
 /*!40000 ALTER TABLE `user_devices_tree` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_device_measures
@@ -4900,7 +4937,7 @@ CREATE TABLE IF NOT EXISTS `user_device_task` (
   CONSTRAINT `FK_user_device_task_task_type` FOREIGN KEY (`task_type_id`) REFERENCES `task_type` (`task_type_id`),
   CONSTRAINT `FK_user_device_task_user_actuator_state` FOREIGN KEY (`user_actuator_state_id`) REFERENCES `user_actuator_state` (`user_actuator_state_id`),
   CONSTRAINT `FK_user_device_task_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_device_task: ~8 rows (приблизительно)
 DELETE FROM `user_device_task`;
@@ -4913,7 +4950,10 @@ INSERT INTO `user_device_task` (`user_device_task_id`, `user_device_id`, `task_t
 	(13, 18, 1, 1, 'DAYS', NULL),
 	(14, 19, 1, 1, 'DAYS', NULL),
 	(15, 20, 1, 1, 'DAYS', NULL),
-	(16, 21, 1, 1, 'DAYS', NULL);
+	(16, 21, 1, 1, 'DAYS', NULL),
+	(23, 28, 1, 1, 'DAYS', NULL),
+	(24, 29, 1, 1, 'DAYS', NULL),
+	(25, 30, 1, 1, 'DAYS', NULL);
 /*!40000 ALTER TABLE `user_device_task` ENABLE KEYS */;
 
 -- Дамп структуры для таблица things.user_state_condition_vars
