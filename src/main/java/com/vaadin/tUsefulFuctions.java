@@ -4,11 +4,17 @@ import com.vaadin.ui.NativeSelect;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+import javax.net.ssl.SSLContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPathFactory;
@@ -18,6 +24,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.sql.*;
 import java.text.DateFormat;
@@ -767,7 +774,17 @@ public class tUsefulFuctions {
         try {
 
             List<String> WsArgs = getOverAllWseArgs(userLogin);
-            HttpClient client = new DefaultHttpClient();
+
+            SSLContext sslContext = SSLContexts.custom()
+                    .loadTrustMaterial((KeyStore)null, new TrustSelfSignedStrategy())
+                    //I had a trust store of my own, and this might not work!
+                    .build();
+
+            CloseableHttpClient client = HttpClients.custom()
+                    .setSSLContext(sslContext)
+                    .setSSLHostnameVerifier(new NoopHostnameVerifier())
+                    .build();
+
             HttpPost post = new HttpPost(WsArgs.get(1));
 
             post.setHeader("Content-Type", "text/xml");
@@ -814,7 +831,18 @@ public class tUsefulFuctions {
         try {
 
             List<String> WsArgs = getOverAllWseArgs(userLogin);
-            HttpClient client = new DefaultHttpClient();
+
+            SSLContext sslContext = SSLContexts.custom()
+                    .loadTrustMaterial((KeyStore)null, new TrustSelfSignedStrategy())
+                    //I had a trust store of my own, and this might not work!
+                    .build();
+
+            CloseableHttpClient client = HttpClients.custom()
+                    .setSSLContext(sslContext)
+                    .setSSLHostnameVerifier(new NoopHostnameVerifier())
+                    .build();
+
+
             HttpPost post = new HttpPost(WsArgs.get(1));
 
             post.setHeader("Content-Type", "text/xml");
