@@ -1,6 +1,8 @@
 package com.vaadin;
 
 
+import com.vaadin.actuatorContent.tActuatorLayout;
+import com.vaadin.detectorContent.tDetectorLayout;
 import com.vaadin.ui.VerticalLayout;
 
 

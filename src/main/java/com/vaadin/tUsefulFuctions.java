@@ -1,14 +1,14 @@
 package com.vaadin;
 
+import com.vaadin.detectorContent.tDetectorFormLayout;
+import com.vaadin.detectorContent.tDetectorUnitsLayout;
 import com.vaadin.ui.NativeSelect;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
 import org.w3c.dom.Document;
@@ -77,41 +77,6 @@ public class tUsefulFuctions {
     }
 
 
-    public static List<tMark> GetMarksFromString(String MarksString,String AxeTitle){
-        List<tMark> MarksList = new ArrayList<tMark>();
-        //System.out.println("MarksString :" + MarksString);
-        List<String> MarksPairs = GetListFromString(MarksString,"/");
-        for (String sPair : MarksPairs){
-            int iPos = sPair.indexOf("#");
-            if (AxeTitle.equals("x")) {
-                tMark tPair = new tMark(Integer.parseInt(sPair.substring(iPos+1)),0,sPair.substring(0, iPos));
-                MarksList.add(tPair);
-            } else {
-                tMark tPair = new tMark(0,Integer.parseInt(sPair.substring(iPos+1)),sPair.substring(0, iPos));
-                MarksList.add(tPair);
-            }
-        }
-        return MarksList;
-    }
-
-    public static List<String> GetCaptionList(List<tIdCaption> eIdCaptionList){
-        List<String> iIdCaptionList = new ArrayList<String>();
-        for (tIdCaption iIdC : eIdCaptionList){
-            iIdCaptionList.add(iIdC.tCaption);
-        }
-        return iIdCaptionList;
-    }
-
-    public static Integer GetIdByCaption(List<tIdCaption> eIdCaptionList,String eCaption){
-        Integer iId = null;
-        for (tIdCaption iIdC : eIdCaptionList){
-            if (iIdC.tCaption.equals(eCaption)){
-                iId = iIdC.tId;
-            }
-        }
-
-        return iId;
-    }
 
     public static Double GetDoubleFromString(String Val){
         Double dVal = null;

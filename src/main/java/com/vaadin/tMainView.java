@@ -8,6 +8,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.userDataContent.tUserDataFormLayout;
 
 /**
  * Created by SemenovNA on 03.08.2016.

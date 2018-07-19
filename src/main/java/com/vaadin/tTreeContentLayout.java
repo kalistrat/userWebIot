@@ -1,9 +1,7 @@
 package com.vaadin;
 
-import com.vaadin.data.Item;
-import com.vaadin.event.UIEvents;
+import com.vaadin.folderContent.tFolderLayout;
 import com.vaadin.tQuestionLeafContent.tLeafLayout;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.List;
  */
 public class tTreeContentLayout extends VerticalLayout {
 
-    tTree itTree;
+    public tTree itTree;
     public String iUserLog;
 
     public tTreeContentLayout(String tUserLog,tTree etTree){
