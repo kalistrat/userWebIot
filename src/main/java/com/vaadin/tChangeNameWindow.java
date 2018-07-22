@@ -95,6 +95,10 @@ public class tChangeNameWindow extends Window {
                         iTopLabel.setValue(VaadinIcons.QUESTION_CIRCLE_O.getHtml() + " " + sFieldValue);
                     }
 
+                    if (IconCode.equals("CLOSE_CIRCLE")) {
+                        iTopLabel.setValue(VaadinIcons.CLOSE_CIRCLE.getHtml() + " " + sFieldValue);
+                    }
+
                     if (ChangingTextField != null) {
                         ChangingTextField.setValue(sFieldValue);
                     }

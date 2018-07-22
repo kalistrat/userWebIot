@@ -40,6 +40,10 @@ public class tLeafButton extends Button {
             this.setIcon(VaadinIcons.QUESTION_CIRCLE_O);
         }
 
+        if (iButtonIconCode.equals("CLOSE_CIRCLE")) {
+            this.setIcon(VaadinIcons.CLOSE_CIRCLE);
+        }
+
         this.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {

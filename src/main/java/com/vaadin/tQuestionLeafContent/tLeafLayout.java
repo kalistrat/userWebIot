@@ -22,15 +22,20 @@ public class tLeafLayout extends VerticalLayout {
     tLeafFormLayout leafFormLayout;
 
     public tLeafLayout(int eLeafId
-            ,tTreeContentLayout eParentContentLayout
+        ,tTreeContentLayout eParentContentLayout
+        ,String leafType
     ){
 
 
         TopLabel = new Label();
         TopLabel.setContentMode(ContentMode.HTML);
 
+        if (leafType.equals("LEAF")) {
+            TopLabel.setValue(VaadinIcons.QUESTION_CIRCLE_O.getHtml() + " " + eParentContentLayout.GetLeafNameById(eLeafId));
+        } else {
+            TopLabel.setValue(VaadinIcons.CLOSE_CIRCLE.getHtml() + " " + eParentContentLayout.GetLeafNameById(eLeafId));
+        }
 
-        TopLabel.setValue(VaadinIcons.QUESTION_CIRCLE_O.getHtml() + " " + eParentContentLayout.GetLeafNameById(eLeafId));
         TopLabel.addStyleName(ValoTheme.LABEL_COLORED);
         TopLabel.addStyleName(ValoTheme.LABEL_SMALL);
         TopLabel.addStyleName("TopLabel");

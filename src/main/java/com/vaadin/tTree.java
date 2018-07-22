@@ -126,7 +126,12 @@ public class tTree extends Tree {
                     ",udt.leaf_id\n" +
                     ",ifnull(udt.parent_leaf_id,0)\n" +
                     ",udt.leaf_name\n" +
-                    ",ifnull(act.icon_code,if(udt.leaf_type = 'LEAF','QUESTION','FOLDER')) icon_code\n" +
+                    ",case when udt.leaf_type = 'SENSOR' then 'TACHOMETER'\n" +
+                    "when udt.leaf_type = 'FOLDER' then 'FOLDER'\n" +
+                    "when udt.leaf_type = 'LEAF' then 'QUESTION'\n" +
+                    "when udt.leaf_type = 'ACTUATOR' then 'AUTOMATION'\n" +
+                    "when udt.leaf_type = 'DROPPED' then 'CLOSE_CIRCLE'\n" +
+                    "else null end icon_code\n" +
                     ",ifnull(udt.user_device_id,0) user_device_id\n" +
                     ",act.action_type_name\n" +
                     ",udt.leaf_type\n" +
@@ -211,6 +216,9 @@ public class tTree extends Tree {
             }
             if (IconStr.equals("QUESTION")) {
                 setItemIcon(j, VaadinIcons.QUESTION_CIRCLE_O);
+            }
+            if (IconStr.equals("CLOSE_CIRCLE")) {
+                setItemIcon(j, VaadinIcons.CLOSE_CIRCLE);
             }
         }
 

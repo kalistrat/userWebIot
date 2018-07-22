@@ -231,6 +231,11 @@ public class tAddDeviceWindow extends Window {
                                 iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.QUESTION_CIRCLE_O);
                             }
 
+                            if (iNewIconCode.equals("CLOSE_CIRCLE")) {
+                                iTreeContentLayout.itTree.setItemIcon(iNewLeafId, VaadinIcons.CLOSE_CIRCLE);
+                            }
+
+
                             iTreeContentLayout.tTreeContentLayoutRefresh(1, 0);
                             iTreeContentLayout.itTree.expandItem(1);
 

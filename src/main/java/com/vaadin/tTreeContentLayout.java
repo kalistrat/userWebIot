@@ -44,7 +44,7 @@ public class tTreeContentLayout extends VerticalLayout {
             if (leafType.equals("FOLDER")) {
                 this.addComponent(new tFolderLayout(eLeafId, this));
             } else {
-                this.addComponent(new tLeafLayout(eLeafId, this));
+                this.addComponent(new tLeafLayout(eLeafId, this, leafType));
             }
         } else {
             this.addComponent(new tDeviceLayout(eLeafId,this));
