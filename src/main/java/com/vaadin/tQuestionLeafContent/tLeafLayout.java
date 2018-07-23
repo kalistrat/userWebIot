@@ -63,16 +63,19 @@ public class tLeafLayout extends VerticalLayout {
         EditSubTreeNameButton.addStyleName(ValoTheme.BUTTON_SMALL);
         EditSubTreeNameButton.addStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 
-        EditSubTreeNameButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                UI.getCurrent().addWindow(new tChangeNameWindow(eLeafId
-                        ,eParentContentLayout
-                        ,TopLabel
-                        ,null
-                ));
-            }
-        });
+        if (leafType.equals("LEAF")) {
+
+            EditSubTreeNameButton.addClickListener(new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent clickEvent) {
+                    UI.getCurrent().addWindow(new tChangeNameWindow(eLeafId
+                            , eParentContentLayout
+                            , TopLabel
+                            , null
+                    ));
+                }
+            });
+        }
 
         DeleteSubTreeButton = new Button("Удалить");
         DeleteSubTreeButton.setIcon(VaadinIcons.CLOSE_CIRCLE);
@@ -80,71 +83,74 @@ public class tLeafLayout extends VerticalLayout {
         DeleteSubTreeButton.addStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
         DeleteSubTreeButton.addStyleName("TopButton");
 
-        DeleteSubTreeButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                String sErrorMessage = "";
+        if (leafType.equals("LEAF")) {
 
-                if (!tUsefulFuctions.isSubscriberExists()) {
-                    sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
-                }
+            DeleteSubTreeButton.addClickListener(new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent clickEvent) {
+                    String sErrorMessage = "";
 
-                if (!tUsefulFuctions.isDataBaseExists()) {
-                    sErrorMessage = sErrorMessage + "Сервер базы данных недоступен\n";
-                }
+                    if (!tUsefulFuctions.isSubscriberExists()) {
+                        sErrorMessage = sErrorMessage + "Сервер подписки недоступен\n";
+                    }
 
-                String oWsResponse = tUsefulFuctions.overAllWsCheckUserDevice(eParentContentLayout.getDeviceUID(eLeafId),eParentContentLayout.iUserLog);
+                    if (!tUsefulFuctions.isDataBaseExists()) {
+                        sErrorMessage = sErrorMessage + "Сервер базы данных недоступен\n";
+                    }
 
-                if (oWsResponse == null) {
-                    sErrorMessage = sErrorMessage + "Общий веб-сервис недоступен\n";
-                } else {
-                    if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
-                        sErrorMessage = sErrorMessage + "Устройство с UID " + eParentContentLayout.getDeviceUID(eLeafId) + " не выпускалось\n";
-                    } else if (oWsResponse.equals("WRONG_LOGIN_PASSWORD")) {
-                        sErrorMessage = sErrorMessage + "Для пользователя " + eParentContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
-                    } else if (oWsResponse.equals("EXECUTION_ERROR")) {
-                        sErrorMessage = sErrorMessage + "Произошла ошибка выполнения\n";
+                    String oWsResponse = tUsefulFuctions.overAllWsCheckUserDevice(eParentContentLayout.getDeviceUID(eLeafId), eParentContentLayout.iUserLog);
+
+                    if (oWsResponse == null) {
+                        sErrorMessage = sErrorMessage + "Общий веб-сервис недоступен\n";
+                    } else {
+                        if (oWsResponse.equals("DEVICE_NOT_FOUND")) {
+                            sErrorMessage = sErrorMessage + "Устройство с UID " + eParentContentLayout.getDeviceUID(eLeafId) + " не выпускалось\n";
+                        } else if (oWsResponse.equals("WRONG_LOGIN_PASSWORD")) {
+                            sErrorMessage = sErrorMessage + "Для пользователя " + eParentContentLayout.iUserLog + " не синхронизирован пароль в системе\n";
+                        } else if (oWsResponse.equals("EXECUTION_ERROR")) {
+                            sErrorMessage = sErrorMessage + "Произошла ошибка выполнения\n";
+                        }
+                    }
+
+                    if (!sErrorMessage.equals("")) {
+                        Notification.show("Ошибка удаления:",
+                                sErrorMessage,
+                                Notification.Type.TRAY_NOTIFICATION);
+                    } else {
+
+                        String sParentLeafName = eParentContentLayout
+                                .GetLeafNameById(eParentContentLayout.GetParentLeafById(eLeafId));
+
+                        tUsefulFuctions.deleteTreeLeaf(eParentContentLayout.iUserLog, eLeafId);
+
+                        tUsefulFuctions.sendMessAgeToSubcribeServer(
+                                777
+                                , eParentContentLayout.iUserLog
+                                , "change"
+                                , "server"
+                        );
+
+                        tUsefulFuctions.overAllWsSetUserDevice(
+                                eParentContentLayout.getDeviceUID(eLeafId)
+                                , eParentContentLayout.iUserLog
+                                , "OUTSIDE"
+                        );
+
+                        eParentContentLayout.reloadTreeContainer();
+                        Integer iNewParentLeafId = eParentContentLayout.getLeafIdByName(sParentLeafName);
+
+
+                        eParentContentLayout.tTreeContentLayoutRefresh(iNewParentLeafId, 0);
+
+                        Notification.show("Устройство удалёно!",
+                                null,
+                                Notification.Type.TRAY_NOTIFICATION);
+                        UI.getCurrent().removeWindow((tDeviceDeleteWindow) clickEvent.getButton().getData());
+
                     }
                 }
-
-                if (!sErrorMessage.equals("")){
-                    Notification.show("Ошибка удаления:",
-                            sErrorMessage,
-                            Notification.Type.TRAY_NOTIFICATION);
-                } else {
-
-                    String sParentLeafName = eParentContentLayout
-                            .GetLeafNameById(eParentContentLayout.GetParentLeafById(eLeafId));
-
-                    tUsefulFuctions.deleteTreeLeaf(eParentContentLayout.iUserLog, eLeafId);
-
-                    tUsefulFuctions.sendMessAgeToSubcribeServer(
-                            777
-                            , eParentContentLayout.iUserLog
-                            , "change"
-                            , "server"
-                    );
-
-                    tUsefulFuctions.overAllWsSetUserDevice(
-                            eParentContentLayout.getDeviceUID(eLeafId)
-                            , eParentContentLayout.iUserLog
-                            , "OUTSIDE"
-                    );
-
-                    eParentContentLayout.reloadTreeContainer();
-                    Integer iNewParentLeafId = eParentContentLayout.getLeafIdByName(sParentLeafName);
-
-
-                    eParentContentLayout.tTreeContentLayoutRefresh(iNewParentLeafId, 0);
-
-                    Notification.show("Устройство удалёно!",
-                            null,
-                            Notification.Type.TRAY_NOTIFICATION);
-                    UI.getCurrent().removeWindow((tDeviceDeleteWindow) clickEvent.getButton().getData());
-
-                }
-            }
-        });
+            });
+        }
 
 
         HorizontalLayout LeafEditLayout = new HorizontalLayout(

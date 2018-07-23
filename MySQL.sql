@@ -3361,6 +3361,46 @@ INSERT INTO `system_environment` (`env_arg_name`, `env_arg_value`) VALUES
 	('CENTRAL_WEB_SERVICE', '178.12.156.15:8080');
 /*!40000 ALTER TABLE `system_environment` ENABLE KEYS */;
 
+-- Дамп структуры для процедура things.s_add_tech_message
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `s_add_tech_message`(
+	IN `eCode` VARCHAR(50),
+	IN `eUID` VARCHAR(50),
+	IN `eTime` VARCHAR(50)
+
+
+)
+BEGIN
+declare dataTime datetime;
+declare i_tree_id int;
+
+if (eTime = null) then
+	select DATE_ADD(SYSDATE(),INTERVAL cast(replace(tz.timezone_value,'UTC+','') as unsigned)-3 HOUR) into dataTime
+	from user_devices_tree udt
+	join timezones tz on tz.timezone_id=udt.timezone_id
+	where udt.uid = eUID;
+else
+	SELECT from_unixtime(CAST(eTime AS UNSIGNED)) into dataTime;
+end if;
+
+select udt.user_devices_tree_id into i_tree_id
+from user_devices_tree udt
+where udt.uid = eUID;
+
+
+insert into tech_devices_messages(
+message_code
+,message_time
+,user_devices_tree_id
+) values (
+eCode
+,dataTime
+,i_tree_id
+);
+
+END//
+DELIMITER ;
+
 -- Дамп структуры для функция things.s_get_condition_data
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` FUNCTION `s_get_condition_data`(
@@ -3982,6 +4022,24 @@ INSERT INTO `task_type` (`task_type_id`, `task_type_name`) VALUES
 	(3, 'STATE');
 /*!40000 ALTER TABLE `task_type` ENABLE KEYS */;
 
+-- Дамп структуры для таблица things.tech_devices_messages
+CREATE TABLE IF NOT EXISTS `tech_devices_messages` (
+  `tech_message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_code` varchar(50) DEFAULT NULL,
+  `message_time` datetime DEFAULT NULL,
+  `user_devices_tree_id` int(11) NOT NULL,
+  PRIMARY KEY (`tech_message_id`),
+  KEY `FK_tech_devices_messages_user_devices_tree` (`user_devices_tree_id`),
+  CONSTRAINT `FK_tech_devices_messages_user_devices_tree` FOREIGN KEY (`user_devices_tree_id`) REFERENCES `user_devices_tree` (`user_devices_tree_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы things.tech_devices_messages: ~0 rows (приблизительно)
+DELETE FROM `tech_devices_messages`;
+/*!40000 ALTER TABLE `tech_devices_messages` DISABLE KEYS */;
+INSERT INTO `tech_devices_messages` (`tech_message_id`, `message_code`, `message_time`, `user_devices_tree_id`) VALUES
+	(1, 'REGISTERED', '2018-07-24 00:24:44', 26);
+/*!40000 ALTER TABLE `tech_devices_messages` ENABLE KEYS */;
+
 -- Дамп структуры для таблица things.timezones
 CREATE TABLE IF NOT EXISTS `timezones` (
   `timezone_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -4592,9 +4650,9 @@ CREATE TABLE IF NOT EXISTS `user_device` (
   CONSTRAINT `FK_user_device_unit` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`),
   CONSTRAINT `FK_user_device_unit_factor` FOREIGN KEY (`factor_id`) REFERENCES `unit_factor` (`factor_id`),
   CONSTRAINT `FK_user_device_users` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.user_device: ~7 rows (приблизительно)
+-- Дамп данных таблицы things.user_device: ~6 rows (приблизительно)
 DELETE FROM `user_device`;
 /*!40000 ALTER TABLE `user_device` DISABLE KEYS */;
 INSERT INTO `user_device` (`user_device_id`, `user_id`, `device_user_name`, `user_device_mode`, `user_device_measure_period`, `user_device_date_from`, `action_type_id`, `device_units`, `mqtt_topic_write`, `mqtt_topic_read`, `mqqt_server_id`, `unit_id`, `factor_id`, `description`, `device_log`, `device_pass`, `measure_data_type`) VALUES
@@ -4674,7 +4732,7 @@ CREATE TABLE IF NOT EXISTS `user_device_measures` (
   PRIMARY KEY (`user_device_measure_id`),
   KEY `FK_user_device_measures_user_device` (`user_device_id`),
   CONSTRAINT `FK_user_device_measures_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_device_measures: ~0 rows (приблизительно)
 DELETE FROM `user_device_measures`;
@@ -4713,7 +4771,7 @@ CREATE TABLE IF NOT EXISTS `user_device_task` (
   CONSTRAINT `FK_user_device_task_task_type` FOREIGN KEY (`task_type_id`) REFERENCES `task_type` (`task_type_id`),
   CONSTRAINT `FK_user_device_task_user_actuator_state` FOREIGN KEY (`user_actuator_state_id`) REFERENCES `user_actuator_state` (`user_actuator_state_id`),
   CONSTRAINT `FK_user_device_task_user_device` FOREIGN KEY (`user_device_id`) REFERENCES `user_device` (`user_device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы things.user_device_task: ~6 rows (приблизительно)
 DELETE FROM `user_device_task`;
