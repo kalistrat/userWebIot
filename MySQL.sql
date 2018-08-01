@@ -3834,6 +3834,129 @@ end if;
 end//
 DELIMITER ;
 
+-- Дамп структуры для процедура things.s_message_recerve1
+DELIMITER //
+CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `s_message_recerve1`(
+	IN `eTopic` VARCHAR(50),
+	IN `eUnixTime` VARCHAR(50),
+	IN `eMeasureValue` VARCHAR(50)
+
+)
+begin
+
+declare i_sep_pos int;
+declare i_topic_exists int;
+declare i_mess_unix_time varchar(200);
+declare i_mess_date_time datetime;
+declare i_mess_date_serv datetime;
+declare i_message_value varchar(500);
+declare i_user_device_id int;
+declare i_data_type varchar(50);
+
+declare i_date_value datetime;
+declare i_num_value double(10,2);
+
+select count(*) into i_topic_exists
+from user_device ud
+where ud.mqtt_topic_write = eTopic;
+
+
+if (i_topic_exists = 1) then
+
+	select ud.user_device_id
+	,ud.measure_data_type
+	,case when instr(replace(tm.timezone_value,'UTC',''),'+') 
+	then date_add(now(),interval cast(replace(tm.timezone_value,'UTC+','') as unsigned)-3 hour)
+	else date_sub(now(),interval cast(replace(tm.timezone_value,'UTC-','') as unsigned)+3 hour) 
+	end utc_datetime 
+	into i_user_device_id
+	,i_data_type
+	,i_mess_date_serv
+	from user_device ud
+	join user_devices_tree udt on udt.user_device_id=ud.user_device_id
+	join timezones tm on tm.timezone_id=udt.timezone_id
+	where ud.mqtt_topic_write = eTopic;
+	
+		
+	if (IsNumeric(eUnixTime)=1) then
+	SELECT FROM_UNIXTIME(round((CAST(replace(eUnixTime,' ','') AS UNSIGNED)))) into i_mess_date_time;
+	else 
+	set i_mess_date_time = i_mess_date_serv;
+	end if;
+		
+	select replace(eMeasureValue,' ','') into i_message_value;
+
+		
+	if (i_data_type='дата' and IsNumeric(i_message_value)=1) then
+			SELECT FROM_UNIXTIME(round((CAST(replace(i_message_value,' ','') AS UNSIGNED)))) into i_date_value;
+			
+			#select concat('Дата:',i_message_value);
+			
+			if (i_date_value is not null) then
+			
+			insert into user_device_measures(
+			user_device_id
+			,measure_value
+			,measure_date
+			,measure_mess
+			,measure_date_value
+			)
+			values(
+			i_user_device_id
+			,null
+			,i_mess_date_time
+			,null
+			,i_date_value
+			);
+			
+			end if;
+			
+	elseif (i_data_type='число' and IsNumeric(i_message_value)=1) then
+	
+	#select concat('Число:',i_message_value);
+	
+			SELECT CAST(replace(i_message_value,' ','') AS decimal(10,2)) + 0E0 into i_num_value;
+			insert into user_device_measures(
+			user_device_id
+			,measure_value
+			,measure_date
+			,measure_mess
+			,measure_date_value
+			)
+			values(
+			i_user_device_id
+			,i_num_value
+			,i_mess_date_time
+			,i_message_value
+			,null
+			);
+			
+	else
+	
+	#select concat('Прочее:',i_message_value);
+	
+			insert into user_device_measures(
+			user_device_id
+			,measure_value
+			,measure_date
+			,measure_mess
+			,measure_date_value
+			)
+			values(
+			i_user_device_id
+			,null
+			,i_mess_date_time
+			,i_message_value
+			,null
+			);
+			
+	end if;
+
+end if;
+
+end//
+DELIMITER ;
+
 -- Дамп структуры для процедура things.s_p_sensor_initial
 DELIMITER //
 CREATE DEFINER=`kalistrat`@`localhost` PROCEDURE `s_p_sensor_initial`(IN `eUserLog` varchar(50)
@@ -4033,7 +4156,7 @@ CREATE TABLE IF NOT EXISTS `tech_devices_messages` (
   CONSTRAINT `FK_tech_devices_messages_user_devices_tree` FOREIGN KEY (`user_devices_tree_id`) REFERENCES `user_devices_tree` (`user_devices_tree_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы things.tech_devices_messages: ~0 rows (приблизительно)
+-- Дамп данных таблицы things.tech_devices_messages: ~1 rows (приблизительно)
 DELETE FROM `tech_devices_messages`;
 /*!40000 ALTER TABLE `tech_devices_messages` DISABLE KEYS */;
 INSERT INTO `tech_devices_messages` (`tech_message_id`, `message_code`, `message_time`, `user_devices_tree_id`) VALUES
